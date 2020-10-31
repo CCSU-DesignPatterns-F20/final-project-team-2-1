@@ -1,3 +1,3 @@
-public class WeakEnemy{
+public class WeakEnemy extends Enemy{
     
 }
