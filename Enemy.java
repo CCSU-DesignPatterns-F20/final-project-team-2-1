@@ -1,9 +1,6 @@
-public class Enemy{
-    private Cell position;
+public abstract class Enemy extends CellObject{
+
     private double health;
-    private double speed;
 
-    public void move(){
-
-    }
+    public abstract void move();
 }
