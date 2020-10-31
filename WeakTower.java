@@ -2,9 +2,14 @@
 public class WeakTower extends Tower {
 
     @Override
-    protected void attack() {
-        System.out.println("weak tower attack method");
-
+    protected void shoot() {
+        System.out.println("Weak tower shoot slow");
     }
+
+    @Override
+    protected void reload() {
+        System.out.println("Weak tower reload slow");
+    }
+
 
 }
