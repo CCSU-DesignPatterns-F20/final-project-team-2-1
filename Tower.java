@@ -27,13 +27,19 @@ public abstract class Tower extends CellObject {
     /* Returns speed*/
     public abstract double getSpeed();
 
-    /* sets the damage*/
+    /* sets the damage
+    * @param newDamage is used to replace previous tower damage value
+    */
     public abstract void setDamage(double newDamage);
 
-    /* sets the attack range */
+    /* sets the attack range 
+    * @param newRange is used to replace previous tower range value
+    */
     public abstract void setRange(int newRange);
 
-    /* sets the attack speed */
+    /* sets the attack speed 
+    * @param newSpeed is used to replace previous tower speed value
+    */
     public abstract void setSpeed(double newSpeed);
 
     /**

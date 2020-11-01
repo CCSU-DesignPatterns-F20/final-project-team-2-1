@@ -1,3 +1,7 @@
+/**
+ * This class implements tower.
+ * Used for decorator pattern to modify tower attributes
+ */
 public abstract class TowerDecorator implements Tower{
    private final Tower decoratedTower;
 
