@@ -1,7 +1,7 @@
 /**
  * This class is a specific position on the map. It will hold a tower or enemy object.
  */
-public class Cell {
+public class Cell extends BoardComposite{
     private CellObject cellObject;
     private boolean isPath;
     private int x;
