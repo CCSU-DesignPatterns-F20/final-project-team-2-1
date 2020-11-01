@@ -1,7 +1,7 @@
 /**
  * This class implements strong tower
  */
-public class StrongTower extends Tower {
+public class StrongTower extends BaseTower {
 
     @Override
     protected void shoot() {

@@ -4,9 +4,9 @@
  * and range (how far it can reach enemies) attributes.
  */
 public abstract class Tower extends CellObject {
-    private double damage;
-    private double speed;
-    private int range;
+    private abstract double damage;
+    private abstract double speed;
+    private abstract int range;
 
     /**
      * This method will inflict damage to enemy
@@ -45,47 +45,5 @@ public abstract class Tower extends CellObject {
     /**
      * This method will have the tower continously shoot enemies
      */
-    public void attack() {
-        shoot();
-        reload();
-    }
-
-    /**
-     * Returns hash code
-     */
-    public int hashCode(){
-        int hash = 0;
-        hash += (this.damage == null ? Double(this.damage).hashCode():0);
-        hash += (this.range == null ? this.range):0);
-        hash += (this.speed == null ? this.speed:0);
-        hash += (this.position == null ? this.position.hashCode():0);
-        return hash;
-    }
-    
-    /**
-     * Compare objects based on damage, range, and speed
-     * @param Object to compare
-     */
-    public boolean equals(Object other){
-        if (other == null) {return false;}
-        else if (this == other) {return true;}
-        else if (other instanceof Tower){
-            Cell otherObj = (Tower) other;
-            if (this.getRange() == otherObj.getRange() && this.getDamage() == otherObj.getDamage() && this.getSpeed() == otherObj.getSpeed()){
-                return true;
-            }
-        }
-        else {return false;}
-    }
-
-    /**
-     * Returns object as string representation.
-     */
-    public String toString(){
-        String returnString = "Tower at: x: " + this.Cell.getX() + " y: " + this.Cell.getY(); 
-        returnString = returnString + " Damage: " + this.damage;
-        returnString = returnString + " Range: " + this.range;
-        returnString = returnString + " Speed: " + this.speed;
-        return returnString;
-    }
+    public abstract void attack();
 }
