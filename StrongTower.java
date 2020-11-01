@@ -1,3 +1,6 @@
+/**
+ * This class implements strong tower
+ */
 public class StrongTower extends Tower {
 
     @Override

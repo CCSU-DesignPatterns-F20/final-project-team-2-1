@@ -1,3 +1,6 @@
+/**
+ * This class implements fast enemy
+ */
 public class FastEnemy extends Enemy {
 
     @Override

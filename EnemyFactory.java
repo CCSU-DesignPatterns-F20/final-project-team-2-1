@@ -1,5 +1,12 @@
+/**
+ * This class specifies how to create enemies
+ */
 public class EnemyFactory implements AbstractFactory {
 
+    /**
+     * This class will create and return a specific enemy. Slow enemy is default.
+     * @param String to tell which enemy to create
+     */
     @Override
     public CellObject createProduct(String enemy) {
         if (enemy.equalsIgnoreCase("slowenemy"))
