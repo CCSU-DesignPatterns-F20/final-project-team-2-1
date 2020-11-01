@@ -9,8 +9,8 @@ public class DamageDecorator extends TowerDecorator {
    }
 
     @Override
-    public abstract void setDamage(double newDamage){
-        decoratedTower.damage = newDamage;
+    public void setDamage(double newDamage){
+         decoratedTower.setDamage(damageModifier * newDamage);
     };
 
    /**

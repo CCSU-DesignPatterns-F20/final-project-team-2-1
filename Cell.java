@@ -1,8 +1,8 @@
 /**
  * This class is a specific position on the map. It will hold a tower or enemy object.
  */
-public class Cell extends BoardComposite{
-    private CellObject cellObject;
+public class Cell extends CellComposite{
+    private CellComponent cellComponent;
     private boolean isPath;
     private int x;
     private int y;
@@ -23,8 +23,8 @@ public class Cell extends BoardComposite{
      * Bounds the cell with the tower or enemy
      * @param Tower/Enemy
      */
-    public void placeOnCell(CellObject cellObject) {
-        this.cellObject = cellObject;
+    public void placeOnCell(CellComponent cellObject) {
+        this.cellComponent = cellObject;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Cell extends BoardComposite{
     /**
      * Returns isPath
      */
-    public int getPath(){
+    public boolean getPath() {
         return this.isPath;
     }
 
@@ -56,7 +56,7 @@ public class Cell extends BoardComposite{
         hash += this.x;
         hash += this.y;
         hash += this.isPath ? 1 : 0;
-        hash += (this.cellObject == null ? this.cellObject.hashCode():0);
+        hash += (this.cellComponent == null ? this.cellComponent.hashCode():0);
         return hash;
     }
     
@@ -65,16 +65,21 @@ public class Cell extends BoardComposite{
      * @param Object to compare
      */
     public boolean equals(Object other){
-        if (other == null) {return false;}
-        else if (this == other) {return true;}
+        if (other == null){
+            return false;
+        }
+        else if (this == other) {
+            return true;
+        }
         else if (other instanceof Cell){
             Cell otherObj = (Cell) other;
             if (this.getX() == otherObj.getX() && this.getY() == otherObj.getY() && this.getPath() == otherObj.getPath()){
                 return true;
             }
         }
-        else {return false;}
+       return false;
     }
+
 
     /**
      * Returns object as string representation.
@@ -84,8 +89,8 @@ public class Cell extends BoardComposite{
         if (this.isPath){
             returnString = returnString + " (Path)";
         }
-        if (this.cellObject != null){
-            returnString = returnString + "Contains Object: " + cellObject.toString();
+        if (this.cellComponent!= null){
+            returnString = returnString + "Contains Object: " + cellComponent.toString();
         }
         return returnString;
     }

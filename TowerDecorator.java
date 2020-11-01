@@ -2,9 +2,12 @@
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
  */
-public abstract class TowerDecorator implements Tower{
+public abstract class TowerDecorator extends Tower{
    private final Tower decoratedTower;
 
+   public TowerDecorator(Tower decoratedTower){
+        this.decoratedTower = decoratedTower;
+    }
    /* Returns damage*/
    @Override
     public abstract double getDamage(){
@@ -22,9 +25,4 @@ public abstract class TowerDecorator implements Tower{
     public abstract double getSpeed(){
         return decoratedTower.speed;
     };
-
-   public TowerDecorator(Tower decoratedTower){
-      this.decoratedTower = decoratedTower;
-   }
-
 }

@@ -2,7 +2,7 @@
  * This class specifies the framework for enemy.
  * Enemies will additionally contain health.
  */
-public abstract class Enemy extends CellObject{
+public abstract class Enemy extends CellComponent{
 
     private double health;
 

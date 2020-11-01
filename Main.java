@@ -4,7 +4,7 @@
 
 public class Main
 {
-    publid static void main(String args[]){
-        
+    public static void main(String args[]){
+
     }
 }

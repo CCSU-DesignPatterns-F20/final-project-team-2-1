@@ -3,7 +3,7 @@
  * Enemies will additionally contain damage (how much health it can take away from enemy) 
  * and range (how far it can reach enemies) attributes.
  */
-public abstract class Tower extends CellObject {
+public abstract class Tower extends CellComponent {
     private double damage;
     private double speed;
     private int range;
