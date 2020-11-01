@@ -1,4 +1,6 @@
-
+/**
+ * This class implements weak tower
+ */
 public class WeakTower extends Tower {
     @Override
     protected void shoot() {
