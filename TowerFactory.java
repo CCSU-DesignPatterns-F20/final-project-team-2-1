@@ -8,7 +8,7 @@ public class TowerFactory implements AbstractFactory {
      * @param String to tell which tower to create
      */
     @Override
-    public CellObject createProduct(String tower) {
+    public CellComponent createProduct(String tower) {
         if (tower.equalsIgnoreCase("strongtower"))
             return new StrongTower();
         else if (tower.equalsIgnoreCase("weaktower"))

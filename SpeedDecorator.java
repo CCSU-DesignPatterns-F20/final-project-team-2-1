@@ -9,7 +9,7 @@ public class SpeedDecorator extends TowerDecorator {
    }
 
     @Override
-    public abstract void setSpeed(double newSpeed){
+    public void setSpeed(double newSpeed){
         decoratedTower.speed = newSpeed;
     };
 
@@ -24,4 +24,39 @@ public class SpeedDecorator extends TowerDecorator {
       decoratedTower.setSpeed(decoratedTower.getSpeed()*(1+speedMultiplier));
       System.out.println("New Tower speed:" + decoratedTower.getSpeed());
    }
+
+     /**
+     * This method will inflict damage to enemy
+     */
+    protected void shoot(){
+
+   }
+
+    /* sets the attack range 
+   * @param newRange is used to replace previous tower range value
+   */
+   public void setRange(int newRange){
+
+   }
+
+   /**
+    * This method will have the tower continously shoot enemies
+    */
+   public void attack(){
+
+   }
+
+    /**
+    * This method will stall the tower before shooting again
+    */
+   protected void reload(){
+      
+   }
+
+    /* sets the damage
+    * @param newDamage is used to replace previous tower damage value
+    */
+    public void setDamage(double newDamage){
+
+    }
 }

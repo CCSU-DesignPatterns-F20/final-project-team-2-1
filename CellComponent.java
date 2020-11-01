@@ -3,8 +3,8 @@
 */
 public abstract class CellComponent{
     private CellComposite parent;
-    private double speed;
-    private Cell position;
+    protected double speed;
+    protected Cell position;
 
     public CellComposite composite(){
         return null;

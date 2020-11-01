@@ -4,9 +4,9 @@
  * and range (how far it can reach enemies) attributes.
  */
 public abstract class Tower extends CellComponent {
-    private double damage;
-    private double speed;
-    private int range;
+    protected double damage;
+    protected double speed;
+    protected int range;
 
     /**
      * This method will inflict damage to enemy

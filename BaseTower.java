@@ -7,11 +7,14 @@ public abstract class BaseTower extends Tower{
     private double speed;
     private int range;
 
+    public BaseTower (){
+        this.damage = 0;
+    }
     /**
      * This template method will have the tower continously shoot enemies
      */
      @Override
-    public abstract void attack() { 
+    public void attack() { 
         shoot();
         reload();
     }
@@ -22,10 +25,10 @@ public abstract class BaseTower extends Tower{
      */
     public int hashCode(){
         int hash = 0;
-        hash += (this.damage == null ? Double(this.damage).hashCode():0);
-        hash += (this.range == null ? this.range):0);
-        hash += (this.speed == null ? this.speed:0);
-        hash += (this.position == null ? this.position.hashCode():0);
+        hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
+        hash += this.range;
+        hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
+        hash += (this.position == null ? 0 : this.position.hashCode());
         return hash;
     }
     
@@ -37,22 +40,58 @@ public abstract class BaseTower extends Tower{
         if (other == null) {return false;}
         else if (this == other) {return true;}
         else if (other instanceof Tower){
-            Cell otherObj = (Tower) other;
+            Tower otherObj = (Tower) other;
             if (this.getRange() == otherObj.getRange() && this.getDamage() == otherObj.getDamage() && this.getSpeed() == otherObj.getSpeed()){
                 return true;
             }
         }
-        else {return false;}
+        return false;
     }
 
     /**
      * Returns object as string representation.
      */
     public String toString(){
-        String returnString = "Tower at: x: " + this.Cell.getX() + " y: " + this.Cell.getY(); 
+        String returnString = "Tower at: x: " + this.position.getX() + " y: " + this.position.getY(); 
         returnString = returnString + " Damage: " + this.damage;
         returnString = returnString + " Range: " + this.range;
         returnString = returnString + " Speed: " + this.speed;
         return returnString;
+    }
+
+    /* Returns damage*/
+    public double getDamage(){
+        return damage;
+    }
+
+    /* Returns range */
+    public int getRange(){
+        return range;
+    }
+
+    /* Returns speed*/
+    public double getSpeed(){
+        return speed;
+    }
+
+    /* sets the damage
+    * @param newDamage is used to replace previous tower damage value
+    */
+    public void setDamage(double newDamage){
+
+    }
+
+    /* sets the attack range 
+    * @param newRange is used to replace previous tower range value
+    */
+    public void setRange(int newRange){
+
+    }
+
+    /* sets the attack speed 
+    * @param newSpeed is used to replace previous tower speed value
+    */
+    public void setSpeed(double newSpeed){
+
     }
 }

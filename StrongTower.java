@@ -12,5 +12,5 @@ public class StrongTower extends BaseTower {
     protected void reload() {
         System.out.println("Strong tower reload fast");
     }
-
+    
 }

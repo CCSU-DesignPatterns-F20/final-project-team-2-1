@@ -3,5 +3,5 @@
  * It is used to create a CellObject (tower or enemy).
  */
 public interface AbstractFactory {
-    public CellObject createProduct(String cellObject);
+    public CellComponent createProduct(String cellObject);
 }
