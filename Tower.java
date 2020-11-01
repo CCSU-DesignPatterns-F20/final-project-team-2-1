@@ -5,6 +5,7 @@
  */
 public abstract class Tower extends CellObject {
     private double damage;
+    private double speed;
     private int range;
 
     /**
@@ -17,27 +18,30 @@ public abstract class Tower extends CellObject {
      */
     protected abstract void reload();
 
+    /* Returns damage*/
+    public abstract double getDamage();
+
+    /* Returns range */
+    public abstract int getRange();
+
+    /* Returns speed*/
+    public abstract double getSpeed();
+
+    /* sets the damage*/
+    public abstract void setDamage(double newDamage);
+
+    /* sets the attack range */
+    public abstract void setRange(int newRange);
+
+    /* sets the attack speed */
+    public abstract void setSpeed(double newSpeed);
+
     /**
      * This method will have the tower continously shoot enemies
      */
     public void attack() {
         shoot();
         reload();
-    }
-
-
-    /**
-     * Returns damage
-     */
-    public int getDamage(){
-        return this.damage;
-    }
-
-    /**
-     * Returns range
-     */
-    public int getRange(){
-        return this.range;
     }
 
     /**
