@@ -8,12 +8,14 @@ import java.util.List;
 public class CellComposite extends CellComponent{
     protected List<CellComponent> subComponents = new ArrayList<CellComponent>();
     
+
     /**
      * Adds Cell component to the array list
      * @param cellComponent to be added
      */
     public void add(CellComponent cellComponent){
-
+        if (cellComponent != null)
+            this.subComponents.add(cellComponent);
     }
 
     /**
@@ -21,7 +23,7 @@ public class CellComposite extends CellComponent{
      * @param cellComponent to be removed 
      */
     public void remove(CellComponent cellComponent){
-
+        this.subComponents.remove(cellComponent);
     }
     
     /**
@@ -33,9 +35,33 @@ public class CellComposite extends CellComponent{
     }
 
     /**
-     * 
+     * This changes the speed for all component
+     * @param newSpeed is the new speed
+     */
+    public void changeSpeed(double newSpeed){
+        for (int i = 0; i < this.subComponents.size(); i++){
+            this.getChild(i).changeSpeed(this.getChild(i).getSpeed() * newSpeed);
+        }
+    }
+
+    /**
+     * returns itself (list)
+     */
+    public void printAllComponenents(){
+        for (int i = 0; i < this.subComponents.size(); i++){
+            System.out.println(this.getChild(i).toString());
+        }
+    }
+
+    /**
+     * returns itself (list)
      */
     public CellComposite composite(){
         return this;
+    }
+
+    /* Returns speed*/
+    public double getSpeed(){
+        return 0;
     }
 }

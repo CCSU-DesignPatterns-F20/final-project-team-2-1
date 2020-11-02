@@ -3,13 +3,23 @@
  */
 public class StrongTower extends BaseTower {
 
+    public StrongTower(Cell cell){
+        super(cell);
+    }
+
+    /**
+     * Deals damage to enemy
+     */
     @Override
-    protected void shoot() {
+    public void shoot() {
         System.out.println("Strong tower shoot strong");
     }
 
+    /**
+     * Waits before shooting again
+     */
     @Override
-    protected void reload() {
+    public void reload() {
         System.out.println("Strong tower reload fast");
     }
     

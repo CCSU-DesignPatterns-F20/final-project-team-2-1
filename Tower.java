@@ -8,15 +8,19 @@ public abstract class Tower extends CellComponent {
     protected double speed;
     protected int range;
 
+    public Tower(Cell cell){
+        this.position = cell;
+    }
+
     /**
      * This method will inflict damage to enemy
      */
-    protected abstract void shoot();
+    public abstract void shoot();
 
     /**
      * This method will stall the tower before shooting again
      */
-    protected abstract void reload();
+    public abstract void reload();
 
     /* Returns damage*/
     public abstract double getDamage();

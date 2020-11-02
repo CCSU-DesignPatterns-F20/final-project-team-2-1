@@ -7,9 +7,11 @@ public abstract class BaseTower extends Tower{
     private double speed;
     private int range;
 
-    public BaseTower (){
-        this.damage = 0;
+    public BaseTower(Cell cell){
+        super(cell);
+        this.speed = 3;
     }
+
     /**
      * This template method will have the tower continously shoot enemies
      */
@@ -78,7 +80,7 @@ public abstract class BaseTower extends Tower{
     * @param newDamage is used to replace previous tower damage value
     */
     public void setDamage(double newDamage){
-
+        this.damage = newDamage;
     }
 
     /* sets the attack range 
@@ -92,6 +94,13 @@ public abstract class BaseTower extends Tower{
     * @param newSpeed is used to replace previous tower speed value
     */
     public void setSpeed(double newSpeed){
+        this.speed = newSpeed;
+    }
 
+    /* sets the attack speed 
+    * @param newSpeed is used to replace previous tower speed value
+    */
+    public void changeSpeed(double newSpeed){
+        setSpeed(newSpeed);
     }
 }

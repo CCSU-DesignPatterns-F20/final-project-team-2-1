@@ -6,6 +6,13 @@ public abstract class CellComponent{
     protected double speed;
     protected Cell position;
 
+    // public CellComponent(Cell position){
+    //     this.position = position;
+    // }
+
+    /**
+     * return the parent object
+     */
     public CellComposite composite(){
         return null;
     }
@@ -17,12 +24,12 @@ public abstract class CellComponent{
         return this.parent;
     }
 
-    
     /**
      * This changes the speed of the componet
      * @param newSpeed is the new speed
      */
-    public void changeSpeed(int newSpeed){
+    public abstract void changeSpeed(double newSpeed);
 
-    }
+     /* Returns speed*/
+     public abstract double getSpeed();
 }

@@ -3,6 +3,11 @@
  */
 public class SlowEnemy extends Enemy {
 
+
+    public SlowEnemy(Cell cell){
+        super(cell);
+    }
+
     @Override
     public void move() {
         // TODO Auto-generated method stub

@@ -3,6 +3,10 @@
  */
 public class FastEnemy extends Enemy {
 
+    public FastEnemy(Cell cell){
+        super(cell);
+    }
+
     @Override
     public void move() {
         // TODO Auto-generated method stub
