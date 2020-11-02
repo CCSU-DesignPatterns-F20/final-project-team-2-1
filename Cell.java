@@ -48,6 +48,7 @@ public class Cell extends CellComposite{
         return this.isPath;
     }
 
+
     /**
      * Returns hash code
      */
@@ -56,7 +57,7 @@ public class Cell extends CellComposite{
         hash += this.x;
         hash += this.y;
         hash += this.isPath ? 1 : 0;
-        hash += (this.cellComponent == null ? this.cellComponent.hashCode():0);
+        hash += (this.cellComponent != null ? this.cellComponent.hashCode():0);
         return hash;
     }
     
