@@ -10,7 +10,7 @@ public class DamageDecorator extends TowerDecorator {
 
     @Override
     public void setDamage(double newDamage){
-         decoratedTower.setDamage(damage * newDamage);
+         decoratedTower.damage = newDamage;
     };
 
    /**
