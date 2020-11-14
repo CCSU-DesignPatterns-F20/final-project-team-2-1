@@ -3,22 +3,26 @@
  * Strong and weak tower classes will build off of this and provide implementation
  */
 public abstract class BaseTower extends Tower{
-    private double damage;
-    private double speed;
-    private int range;
-
     public BaseTower(Cell cell){
         super(cell);
         this.speed = 3;
+        this.reloadLeft = 0;
     }
 
     /**
-     * This template method will have the tower continously shoot enemies
+     * This method will inflict damage to enemy
      */
      @Override
-    public void attack() { 
-        shoot();
-        reload();
+    public void shoot() { 
+        
+    }
+
+     /**
+     * This method will stall the tower before shooting again
+     */
+    @Override
+    public void reload() { 
+        
     }
 
 
@@ -30,7 +34,6 @@ public abstract class BaseTower extends Tower{
         hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
         hash += this.range;
         hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
-        hash += (this.position == null ? 0 : this.position.hashCode());
         return hash;
     }
     
@@ -63,19 +66,24 @@ public abstract class BaseTower extends Tower{
 
     /* Returns damage*/
     public double getDamage(){
-        return damage;
+        return this.damage;
     }
 
     /* Returns range */
     public int getRange(){
-        return range;
+        return this.range;
     }
 
     /* Returns speed*/
     public double getSpeed(){
-        return speed;
+        return this.speed;
     }
 
+    /* Returns reloadLeft*/
+    public double getReloadLeft(){
+        return this.reloadLeft;
+    }
+    
     /* sets the damage
     * @param newDamage is used to replace previous tower damage value
     */
@@ -87,7 +95,7 @@ public abstract class BaseTower extends Tower{
     * @param newRange is used to replace previous tower range value
     */
     public void setRange(int newRange){
-
+        this.range = newRange;
     }
 
     /* sets the attack speed 
@@ -97,10 +105,11 @@ public abstract class BaseTower extends Tower{
         this.speed = newSpeed;
     }
 
-    /* sets the attack speed 
-    * @param newSpeed is used to replace previous tower speed value
+    /* sets the reload left
+    * @param newReloadLeft is used to replace previous tower reload time left
     */
-    public void changeSpeed(double newSpeed){
-        setSpeed(newSpeed);
+    public void setReloadLeft(double newReloadLeft){
+        this.reloadLeft = newReloadLeft;
     }
+
 }

@@ -48,16 +48,23 @@ public class Cell extends CellComposite{
         return this.isPath;
     }
 
+    /**
+     * Turns cell into path or nonpath
+     * @param new Value
+     */
+    public void setPath(boolean isPath) {
+        this.isPath = isPath;
+    }
+
 
     /**
-     * Returns hash code
+     * Returns hash code based on locataion and path
      */
     public int hashCode(){
         int hash = 0;
         hash += this.x;
         hash += this.y;
         hash += this.isPath ? 1 : 0;
-        hash += (this.cellComponent != null ? this.cellComponent.hashCode():0);
         return hash;
     }
     
@@ -81,6 +88,12 @@ public class Cell extends CellComposite{
        return false;
     }
 
+    /**
+     * Returns Cell location.
+     */
+    public String getLocation(){
+        return "Cell: x: " + x + " y: " + y; 
+    }
 
     /**
      * Returns object as string representation.
@@ -94,5 +107,17 @@ public class Cell extends CellComposite{
             returnString = returnString + "Contains Object: " + cellComponent.toString();
         }
         return returnString;
+    }
+
+    
+    /**
+     * Draws the Cell and the components currently residenting on this cell
+     */
+    @Override
+    public void draw(){
+        System.out.println("Green Box on " + this.getLocation());
+        for (int i = 0; i < this.subComponents.size(); i++){
+            this.getChild(i).draw();
+        }
     }
 }

@@ -4,11 +4,12 @@
  */
 public abstract class Enemy extends CellComponent{
 
-    private double health;
+    protected double health;
+    protected int speed;
 
     public Enemy(Cell cell){
-        this.position = cell;
-        this.speed = 1;
+        super(cell);
+        this.health = 5;
     }
 
     /**
@@ -17,25 +18,17 @@ public abstract class Enemy extends CellComponent{
     public abstract void move();
 
     /**
-     * Returns health
-     */
-    public double getHealth(){
-        return this.health;
-    }
-
-    /**
-     * Returns hash code
+     * Returns hash code based on health and speed
      */
     public int hashCode(){
         int hash = 0;
         hash += (this.health == 0 ? 0: Double.valueOf(this.health).hashCode());
         hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
-        hash += (this.position == null ? 0 : this.position.hashCode());
         return hash;
     }
     
     /**
-     * Compare objects based on health, speed
+     * Compare objects based on health and speed
      * @param Object to compare
      */
     public boolean equals(Object other){
@@ -60,15 +53,31 @@ public abstract class Enemy extends CellComponent{
         return returnString;
     }
 
-    /* Returns speed*/
-    public double getSpeed(){
-        return speed;
+    /* Returns Health*/
+    public double getHealth(){
+        return this.health;
     }
 
-    /* sets the attack speed 
+    /* 
+    * sets the enemy health
+    * @param newHealth is used to replace previous tower health value
+    */
+    public void setHealth(double newHealth){
+        this.health = newHealth;
+    }
+
+    /* Returns speed*/
+    public double getSpeed(){
+        return this.speed;
+    }
+
+    /* 
+    * sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
-    public void changeSpeed(double newSpeed){
+    public void setSpeed(int newSpeed){
         this.speed = newSpeed;
     }
+
+
 }

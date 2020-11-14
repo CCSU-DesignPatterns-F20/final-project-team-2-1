@@ -3,12 +3,16 @@
 */
 public abstract class CellComponent{
     private CellComposite parent;
-    protected double speed;
     protected Cell position;
 
-    // public CellComponent(Cell position){
-    //     this.position = position;
-    // }
+    public CellComponent(Cell position){
+        this.position = position;
+        this.position.add(this);
+    }
+
+    public CellComponent(){
+        this.position = position;
+    }
 
     /**
      * return the parent object
@@ -25,11 +29,7 @@ public abstract class CellComponent{
     }
 
     /**
-     * This changes the speed of the componet
-     * @param newSpeed is the new speed
+     * Draws the Component on the UI Board
      */
-    public abstract void changeSpeed(double newSpeed);
-
-     /* Returns speed*/
-     public abstract double getSpeed();
+    public abstract void draw();
 }

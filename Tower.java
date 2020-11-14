@@ -6,11 +6,17 @@
 public abstract class Tower extends CellComponent {
     protected double damage;
     protected double speed;
+    protected double reloadLeft;
     protected int range;
 
     public Tower(Cell cell){
-        this.position = cell;
+        super(cell);
     }
+
+    /**
+     * This method will have the tower continously shoot enemies
+     */
+    public abstract void attack();
 
     /**
      * This method will inflict damage to enemy
@@ -22,6 +28,8 @@ public abstract class Tower extends CellComponent {
      */
     public abstract void reload();
 
+
+
     /* Returns damage*/
     public abstract double getDamage();
 
@@ -30,6 +38,9 @@ public abstract class Tower extends CellComponent {
 
     /* Returns speed*/
     public abstract double getSpeed();
+
+    /* Returns reloadLeft*/
+    public abstract double getReloadLeft();
 
     /* sets the damage
     * @param newDamage is used to replace previous tower damage value
@@ -46,8 +57,12 @@ public abstract class Tower extends CellComponent {
     */
     public abstract void setSpeed(double newSpeed);
 
-    /**
-     * This method will have the tower continously shoot enemies
-     */
-    public abstract void attack();
+
+    /* sets the reload time left 
+    * @param newReloadLeft is used to replace previous tower reloadLeft value
+    */
+    public abstract void setReloadLeft(double newReloadLeft);
+
+
+
 }

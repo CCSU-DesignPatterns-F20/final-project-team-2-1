@@ -35,12 +35,12 @@ public class CellComposite extends CellComponent{
     }
 
     /**
-     * This changes the speed for all component
-     * @param newSpeed is the new speed
+     * This draw shapes for all components. 
+     * *Starts from 0 to skip the cell itself.
      */
-    public void changeSpeed(double newSpeed){
+    public void draw(){
         for (int i = 0; i < this.subComponents.size(); i++){
-            this.getChild(i).changeSpeed(this.getChild(i).getSpeed() * newSpeed);
+            System.out.println(this.getChild(i).toString());
         }
     }
 
@@ -60,8 +60,4 @@ public class CellComposite extends CellComponent{
         return this;
     }
 
-    /* Returns speed*/
-    public double getSpeed(){
-        return 0;
-    }
 }
