@@ -5,7 +5,7 @@
 public abstract class TowerDecorator extends Tower{
    protected final Tower decoratedTower;
 
-   public TowerDecorator(Tower decoratedTower){
+   public TowerDecorator(Tower decoratedTower){;
         this.decoratedTower = decoratedTower;
     }
    /* Returns damage*/
