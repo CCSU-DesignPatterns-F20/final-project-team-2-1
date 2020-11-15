@@ -8,11 +8,18 @@ public class Board {
     private final Cell[][] cells;
     private final CellList<Cell> pathCells;
 
+    /**
+     * Constructs Board using predefined attributes
+     * @param predefined attributes
+     */
     public Board(BoardBuilder builder) {
         this.cells = builder.cells;
         this.pathCells = builder.pathCells;
     }
 
+    /**
+     * returns the Iterator for the path
+     */
     public IteratorInterface<Cell> getPath() {
         return pathCells.getCellPathIterator();
     }
@@ -73,6 +80,11 @@ public class Board {
         private Cell[][] cells;
         private CellList<Cell> pathCells;
 
+        /**
+        * Initializes the board using nonPath Cells
+        * @param number of rows
+        * @param number of columns
+        */
         public BoardBuilder setBoardSize(int x, int y) {
 
             this.cells = new Cell[x][y];
@@ -84,6 +96,10 @@ public class Board {
             return this;
         }
 
+        /**
+         * This method turns Cells to path
+         * @param list of int x and y coordinates to choose Cells to be path
+         */
         public BoardBuilder setPathCell(int[][] tobePathCells) {
             this.pathCells = new CellList<Cell>();
             for (int[] cell : tobePathCells) {
@@ -94,6 +110,9 @@ public class Board {
             return this;
         }
 
+        /**
+         * Returns pre-constructed Board
+         */
         public Board build() {
             return new Board(this);
         }

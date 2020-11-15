@@ -2,13 +2,13 @@
  * This class specifies the framework for enemy.
  * Enemies will additionally contain health.
  */
-public abstract class EnemyPrototype implements Cloneable {
+public abstract class EnemyPrototype extends CellComponent implements Cloneable {
 
-    private double health;
+    protected double health;
+    protected double speed;
 
-    public Enemy(Cell cell){
-        this.position = cell;
-        this.speed = 1;
+    public EnemyPrototype(Cell cell){
+        super(cell);
     }
 
     /**
@@ -17,25 +17,21 @@ public abstract class EnemyPrototype implements Cloneable {
     public abstract void move();
 
     /** Returns health */
-    public abstract double getHealth(){
-    }
+    public abstract double getHealth();
 
      /** Returns health */
-    public abstract void setHealth(double newHealth){
-    }
+    public abstract void setHealth(double newHealth);
 
     /* This method will be used to clone/create copies of enemy objects */
-    public EnemyPrototype clone();
+    public abstract EnemyPrototype clone();
 
     /* Returns speed*/
     public double getSpeed(){
         return speed;
     }
 
-    /* sets the attack speed 
-    * @param newSpeed is used to replace previous tower speed value
-    */
-    public void changeSpeed(double newSpeed){
+    /* Sets new speed */
+    public void setSpeed(double newSpeed){
         this.speed = newSpeed;
     }
 

@@ -14,7 +14,7 @@ public abstract class TowerDecorator extends Tower{
      * This method will have the tower continously shoot enemies
      */
     @Override
-    public  void attack(){
+    public void attack(){
         this.decoratedTower.attack();
     }
 
@@ -89,14 +89,14 @@ public abstract class TowerDecorator extends Tower{
         this.decoratedTower.setSpeed(newSpeed);
     }
     /**
-     * Draws tower according to its type
+     * Draws enemy according to its type
      */
     @Override
     public void draw() {
         this.decoratedTower.draw();
     }
 
-       /**
+    /**
     * Returns hash code
     */
     public int hashCode(){
@@ -104,7 +104,7 @@ public abstract class TowerDecorator extends Tower{
     }
     
     /**
-    * Compare objects based on damage, range, and speed
+    * Compare objects based on enemy's equals implemention
     * @param Object to compare
     */
     public boolean equals(Object other){

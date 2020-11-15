@@ -60,4 +60,42 @@ public abstract class Tower extends CellComponent {
     */
     public abstract void setReloadLeft(double newReloadLeft);
 
+    /**
+    * Returns hash code
+    */
+    public int hashCode(){
+        int hash = 0;
+        hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
+        hash += this.range;
+        hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
+        return hash;
+    }
+    
+    /**
+    * Compare objects based on damage, range, and speed
+    * @param Object to compare
+    */
+    public boolean equals(Object other){
+        if (other == null) {return false;}
+        else if (this == other) {return true;}
+        else if (other instanceof Tower){
+            Tower otherObj = (Tower) other;
+            if (this.getRange() == otherObj.getRange() && this.getDamage() == otherObj.getDamage() && this.getSpeed() == otherObj.getSpeed()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+    * Returns object as string representation.
+    */
+    public String toString(){
+        String returnString = "Tower at: x: " + this.position.getX() + " y: " + this.position.getY(); 
+        returnString = returnString + " Damage: " + this.damage;
+        returnString = returnString + " Range: " + this.range;
+        returnString = returnString + " Speed: " + this.speed;
+        return returnString;
+    }
+
 }

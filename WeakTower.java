@@ -9,20 +9,16 @@ public class WeakTower extends BaseTower {
         this.damage = 1;
     }
     
+    
     /**
      * This method will shoot enemy when fully realoaded.
+     * Strong tower has 10% chance to shoot again
      */
     @Override
-    public void attack() {
-        if (this.getReloadLeft() <= 0){
-            this.shoot();
-            this.setReloadLeft(this.getSpeed());
-        }
-        else{
-            this.reload();
-        }
+    public void shoot() {
+        System.out.println("Weak tower shoots");
+        this.setReloadLeft(this.getSpeed());
     }
-
     /**
      * Draws tower as blue box
      */

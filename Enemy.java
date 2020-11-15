@@ -4,9 +4,6 @@
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    protected double health;
-    protected int speed;
-
     public Enemy(Cell cell){
         super(cell);
         this.health = 5;
@@ -15,12 +12,9 @@ public abstract class Enemy extends EnemyPrototype{
     /**
      * This method will allow the object to move from current cell to another
      */
-    public abstract void move();
-
-
-    /* This method will be used to clone/create copies of enemy objects */
-    public Enemy clone();
-
+    public void move(){
+        System.out.println("Enemy is moving for ya");
+    }
 
     /**
     * Returns Health

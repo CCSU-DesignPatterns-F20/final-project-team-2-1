@@ -7,14 +7,13 @@ public class FastEnemy extends Enemy {
         super(cell);
         this.speed = 5;
     }
-    
+
     /**
-    * Regenerate .5% of heath and moves the enemy
+    * Clones the enemy instance
     */
     @Override
-    public void move() {
-        this.setHealth(this.getHealth() * 1.005);
-        System.out.println("fast enemy move fast");
+    public FastEnemy clone(){
+        return new FastEnemy(this.position);
     }
 
     /**

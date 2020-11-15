@@ -9,11 +9,11 @@ public class SlowEnemy extends Enemy {
     }
     
     /**
-     * Moves the enemy
-     */
+    * Clones the enemy instance
+    */
     @Override
-    public void move() {
-        System.out.println("slow enemy move slow");
+    public SlowEnemy clone(){
+        return new SlowEnemy(this.position);
     }
 
     /**

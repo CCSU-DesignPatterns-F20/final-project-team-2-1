@@ -15,22 +15,16 @@ public class StrongTower extends BaseTower {
      * Strong tower has 10% chance to shoot again
      */
     @Override
-    public void attack() {
-        if (this.getReloadLeft() <= 0){
-            this.shoot();
-            Random  r = new Random(); 
-            System.out.println("shoot1");
-            int roll = r.nextInt();
-            double max = .10;
-            if (roll < max){
-                this.shoot();
-                System.out.println("shoot2");
-            }
-            this.setReloadLeft(this.getSpeed());
+    public void shoot() {
+        Random  r = new Random(); 
+        System.out.println("Strong tower shoots");
+        int roll = r.nextInt();
+        double max = .10;
+        System.out.println(max + " " + roll);
+        if (roll < max){
+            System.out.println("Strong tower shoots again");
         }
-        else{
-            this.reload();
-        }
+        this.setReloadLeft(this.getSpeed());
     }
 
     /**
