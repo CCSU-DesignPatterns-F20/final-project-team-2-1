@@ -56,5 +56,11 @@ public class Main {
         Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(multi).build();
 
         System.out.println(board.toString());
+
+        var iterator = board.getPath();
+        while (iterator.hasNext()) {
+            System.out.printf("path cell is %s %n", iterator.next().toString());
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 import Iterator.CellList;
+import Iterator.IteratorInterface;
 
 /**
  * This is the Board class that is used to store all the cell
@@ -10,6 +11,10 @@ public class Board {
     public Board(BoardBuilder builder) {
         this.cells = builder.cells;
         this.pathCells = builder.pathCells;
+    }
+
+    public IteratorInterface<Cell> getPath() {
+        return pathCells.getCellPathIterator();
     }
 
     /**
