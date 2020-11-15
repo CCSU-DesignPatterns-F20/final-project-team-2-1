@@ -1,21 +1,15 @@
+import Iterator.CellList;
+
 /**
  * This is the Board class that is used to store all the cell
  */
 public class Board {
     private final Cell[][] cells;
+    private final CellList<Cell> pathCells;
 
     public Board(BoardBuilder builder) {
-        cells = builder.cell;
-    }
-
-    public Board(int x, int y) {
-        this.cells = new Cell[x][y];
-        for (int r = 0; r < x; r++) {
-            for (int c = 0; c < y; c++) {
-                this.cells[r][c] = new Cell(r, c, false);
-            }
-        }
-
+        this.cells = builder.cells;
+        this.pathCells = builder.pathCells;
     }
 
     /**
@@ -38,26 +32,32 @@ public class Board {
     }
 
     public static class BoardBuilder {
-        private Cell[][] cell;
+        private Cell[][] cells;
+        private CellList<Cell> pathCells;
+
+        public BoardBuilder setBoardSize(int x, int y) {
+
+            this.cells = new Cell[x][y];
+            for (int r = 0; r < x; r++) {
+                for (int c = 0; c < y; c++) {
+                    this.cells[r][c] = new Cell(r, c, false);
+                }
+            }
+            return this;
+        }
+
+        public BoardBuilder setPathCell(int[][] tobePathCells) {
+            this.pathCells = new CellList<Cell>();
+            for (int[] cell : tobePathCells) {
+                Cell c = this.cells[cell[0]][cell[1]];
+                c.setPath(true);
+                this.pathCells.add(c);
+            }
+            return this;
+        }
 
         public Board build() {
             return new Board(this);
-        }
-
-        /**
-         * Initialzes the nonPath Cells
-         * 
-         * @param number of rows
-         * @param number of columns
-         */
-        public Cell[][] buildCells(int x, int y) {
-            cell = new Cell[x][y];
-            for (int r = 0; r < x; r++) {
-                for (int c = 0; c < y; c++) {
-                    cell[r][c] = new Cell(r, c, false);
-                }
-            }
-            return cell;
         }
 
     }

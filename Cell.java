@@ -19,6 +19,14 @@ public class Cell extends CellComposite{
         this.isPath = isPath;
     }
 
+    public Cell(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.isPath = false;
+    }
+
+    
+
     /**
      * Bounds the cell with the tower or enemy
      * @param Tower/Enemy
