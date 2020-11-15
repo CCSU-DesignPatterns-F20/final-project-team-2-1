@@ -10,7 +10,9 @@ public class GameGui{
     JPanel gamePanel2 = new JPanel();
     JButton startButton = new JButton("Start Game");
     JButton quitButton = new JButton("Exit Game");
+    JButton pauseButton = new JButton("Pause Game");
     JLabel text = new JLabel("Welcome to the tower defense game");
+
 
     GameGui(){
         //Button that starts a new frame
@@ -22,6 +24,8 @@ public class GameGui{
                 gamePanel1.setBackground(Color.cyan);
                 gamePanel2.setBackground(Color.red);
                 gamePanel2.add(label);
+                gamePanel2.add(pauseButton);
+                gamePanel2.add(quitButton);
                 gamePanel2.setPreferredSize(new Dimension(1000, 200));
                 gameWindow.add(gamePanel1, BorderLayout.CENTER);
                 gameWindow.add(gamePanel2, BorderLayout.PAGE_END);
@@ -44,6 +48,7 @@ public class GameGui{
         quitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 uiWindow.dispose();
+                gameWindow.dispose();
             }
         });
 
