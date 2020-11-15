@@ -21,7 +21,7 @@ public class StrongTower extends BaseTower {
             Random  r = new Random(); 
             System.out.println("shoot1");
             int roll = r.nextInt();
-            double max = .99;
+            double max = .10;
             if (roll < max){
                 this.shoot();
                 System.out.println("shoot2");
@@ -32,7 +32,6 @@ public class StrongTower extends BaseTower {
             this.reload();
         }
     }
-
 
     /**
      * Draws strong tower as purple box

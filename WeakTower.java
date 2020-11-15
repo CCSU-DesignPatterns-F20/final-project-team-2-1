@@ -4,7 +4,6 @@
 
 public class WeakTower extends BaseTower {
 
-
     public WeakTower(Cell cell){
         super(cell);
         this.damage = 1;

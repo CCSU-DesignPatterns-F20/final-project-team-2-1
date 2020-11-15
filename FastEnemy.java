@@ -7,21 +7,20 @@ public class FastEnemy extends Enemy {
         super(cell);
         this.speed = 5;
     }
-
-    @Override
+    
     /**
-     * Regenerate .5% of heath and moves the enemy
-     */
+    * Regenerate .5% of heath and moves the enemy
+    */
+    @Override
     public void move() {
-        // TODO Auto-generated method stub
         this.setHealth(this.getHealth() * 1.005);
         System.out.println("fast enemy move fast");
     }
 
-    @Override
     /**
-     * Draws fast enemy as red box
-     */
+    * Draws fast enemy as red box
+    */
+    @Override
     public void draw() {
         System.out.println("Red Box on " + this.position.getLocation());
     }

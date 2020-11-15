@@ -28,9 +28,9 @@ public abstract class Enemy extends CellComponent{
     }
     
     /**
-     * Compare objects based on health and speed
-     * @param Object to compare
-     */
+    * Compare objects based on health and speed
+    * @param Object to compare
+    */
     public boolean equals(Object other){
         if (other == null) {return false;}
         else if (this == other) {return true;}
@@ -44,8 +44,8 @@ public abstract class Enemy extends CellComponent{
     }
 
     /**
-     * Returns object as string representation.
-     */
+    * Returns object as string representation.
+    */
     public String toString(){
         String returnString = "Enemy at: x: " + this.position.getX() + " y: " + this.position.getY(); 
         returnString = returnString + " Health: " + this.health;
@@ -53,7 +53,9 @@ public abstract class Enemy extends CellComponent{
         return returnString;
     }
 
-    /* Returns Health*/
+    /**
+    * Returns Health
+    */
     public double getHealth(){
         return this.health;
     }
@@ -66,13 +68,15 @@ public abstract class Enemy extends CellComponent{
         this.health = newHealth;
     }
 
-    /* Returns speed*/
+    /**
+    * Returns Speed
+    */
     public double getSpeed(){
         return this.speed;
     }
 
     /* 
-    * sets the attack speed 
+    * Sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
     public void setSpeed(int newSpeed){

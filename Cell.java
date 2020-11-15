@@ -109,7 +109,6 @@ public class Cell extends CellComposite{
         return returnString;
     }
 
-    
     /**
      * Draws the Cell and the components currently residenting on this cell
      */

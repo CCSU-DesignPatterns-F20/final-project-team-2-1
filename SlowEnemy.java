@@ -7,20 +7,19 @@ public class SlowEnemy extends Enemy {
         super(cell);
         this.speed = 1;
     }
-
-    @Override
+    
     /**
      * Moves the enemy
      */
+    @Override
     public void move() {
-        // TODO Auto-generated method stub
         System.out.println("slow enemy move slow");
     }
 
-    @Override
     /**
-     * Draws slow enemy as orange box
-     */
+    * Draws slow enemy as orange box
+    */
+    @Override
     public void draw() {
         System.out.println("Orange Box on " + this.position.getLocation());
     }

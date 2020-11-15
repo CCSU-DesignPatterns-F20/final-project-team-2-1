@@ -39,6 +39,7 @@ public class CellComposite extends CellComponent {
     /**
      * This draw shapes for all components. *Starts from 0 to skip the cell itself.
      */
+    @Override
     public void draw() {
         for (int i = 0; i < this.subComponents.size(); i++) {
             this.getChild(i).draw();
@@ -57,6 +58,7 @@ public class CellComposite extends CellComponent {
     /**
      * returns itself (list)
      */
+    @Override
     public CellComposite composite() {
         return this;
     }

@@ -11,7 +11,7 @@ public abstract class CellComponent{
     }
 
     public CellComponent(){
-        this.position = position;
+
     }
 
     /**

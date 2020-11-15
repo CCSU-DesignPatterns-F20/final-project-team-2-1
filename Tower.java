@@ -28,8 +28,6 @@ public abstract class Tower extends CellComponent {
      */
     public abstract void reload();
 
-
-
     /* Returns damage*/
     public abstract double getDamage();
 
@@ -57,12 +55,9 @@ public abstract class Tower extends CellComponent {
     */
     public abstract void setSpeed(double newSpeed);
 
-
     /* sets the reload time left 
     * @param newReloadLeft is used to replace previous tower reloadLeft value
     */
     public abstract void setReloadLeft(double newReloadLeft);
-
-
 
 }
