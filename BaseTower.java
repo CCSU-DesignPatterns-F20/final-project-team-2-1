@@ -3,41 +3,43 @@
  * Strong and weak tower classes will build off of this and provide implementation
  */
 public abstract class BaseTower extends Tower{
-    private double damage;
-    private double speed;
-    private int range;
-
     public BaseTower(Cell cell){
         super(cell);
         this.speed = 3;
+        this.reloadLeft = 0;
     }
 
     /**
-     * This template method will have the tower continously shoot enemies
-     */
-     @Override
-    public void attack() { 
-        shoot();
-        reload();
+    * This method will inflict damage to enemy
+    */
+    @Override
+    public void shoot() { 
+        
     }
 
+    /**
+    * This method will stall the tower before shooting again
+    */
+    @Override
+    public void reload() { 
+        
+    }
 
     /**
-     * Returns hash code
-     */
+    * Returns hash code
+    */
     public int hashCode(){
         int hash = 0;
         hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
         hash += this.range;
         hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
-        hash += (this.position == null ? 0 : this.position.hashCode());
         return hash;
     }
     
     /**
-     * Compare objects based on damage, range, and speed
-     * @param Object to compare
-     */
+    * Compare objects based on damage, range, and speed
+    * @param Object to compare
+    */
     public boolean equals(Object other){
         if (other == null) {return false;}
         else if (this == other) {return true;}
@@ -51,8 +53,8 @@ public abstract class BaseTower extends Tower{
     }
 
     /**
-     * Returns object as string representation.
-     */
+    * Returns object as string representation.
+    */
     public String toString(){
         String returnString = "Tower at: x: " + this.position.getX() + " y: " + this.position.getY(); 
         returnString = returnString + " Damage: " + this.damage;
@@ -61,24 +63,42 @@ public abstract class BaseTower extends Tower{
         return returnString;
     }
 
-    /* Returns damage*/
+    /** 
+    * Returns damage
+    */
+    @Override
     public double getDamage(){
-        return damage;
+        return this.damage;
     }
 
-    /* Returns range */
+    /** 
+    * Returns range 
+    */
+    @Override
     public int getRange(){
-        return range;
+        return this.range;
     }
 
-    /* Returns speed*/
+    /**
+    * Returns speed
+    */
+    @Override
     public double getSpeed(){
-        return speed;
+        return this.speed;
     }
 
+    /** 
+    * Returns reloadLeft
+    */
+    @Override
+    public double getReloadLeft(){
+        return this.reloadLeft;
+    }
+    
     /* sets the damage
     * @param newDamage is used to replace previous tower damage value
     */
+    @Override
     public void setDamage(double newDamage){
         this.damage = newDamage;
     }
@@ -86,21 +106,25 @@ public abstract class BaseTower extends Tower{
     /* sets the attack range 
     * @param newRange is used to replace previous tower range value
     */
+    @Override
     public void setRange(int newRange){
-
+        this.range = newRange;
     }
 
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
+    @Override
     public void setSpeed(double newSpeed){
         this.speed = newSpeed;
     }
 
-    /* sets the attack speed 
-    * @param newSpeed is used to replace previous tower speed value
+    /* sets the reload left
+    * @param newReloadLeft is used to replace previous tower reload time left
     */
-    public void changeSpeed(double newSpeed){
-        setSpeed(newSpeed);
+    @Override
+    public void setReloadLeft(double newReloadLeft){
+        this.reloadLeft = newReloadLeft;
     }
+
 }

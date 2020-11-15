@@ -8,13 +8,13 @@ public class EnemyFactory implements AbstractFactory {
      * @param String to tell which enemy to create
      */
     @Override
-    public CellComponent createProduct(String enemy) {
+    public CellComponent createProduct(String enemy, Cell cell) {
         if (enemy.equalsIgnoreCase("slowenemy"))
-            return new SlowEnemy();
+            return new SlowEnemy(cell);
         else if (enemy.equalsIgnoreCase("fastenemy"))
-            return new FastEnemy();
+            return new FastEnemy(cell);
         else
-            return new SlowEnemy();
+            return new SlowEnemy(cell);
     }
 
 }

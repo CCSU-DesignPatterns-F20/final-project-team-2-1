@@ -4,11 +4,12 @@
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    private double health;
+    protected double health;
+    protected int speed;
 
     public Enemy(Cell cell){
-        this.position = cell;
-        this.speed = 1;
+        super(cell);
+        this.health = 5;
     }
 
     /**
@@ -16,18 +17,40 @@ public abstract class Enemy extends EnemyPrototype{
      */
     public abstract void move();
 
+
     /* This method will be used to clone/create copies of enemy objects */
     public Enemy clone();
 
-    /* Returns speed*/
-    public double getSpeed(){
-        return speed;
+
+    /**
+    * Returns Health
+    */
+    public double getHealth(){
+        return this.health;
     }
 
-    /* sets the attack speed 
+    /* 
+    * sets the enemy health
+    * @param newHealth is used to replace previous tower health value
+    */
+    public void setHealth(double newHealth){
+        this.health = newHealth;
+    }
+
+    /**
+    * Returns Speed
+    */
+    public double getSpeed(){
+        return this.speed;
+    }
+
+    /* 
+    * Sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
-    public void changeSpeed(double newSpeed){
+    public void setSpeed(int newSpeed){
         this.speed = newSpeed;
     }
+
+
 }
