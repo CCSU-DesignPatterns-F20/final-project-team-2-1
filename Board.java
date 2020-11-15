@@ -36,37 +36,6 @@ public class Board {
         }
     }
 
-    public static class BoardBuilder {
-        private Cell[][] cells;
-        private CellList<Cell> pathCells;
-
-        public BoardBuilder setBoardSize(int x, int y) {
-
-            this.cells = new Cell[x][y];
-            for (int r = 0; r < x; r++) {
-                for (int c = 0; c < y; c++) {
-                    this.cells[r][c] = new Cell(r, c, false);
-                }
-            }
-            return this;
-        }
-
-        public BoardBuilder setPathCell(int[][] tobePathCells) {
-            this.pathCells = new CellList<Cell>();
-            for (int[] cell : tobePathCells) {
-                Cell c = this.cells[cell[0]][cell[1]];
-                c.setPath(true);
-                this.pathCells.add(c);
-            }
-            return this;
-        }
-
-        public Board build() {
-            return new Board(this);
-        }
-
-    }
-
     /**
      * Access specific cell
      * 
@@ -98,5 +67,36 @@ public class Board {
             }
         }
         return allCells;
+    }
+
+    public static class BoardBuilder {
+        private Cell[][] cells;
+        private CellList<Cell> pathCells;
+
+        public BoardBuilder setBoardSize(int x, int y) {
+
+            this.cells = new Cell[x][y];
+            for (int r = 0; r < x; r++) {
+                for (int c = 0; c < y; c++) {
+                    this.cells[r][c] = new Cell(r, c, false);
+                }
+            }
+            return this;
+        }
+
+        public BoardBuilder setPathCell(int[][] tobePathCells) {
+            this.pathCells = new CellList<Cell>();
+            for (int[] cell : tobePathCells) {
+                Cell c = this.cells[cell[0]][cell[1]];
+                c.setPath(true);
+                this.pathCells.add(c);
+            }
+            return this;
+        }
+
+        public Board build() {
+            return new Board(this);
+        }
+
     }
 }

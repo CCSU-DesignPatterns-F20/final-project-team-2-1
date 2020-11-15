@@ -50,10 +50,9 @@ public class Main {
         // System.out.println(tower1.toString());
 
         // System.out.print("\nExiting the game");
-        int[][] multi = new int[][] { { 1, 0 }, { 1, 1 }, { 1, 2 }, { 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 6 }, { 1, 7 },
-                { 1, 8 }, { 1, 9 } };
+        var path = PathGenerator.create10by10easyPath();
 
-        Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(multi).build();
+        Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).build();
 
         System.out.println(board.toString());
 
