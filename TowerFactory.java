@@ -1,7 +1,7 @@
 /**
  * This class specifies how to create enemies
  */
-public class TowerFactory implements AbstractFactory {
+public class TowerFactory implements AbstractFactory<Tower> {
 
     /**
      * This class will create and return a specific tower. Weak tower is default.
