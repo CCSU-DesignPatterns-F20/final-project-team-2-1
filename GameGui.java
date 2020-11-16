@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import sun.java2d.loops.DrawRect;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,6 +15,11 @@ public class GameGui{
     JButton quitButton = new JButton("Exit Game");
     JButton pauseButton = new JButton("Pause Game");
     JLabel text = new JLabel("Welcome to the tower defense game");
+    private int xCanvas = 1200;
+    private int yCanvas = 800;
+    private int xBox = 10;
+    private int yBox = 10;
+    Graphics g;
 
 
     GameGui(){
@@ -20,8 +28,8 @@ public class GameGui{
             public void actionPerformed(ActionEvent e){
                 JLabel label = new JLabel();
                 label.setFont(new Font("Tahoma", Font.BOLD, 15));
-
                 gamePanel1.setBackground(Color.cyan);
+                gamePanel1.setPreferredSize(new Dimension(1000,200));
                 gamePanel2.setBackground(Color.red);
                 gamePanel2.add(label);
                 gamePanel2.add(pauseButton);
@@ -32,6 +40,8 @@ public class GameGui{
                 gameWindow.setSize(1200, 800);
                 gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 gameWindow.setVisible(true);
+                xCanvas = gamePanel1.getWidth();
+                yCanvas = gamePanel1.getHeight();
                 uiWindow.dispose();
 
                 //Display x and y coordinate with mouse click
@@ -42,7 +52,6 @@ public class GameGui{
                 });  
             }
         });
-       
 
         //Button that exit the current frame
         quitButton.addActionListener(new ActionListener(){
@@ -64,5 +73,44 @@ public class GameGui{
         uiWindow.setTitle("Tower Defense Game");
         uiWindow.pack();
         uiWindow.setVisible(true);
+    }
+
+    public JPanel getJPanel(){
+        return gamePanel1;
+    }
+
+    public void drawBox(Graphics g, int x, int y){
+        g.drawRect(x * xBox, y * yBox, xBox, yBox);
+    }
+
+    public void setxBox(int length){
+        this.xBox = length;
+    }
+
+    public void setyBox(int height){
+        this.yBox = height;
+    }
+
+    public int getxBox(){
+        return xBox;
+    }
+
+    public int getyBox(){
+        return yBox;
+    }
+
+    public void setxCanvas(int length){
+        this.xCanvas = length;
+    }
+
+    public void setyCanvas(int height){
+        this.yCanvas = height;
+    }
+    public int getxCanvas(){
+        return xCanvas;
+    }
+
+    public int getyCanvas(){
+        return yCanvas;
     }
 }
