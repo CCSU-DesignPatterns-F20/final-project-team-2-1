@@ -4,30 +4,47 @@
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    private double health;
-
     public Enemy(Cell cell){
-        this.position = cell;
-        this.speed = 1;
+        super(cell);
+        this.health = 5;
     }
 
     /**
      * This method will allow the object to move from current cell to another
      */
-    public abstract void move();
-
-    /* This method will be used to clone/create copies of enemy objects */
-    public Enemy clone();
-
-    /* Returns speed*/
-    public double getSpeed(){
-        return speed;
+    public void move(){
+        System.out.println("Enemy is moving for ya");
     }
 
-    /* sets the attack speed 
+    /**
+    * Returns Health
+    */
+    public double getHealth(){
+        return this.health;
+    }
+
+    /* 
+    * sets the enemy health
+    * @param newHealth is used to replace previous tower health value
+    */
+    public void setHealth(double newHealth){
+        this.health = newHealth;
+    }
+
+    /**
+    * Returns Speed
+    */
+    public double getSpeed(){
+        return this.speed;
+    }
+
+    /* 
+    * Sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
-    public void changeSpeed(double newSpeed){
+    public void setSpeed(int newSpeed){
         this.speed = newSpeed;
     }
+
+
 }

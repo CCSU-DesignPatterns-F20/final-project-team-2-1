@@ -3,82 +3,75 @@
  * Strong and weak tower classes will build off of this and provide implementation
  */
 public abstract class BaseTower extends Tower{
-    private double damage;
-    private double speed;
-    private int range;
-
     public BaseTower(Cell cell){
         super(cell);
         this.speed = 3;
+        this.reloadLeft = 0;
     }
 
     /**
-     * This template method will have the tower continously shoot enemies
+     * This method will shoot enemy when fully realoaded.
      */
-     @Override
-    public void attack() { 
-        shoot();
-        reload();
+    @Override
+    public void attack() {
+        if (this.getReloadLeft() <= 0){
+            this.shoot();
+            this.setReloadLeft(this.getSpeed());
+        }
+        else{
+            this.reload();
+        }
     }
-
 
     /**
-     * Returns hash code
-     */
-    public int hashCode(){
-        int hash = 0;
-        hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
-        hash += this.range;
-        hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
-        hash += (this.position == null ? 0 : this.position.hashCode());
-        return hash;
-    }
+    * This method will inflict damage to enemy
+    */
+    public abstract void shoot();
     
     /**
-     * Compare objects based on damage, range, and speed
-     * @param Object to compare
-     */
-    public boolean equals(Object other){
-        if (other == null) {return false;}
-        else if (this == other) {return true;}
-        else if (other instanceof Tower){
-            Tower otherObj = (Tower) other;
-            if (this.getRange() == otherObj.getRange() && this.getDamage() == otherObj.getDamage() && this.getSpeed() == otherObj.getSpeed()){
-                return true;
-            }
-        }
-        return false;
+    * This method will stall the tower before shooting again
+    */
+    @Override
+    public void reload() { 
+        
+    }
+
+    /** 
+    * Returns damage
+    */
+    @Override
+    public double getDamage(){
+        return this.damage;
+    }
+
+    /** 
+    * Returns range 
+    */
+    @Override
+    public int getRange(){
+        return this.range;
     }
 
     /**
-     * Returns object as string representation.
-     */
-    public String toString(){
-        String returnString = "Tower at: x: " + this.position.getX() + " y: " + this.position.getY(); 
-        returnString = returnString + " Damage: " + this.damage;
-        returnString = returnString + " Range: " + this.range;
-        returnString = returnString + " Speed: " + this.speed;
-        return returnString;
-    }
-
-    /* Returns damage*/
-    public double getDamage(){
-        return damage;
-    }
-
-    /* Returns range */
-    public int getRange(){
-        return range;
-    }
-
-    /* Returns speed*/
+    * Returns speed
+    */
+    @Override
     public double getSpeed(){
-        return speed;
+        return this.speed;
     }
 
+    /** 
+    * Returns reloadLeft
+    */
+    @Override
+    public double getReloadLeft(){
+        return this.reloadLeft;
+    }
+    
     /* sets the damage
     * @param newDamage is used to replace previous tower damage value
     */
+    @Override
     public void setDamage(double newDamage){
         this.damage = newDamage;
     }
@@ -86,21 +79,25 @@ public abstract class BaseTower extends Tower{
     /* sets the attack range 
     * @param newRange is used to replace previous tower range value
     */
+    @Override
     public void setRange(int newRange){
-
+        this.range = newRange;
     }
 
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
+    @Override
     public void setSpeed(double newSpeed){
         this.speed = newSpeed;
     }
 
-    /* sets the attack speed 
-    * @param newSpeed is used to replace previous tower speed value
+    /* sets the reload left
+    * @param newReloadLeft is used to replace previous tower reload time left
     */
-    public void changeSpeed(double newSpeed){
-        setSpeed(newSpeed);
+    @Override
+    public void setReloadLeft(double newReloadLeft){
+        this.reloadLeft = newReloadLeft;
     }
+
 }
