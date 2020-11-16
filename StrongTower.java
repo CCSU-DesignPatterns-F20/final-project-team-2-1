@@ -16,15 +16,14 @@ public class StrongTower extends BaseTower {
      */
     @Override
     public void shoot() {
-        Random  r = new Random(); 
         System.out.println("Strong tower shoots");
-        int roll = r.nextInt();
+        Random  r = new Random(); 
+        float roll = r.nextFloat();
         double max = .10;
         System.out.println(max + " " + roll);
         if (roll < max){
             System.out.println("Strong tower shoots again");
         }
-        this.setReloadLeft(this.getSpeed());
     }
 
     /**

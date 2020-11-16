@@ -6,6 +6,7 @@ public class HealthDecorator extends EnemyDecorator {
 
    public HealthDecorator(EnemyPrototype decoratedEnemy) {
       super(decoratedEnemy);
+      this.decoratedEnemy.setHealth(this.decoratedEnemy.getHealth()*(1.1));
    }
 
    /* This method will be used to clone/create copies of enemy objects */
@@ -13,17 +14,15 @@ public class HealthDecorator extends EnemyDecorator {
    public HealthDecorator clone(){
       return new HealthDecorator(decoratedEnemy.clone());
    }
-
-   /**
-     * Change enemy health  based on multiplier
-     * if health is 100 and multiplier is 0.10 (10%) new enemy health will be 110.
-     * @param decoratedEnemy to modify health
-     * @param healthMultiplier is % change to enemy health
-     */
-   public void changeHealth(double healthMultiplier){
-      System.out.println("Previous enemy health:" + decoratedEnemy.getHealth());
-      decoratedEnemy.setHealth(this.decoratedEnemy.getHealth()*(1+healthMultiplier));
-      System.out.println("New enemy health:" + decoratedEnemy.getHealth());
-   }
+   
+   // /**
+   //   * Change enemy health  based on multiplier
+   //   * @param healthMultiplier is % change to enemy health
+   //   */
+   // public void changeHealth(double healthMultiplier){
+   //    System.out.println("Previous enemy health:" + decoratedEnemy.getHealth());
+   //    decoratedEnemy.setHealth(this.decoratedEnemy.getHealth()*(1+healthMultiplier));
+   //    System.out.println("New enemy health:" + decoratedEnemy.getHealth());
+   // }
 
 }
