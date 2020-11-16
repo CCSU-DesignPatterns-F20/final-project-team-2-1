@@ -1,26 +1,37 @@
 /**
  * This class implements strong tower
  */
+
+import java.util.Random;
 public class StrongTower extends BaseTower {
 
     public StrongTower(Cell cell){
         super(cell);
+        this.damage = 2.0;
     }
 
     /**
-     * Deals damage to enemy
+     * This method will shoot enemy when fully realoaded.
+     * Strong tower has 10% chance to shoot again
      */
     @Override
     public void shoot() {
-        System.out.println("Strong tower shoot strong");
+        System.out.println("Strong tower shoots");
+        Random  r = new Random(); 
+        float roll = r.nextFloat();
+        double max = .10;
+        System.out.println(max + " " + roll);
+        if (roll < max){
+            System.out.println("Strong tower shoots again");
+        }
     }
 
     /**
-     * Waits before shooting again
+     * Draws strong tower as purple box
      */
     @Override
-    public void reload() {
-        System.out.println("Strong tower reload fast");
+    public void draw(){
+        System.out.println("Purple Box on " + position.getLocation());
     }
     
 }

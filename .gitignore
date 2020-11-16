@@ -1,1 +1,4 @@
 *.class
+.vscode
+*.idea
+.vscode/launch.json
