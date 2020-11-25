@@ -32,6 +32,22 @@ public class Board {
     }
 
     /**
+     * 
+     * @return number of rows 
+     */
+    public int getRows(){
+        return cells.length;
+    }
+
+    /**
+     * 
+     * @return numbers of columns
+     */
+    public int getColumns(){
+        return cells[0].length;
+    }
+    
+    /**
      * This will draw all the cells
      */
     public void displayBoard() {
