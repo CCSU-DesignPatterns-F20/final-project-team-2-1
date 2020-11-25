@@ -1,7 +1,4 @@
 import javax.swing.*;
-
-import sun.java2d.loops.DrawRect;
-
 import java.awt.*;
 import java.awt.event.*;
 
