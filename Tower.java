@@ -92,9 +92,9 @@ public abstract class Tower extends CellComponent {
     */
     public String toString(){
         String returnString = "Tower at: x: " + this.position.getX() + " y: " + this.position.getY(); 
-        returnString = returnString + " Damage: " + this.damage;
-        returnString = returnString + " Range: " + this.range;
-        returnString = returnString + " Speed: " + this.speed;
+        returnString = returnString + " Damage: " + this.getDamage();
+        returnString = returnString + " Range: " + this.getRange();
+        returnString = returnString + " Speed: " + this.getSpeed();
         return returnString;
     }
 

@@ -4,20 +4,16 @@
  */
 public class DamageDecorator extends TowerDecorator {
 
-   public DamageDecorator(Tower decoratedTower) {
+   private double damageIncrease;
+
+   public DamageDecorator(Tower decoratedTower, double damageIncrease) {
       super(decoratedTower);		
+      this.damageIncrease = damageIncrease;
    }
 
-   /**
-   * Change tower damage based on multiplier
-   * if damage is 100 and multiplier is 0.10 (10%) new tower damage will be 110.
-   * @param newDamage is % change to tower damage
-   */
+   /* Returns modified damage*/
    @Override
-   public void setDamage( double newDamage){
-      System.out.println("Previous Tower damage:" + decoratedTower.getDamage());
-      this.decoratedTower.setDamage(decoratedTower.getDamage()*(1+newDamage));
-      System.out.println("New Tower damage:" + decoratedTower.getDamage());
+   public double getDamage(){
+      return this.decoratedTower.getDamage() * this.damageIncrease;
    }
-
 }

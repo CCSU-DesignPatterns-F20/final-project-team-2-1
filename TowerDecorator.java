@@ -85,7 +85,7 @@ public abstract class TowerDecorator extends Tower{
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
-    public  void setSpeed(double newSpeed){
+    public void setSpeed(double newSpeed){
         this.decoratedTower.setSpeed(newSpeed);
     }
     /**
@@ -111,10 +111,4 @@ public abstract class TowerDecorator extends Tower{
         return this.decoratedTower.equals(other);
     }
 
-    /**
-    * Returns object as string representation.
-    */
-    public String toString(){
-        return this.decoratedTower.toString();
-    }
 }

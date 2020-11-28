@@ -4,19 +4,16 @@
  */
 public class SpeedDecorator extends TowerDecorator {
 
-   public SpeedDecorator(Tower decoratedTower) {
+   private double speedIncrease;
+
+   public SpeedDecorator(Tower decoratedTower, double speedIncrease) {
       super(decoratedTower);		
+      this.speedIncrease = speedIncrease;
    }
 
-   /**
-   * Change tower speed based on multiplier provided
-   * if speed is 100 and multiplier is 0.10 (10%) new tower speed will be 110.
-   * @param newSpeed is % change to tower attack speed
-   */
+   /* Returns modified speed*/
    @Override
-   public void setSpeed(double newSpeed){
-      System.out.println("Previous Tower speed:" + decoratedTower.getSpeed());
-      this.decoratedTower.setSpeed(decoratedTower.getSpeed()*(1+newSpeed));
-      System.out.println("New Tower speed:" + decoratedTower.getSpeed());
+   public double getSpeed(){
+      return this.decoratedTower.getSpeed() * this.speedIncrease;
    }
 }

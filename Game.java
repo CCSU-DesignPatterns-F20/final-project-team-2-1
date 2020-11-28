@@ -9,6 +9,6 @@ public class Game{
         
         gamePlay.setxBox(gamePlay.getxCanvas()/board.getRows());
         gamePlay.setyBox(gamePlay.getyCanvas()/board.getColumns());
-        gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
+        // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
     }
 }

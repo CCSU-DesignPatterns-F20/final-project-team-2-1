@@ -60,13 +60,6 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     }
 
     /**
-    * Returns object as string representation.
-    */
-    public String toString(){
-        return this.decoratedEnemy.toString();
-    }
-
-    /**
      * This method will allow the object to move from current cell to another
      */
     public void move(){

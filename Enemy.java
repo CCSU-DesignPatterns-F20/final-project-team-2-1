@@ -9,6 +9,13 @@ public abstract class Enemy extends EnemyPrototype{
         this.health = 5;
     }
 
+    public Enemy(Enemy clone){
+        super(clone.getPosition());
+        this.health = clone.getHealth();
+        this.speed = clone.getSpeed();
+        this.health = clone.getHealth();
+    }
+
     /**
      * This method will allow the object to move from current cell to another
      */

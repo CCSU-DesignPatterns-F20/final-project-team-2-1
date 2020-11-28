@@ -12,7 +12,7 @@ public class Board {
      * Constructs Board using predefined attributes
      * @param predefined attributes
      */
-    public Board(BoardBuilder builder) {
+    private Board(BoardBuilder builder) {
         this.cells = builder.cells;
         this.pathCells = builder.pathCells;
     }
