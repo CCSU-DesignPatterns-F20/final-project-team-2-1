@@ -1,3 +1,4 @@
+package src.cell.enemy;
 /**
  * This class extends EnemyDecorator and is used 
  * for specifically modifying enemy health.

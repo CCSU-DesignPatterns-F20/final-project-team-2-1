@@ -1,3 +1,7 @@
+package src.cell.enemy;
+
+import src.cell.Cell;
+
 /**
  * This class implements fast enemy
  */

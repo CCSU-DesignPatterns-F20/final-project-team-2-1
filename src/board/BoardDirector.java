@@ -1,3 +1,4 @@
+package src.board;
 /**
  * Specifies how to exactly make the board
  *

@@ -1,5 +1,4 @@
-package Iterator;
-
+package src.board.iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 /**

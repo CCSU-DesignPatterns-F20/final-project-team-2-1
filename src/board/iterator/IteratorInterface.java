@@ -1,4 +1,4 @@
-package Iterator;
+package src.board.iterator;
 /**
  * This interface specified needed methods to loop the list
  */

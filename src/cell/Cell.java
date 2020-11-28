@@ -1,3 +1,4 @@
+package src.cell;
 /**
  * This class is a specific position on the map. It will hold a tower or enemy object.
  */

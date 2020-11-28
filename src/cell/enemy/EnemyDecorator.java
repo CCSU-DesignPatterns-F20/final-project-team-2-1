@@ -1,3 +1,4 @@
+package src.cell.enemy;
 /**
  * This class implements enemy.
  * Used for decorator pattern to modify enemy attributes
@@ -6,7 +7,7 @@ public abstract class EnemyDecorator extends EnemyPrototype{
    protected final EnemyPrototype decoratedEnemy;
 
    public EnemyDecorator(EnemyPrototype decoratedEnemy){
-        super(decoratedEnemy.position);
+        super(decoratedEnemy.getPosition());
         this.decoratedEnemy = decoratedEnemy;
     }
 

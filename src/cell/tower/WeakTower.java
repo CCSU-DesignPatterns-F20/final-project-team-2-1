@@ -1,3 +1,7 @@
+package src.cell.tower;
+
+import src.cell.Cell;
+
 /**
  * This class implements weak tower
  */

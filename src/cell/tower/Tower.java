@@ -1,3 +1,8 @@
+package src.cell.tower;
+
+import src.cell.Cell;
+import src.cell.CellComponent;
+
 /**
  * This class specifies the framework for tower.
  * Enemies will additionally contain damage (how much health it can take away from enemy) 

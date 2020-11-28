@@ -1,4 +1,7 @@
-public class Game{
+import src.board.Board;
+import src.board.PathGenerator;
+
+public class Game {
     public static void play(){
         GameGui gamePlay = new GameGui();
         // Creates board and path

@@ -1,3 +1,8 @@
+package src.cell.enemy;
+
+import src.cell.Cell;
+import src.cell.CellComponent;
+
 /**
  * This class specifies the framework for enemy.
  * Enemies will additionally contain health.

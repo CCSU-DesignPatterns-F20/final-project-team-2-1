@@ -1,5 +1,8 @@
-import Iterator.CellList;
-import Iterator.IteratorInterface;
+package src.board;
+
+import src.board.iterator.CellList;
+import src.board.iterator.IteratorInterface;
+import src.cell.Cell;
 
 /**
  * This is the Board class that is used to store all the cell

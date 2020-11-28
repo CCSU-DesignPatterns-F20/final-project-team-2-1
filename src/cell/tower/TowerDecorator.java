@@ -1,3 +1,4 @@
+package src.cell.tower;
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -6,7 +7,7 @@ public abstract class TowerDecorator extends Tower{
    protected final Tower decoratedTower;
 
    public TowerDecorator(Tower decoratedTower){
-        super(decoratedTower.position);
+        super(decoratedTower.getPosition());
         this.decoratedTower = decoratedTower;
     }
 
