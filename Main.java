@@ -15,8 +15,8 @@ import src.cell.tower.Tower;
  */
 public class Main {
     public static void main(String args[]) {
-		// Game.play();
-		// GameGui Gui = new GameGui();
+		 Game.play();
+		 //GameGui Gui = new GameGui();
         System.out.println("Running the game");
       
         // Creates board and path
