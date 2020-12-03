@@ -1,4 +1,5 @@
 package src.cell.tower;
+import java.awt.Color;
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -93,8 +94,8 @@ public abstract class TowerDecorator extends Tower{
      * Draws enemy according to its type
      */
     @Override
-    public void draw() {
-        this.decoratedTower.draw();
+    public Color draw() {
+        return this.decoratedTower.draw();
     }
 
     /**

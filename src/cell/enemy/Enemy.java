@@ -24,6 +24,8 @@ public abstract class Enemy extends EnemyPrototype{
      * This method will allow the object to move from current cell to another
      */
     public void move(){
+        Cell newPosition = this.position;
+        
         System.out.println("Enemy is moving for ya");
     }
 

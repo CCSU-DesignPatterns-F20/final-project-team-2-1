@@ -41,4 +41,11 @@ public abstract class CellComponent{
     public Cell getPosition(){
         return this.position;
     }
+
+    /**
+     * Draws the Component on the UI Board
+     */
+    public void setPosition(Cell position){
+        this.position = position;
+    }
 }

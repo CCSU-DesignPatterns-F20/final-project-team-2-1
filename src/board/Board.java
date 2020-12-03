@@ -1,5 +1,9 @@
 package src.board;
 
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
 import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
@@ -51,16 +55,33 @@ public class Board {
         return cells[0].length;
     }
 
+    // /**
+    //  * This will draw all the cells
+    //  */
+    // public void displayBoard() {
+    //     for (int r = 0; r < this.cells.length; r++) {
+    //         for (int c = 0; c < this.cells[0].length; c++) {
+    //             cells[r][c].draw();
+    //             // System.out.println(cells[r][c].toString());
+    //         }
+    //     }
+    // }
+
     /**
      * This will draw all the cells
      */
-    public void displayBoard() {
+    public JPanel displayBoard() {
+        JPanel drawnBoard = new JPanel();
+        drawnBoard.setPreferredSize(new Dimension(1000, 200));
         for (int r = 0; r < this.cells.length; r++) {
             for (int c = 0; c < this.cells[0].length; c++) {
-                cells[r][c].draw();
-                // System.out.println(cells[r][c].toString());
+                JPanel cellPanel = new JPanel();
+                cellPanel.setBackground(cells[r][c].draw());
+                cellPanel.setPreferredSize(new Dimension(50, 50));
+                drawnBoard.add(cellPanel);
             }
         }
+        return drawnBoard;
     }
 
     /**

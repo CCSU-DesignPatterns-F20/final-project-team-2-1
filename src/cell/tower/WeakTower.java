@@ -1,7 +1,7 @@
 package src.cell.tower;
 
 import src.cell.Cell;
- 
+import java.awt.Color;
 
 /**
  * This class implements weak tower
