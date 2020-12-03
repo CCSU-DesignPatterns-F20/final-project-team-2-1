@@ -13,20 +13,34 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameGui {
+    //Frames 
     JFrame gameWindow = new JFrame("Stage 1");
     JFrame uiWindow = new JFrame("Tower Defense Game");
+
+    //Panels
     JPanel uiPanel = new JPanel();
     JPanel gamePanel1 = new JPanel();
-    JPanel gamePanel2 = new JPanel();
+    JPanel gameControl = new JPanel();
+    JPanel infoPanel = new JPanel();
+    JPanel buttonPanel = new JPanel();
+    JPanel statPanel = new JPanel();
+    JPanel functionPanel = new JPanel();
+
+    //Button + Labels
     JButton startButton = new JButton("Start Game");
     JButton quitButton = new JButton("Exit Game");
     JButton pauseButton = new JButton("Pause Game");
+    JButton resumeButton = new JButton("Resume Game");
+    JButton buyButton = new JButton("Buy");
+    JButton upgradeButton = new JButton("Upgrade");
+    JButton sellButton = new JButton("Sell");
     JLabel text = new JLabel("Welcome to the tower defense game");
+
+    //Variables
     private int xCanvas = 600;
     private int yCanvas = 600;
     private int xBox = 10;
     private int yBox = 10;
-
     Graphics g;
 
     GameGui() {
@@ -35,22 +49,54 @@ public class GameGui {
             public void actionPerformed(ActionEvent e) {
                 JLabel label = new JLabel();
                 label.setFont(new Font("Tahoma", Font.BOLD, 15));
-                // gamePanel1.setLayout(null);
+
+                //Displays the Game
                 gamePanel1.setBackground(Color.white);
                 gamePanel1.setPreferredSize(new Dimension(1000, 200));
 
-                gamePanel2.setBackground(Color.red);
-                gamePanel2.add(label);
-                gamePanel2.add(pauseButton);
-                gamePanel2.add(quitButton);
-                gamePanel2.setPreferredSize(new Dimension(1000, 200));
+                //Display the game Infomation
+                infoPanel.setBackground(Color.BLUE);
+                infoPanel.setPreferredSize(new Dimension(100,100));
+                infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                infoPanel.add(label);
+                
+                //Buttons for buy, upgrade towers
+                buttonPanel.setLayout(new GridLayout(0,1,2,2));
+                buttonPanel.setBackground(Color.white);
+                buttonPanel.setPreferredSize(new Dimension(100,100));
+                buttonPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                buttonPanel.add(buyButton);
+                buttonPanel.add(upgradeButton);
+                buttonPanel.add(sellButton);
 
+                //Stats of the tower/enemy
+                statPanel.setBackground(Color.YELLOW);
+                statPanel.setPreferredSize(new Dimension(100,100));
+                statPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+                //Game functionality buttons
+                functionPanel.setLayout(new GridLayout(0,1,2,2));
+                functionPanel.setPreferredSize(new Dimension(100,100));
+                functionPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                functionPanel.add(pauseButton);
+                functionPanel.add(resumeButton);
+                functionPanel.add(quitButton);
+
+                //Panel that holds all other Panels
+                gameControl.setLayout(new BoxLayout(gameControl, BoxLayout.X_AXIS));
+                gameControl.add(infoPanel);
+                gameControl.add(buttonPanel);
+                gameControl.add(statPanel);
+                gameControl.add(functionPanel);
+                gameControl.setPreferredSize(new Dimension(1000, 200));
+
+                //Game Window
                 gameWindow.getContentPane().add(gamePanel1, "Center");
-                // gameWindow.add(gamePanel1, BorderLayout.CENTER);
-                gameWindow.add(gamePanel2, BorderLayout.PAGE_END);
+                gameWindow.add(gameControl, BorderLayout.PAGE_END);
                 gameWindow.setSize(xCanvas, yCanvas + 200);
                 gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 gameWindow.setVisible(true);
+                gameWindow.setResizable(false);
 
                 // for (int i = 0; i < 100; i++) {
                 // gamePanel1.add(paintBoardCells(i));
