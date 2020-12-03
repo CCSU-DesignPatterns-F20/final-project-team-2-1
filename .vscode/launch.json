@@ -3,6 +3,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "final-project-team-2-1_795f69a7"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "final-project-team-2-1_d6680eaf"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Mouse_CR",
             "request": "launch",
             "mainClass": "Mouse_CR",

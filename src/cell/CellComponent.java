@@ -1,3 +1,4 @@
+package src.cell;
 /**
 * This is the parent class of the Enemy, Tower, and the Cell
 */
@@ -32,4 +33,11 @@ public abstract class CellComponent{
      * Draws the Component on the UI Board
      */
     public abstract void draw();
+
+    /**
+     * Draws the Component on the UI Board
+     */
+    public Cell getPosition(){
+        return this.position;
+    }
 }

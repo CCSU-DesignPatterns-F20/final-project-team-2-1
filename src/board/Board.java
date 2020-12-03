@@ -1,5 +1,8 @@
-import Iterator.CellList;
-import Iterator.IteratorInterface;
+package src.board;
+
+import src.board.iterator.CellList;
+import src.board.iterator.IteratorInterface;
+import src.cell.Cell;
 
 /**
  * This is the Board class that is used to store all the cell
@@ -12,7 +15,7 @@ public class Board {
      * Constructs Board using predefined attributes
      * @param predefined attributes
      */
-    public Board(BoardBuilder builder) {
+    private Board(BoardBuilder builder) {
         this.cells = builder.cells;
         this.pathCells = builder.pathCells;
     }

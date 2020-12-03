@@ -1,3 +1,10 @@
+package src.abstractfactory;
+
+import src.cell.Cell;
+import src.cell.enemy.Enemy;
+import src.cell.enemy.FastEnemy;
+import src.cell.enemy.SlowEnemy;
+
 /**
  * This class specifies how to create enemies
  */

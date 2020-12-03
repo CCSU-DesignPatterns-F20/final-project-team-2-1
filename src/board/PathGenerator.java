@@ -1,4 +1,4 @@
-
+package src.board;
 /**
  * This class contains possible combinations of path for specific board sizes.
  * The output is a matrix integer of size [number of paths Cells] x [2] 

@@ -1,8 +1,11 @@
+package src.cell.tower;
 /**
  * This class implements strong tower
  */
 
 import java.util.Random;
+
+import src.cell.Cell;
 public class StrongTower extends BaseTower {
 
     public StrongTower(Cell cell){

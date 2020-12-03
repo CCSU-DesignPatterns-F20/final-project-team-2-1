@@ -1,3 +1,7 @@
+package src.cell.tower;
+
+import src.cell.Cell;
+
 /**
  * This class specifies the framework for tower template pattern.
  * Strong and weak tower classes will build off of this and provide implementation

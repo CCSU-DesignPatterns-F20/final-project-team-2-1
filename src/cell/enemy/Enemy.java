@@ -1,3 +1,7 @@
+package src.cell.enemy;
+
+import src.cell.Cell;
+
 /**
  * This class specifies the framework for enemy.
  * Enemies will additionally contain health.
@@ -7,6 +11,13 @@ public abstract class Enemy extends EnemyPrototype{
     public Enemy(Cell cell){
         super(cell);
         this.health = 5;
+    }
+
+    public Enemy(Enemy clone){
+        super(clone.getPosition());
+        this.health = clone.getHealth();
+        this.speed = clone.getSpeed();
+        this.health = clone.getHealth();
     }
 
     /**

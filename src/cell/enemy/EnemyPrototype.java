@@ -1,3 +1,8 @@
+package src.cell.enemy;
+
+import src.cell.Cell;
+import src.cell.CellComponent;
+
 /**
  * This class specifies the framework for enemy.
  * Enemies will additionally contain health.
@@ -67,7 +72,7 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
      */
     public String toString(){
         String returnString = "Enemy at: x: " + this.position.getX() + " y: " + this.position.getY(); 
-        returnString = returnString + " Health: " + this.health;
+        returnString = returnString + " Health: " + this.getHealth();
         returnString = returnString + " Speed: " + this.speed;
         return returnString;
     }

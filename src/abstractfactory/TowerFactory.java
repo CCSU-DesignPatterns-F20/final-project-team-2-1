@@ -1,3 +1,10 @@
+package src.abstractfactory;
+
+import src.cell.Cell;
+import src.cell.tower.StrongTower;
+import src.cell.tower.Tower;
+import src.cell.tower.WeakTower;
+
 /**
  * This class specifies how to create enemies
  */

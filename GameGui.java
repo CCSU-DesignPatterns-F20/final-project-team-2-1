@@ -12,10 +12,11 @@ public class GameGui{
     JButton quitButton = new JButton("Exit Game");
     JButton pauseButton = new JButton("Pause Game");
     JLabel text = new JLabel("Welcome to the tower defense game");
-    private int xCanvas = 1200;
-    private int yCanvas = 800;
+    private int xCanvas = 600;
+    private int yCanvas = 600;
     private int xBox = 10;
     private int yBox = 10;
+
     Graphics g;
 
 
@@ -25,18 +26,27 @@ public class GameGui{
             public void actionPerformed(ActionEvent e){
                 JLabel label = new JLabel();
                 label.setFont(new Font("Tahoma", Font.BOLD, 15));
-                gamePanel1.setBackground(Color.cyan);
+                //gamePanel1.setLayout(null);
+                gamePanel1.setBackground(Color.white);
                 gamePanel1.setPreferredSize(new Dimension(1000,200));
+
                 gamePanel2.setBackground(Color.red);
                 gamePanel2.add(label);
                 gamePanel2.add(pauseButton);
                 gamePanel2.add(quitButton);
                 gamePanel2.setPreferredSize(new Dimension(1000, 200));
-                gameWindow.add(gamePanel1, BorderLayout.CENTER);
+
+                gameWindow.getContentPane().add(gamePanel1,"Center");
+                //gameWindow.add(gamePanel1, BorderLayout.CENTER);
                 gameWindow.add(gamePanel2, BorderLayout.PAGE_END);
-                gameWindow.setSize(1200, 800);
+                gameWindow.setSize(xCanvas, yCanvas+200);
                 gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 gameWindow.setVisible(true);
+                
+                for(int i = 0; i<100;i++){
+                    gamePanel1.add(paintBoardCells(i));
+                }
+                
                 xCanvas = gamePanel1.getWidth();
                 yCanvas = gamePanel1.getHeight();
                 uiWindow.dispose();
@@ -109,5 +119,15 @@ public class GameGui{
 
     public int getyCanvas(){
         return yCanvas;
+    }
+
+    public JPanel paintBoardCells(int cellCount){
+        JPanel gamePanelCell = new JPanel();
+        JLabel squareText = new JLabel("" + cellCount);
+        gamePanelCell.setBackground(Color.gray);
+        gamePanelCell.setPreferredSize(new Dimension(50,50));
+        gamePanelCell.add(squareText);
+        //gamePanelPath.setBounds(25+pathLength,25+pathLength, gamePanelPath.getPreferredSize().width, gamePanelPath.getPreferredSize().height);
+        return gamePanelCell;
     }
 }

@@ -1,3 +1,4 @@
+package src.cell.tower;
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -6,7 +7,7 @@ public abstract class TowerDecorator extends Tower{
    protected final Tower decoratedTower;
 
    public TowerDecorator(Tower decoratedTower){
-        super(decoratedTower.position);
+        super(decoratedTower.getPosition());
         this.decoratedTower = decoratedTower;
     }
 
@@ -85,7 +86,7 @@ public abstract class TowerDecorator extends Tower{
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
-    public  void setSpeed(double newSpeed){
+    public void setSpeed(double newSpeed){
         this.decoratedTower.setSpeed(newSpeed);
     }
     /**
@@ -111,10 +112,4 @@ public abstract class TowerDecorator extends Tower{
         return this.decoratedTower.equals(other);
     }
 
-    /**
-    * Returns object as string representation.
-    */
-    public String toString(){
-        return this.decoratedTower.toString();
-    }
 }

@@ -1,4 +1,7 @@
-public class Game{
+import src.board.Board;
+import src.board.PathGenerator;
+
+public class Game {
     public static void play(){
         GameGui gamePlay = new GameGui();
         // Creates board and path
@@ -9,6 +12,6 @@ public class Game{
         
         gamePlay.setxBox(gamePlay.getxCanvas()/board.getRows());
         gamePlay.setyBox(gamePlay.getyCanvas()/board.getColumns());
-        gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
+        // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
     }
 }
