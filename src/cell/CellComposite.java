@@ -1,6 +1,8 @@
 package src.cell;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 
 /**
  * This is to group the cell component and invoking a method on multiple
@@ -41,10 +43,9 @@ public class CellComposite extends CellComponent {
      * This draw shapes for all components. *Starts from 0 to skip the cell itself.
      */
     @Override
-    public void draw() {
-        for (int i = 0; i < this.subComponents.size(); i++) {
-            this.getChild(i).draw();
-        }
+    public Color draw() {
+        if (subComponents.isEmpty()) return null;
+        else return subComponents.get(subComponents.size()-1).draw();
     }
 
     /**

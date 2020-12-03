@@ -1,5 +1,7 @@
 package src.cell.enemy;
 
+import java.awt.Color;
+
 import src.cell.Cell;
 
 /**
@@ -24,8 +26,9 @@ public class SlowEnemy extends Enemy {
     * Draws slow enemy as orange box
     */
     @Override
-    public void draw() {
+    public Color draw() {
         System.out.println("Orange Box on " + this.position.getLocation());
+        return Color.ORANGE;
     }
 
 }

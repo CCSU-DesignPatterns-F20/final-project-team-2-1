@@ -1,4 +1,5 @@
 package src.cell;
+import java.awt.Color;
 /**
 * This is the parent class of the Enemy, Tower, and the Cell
 */
@@ -32,7 +33,7 @@ public abstract class CellComponent{
     /**
      * Draws the Component on the UI Board
      */
-    public abstract void draw();
+    public abstract Color draw();
 
     /**
      * Draws the Component on the UI Board

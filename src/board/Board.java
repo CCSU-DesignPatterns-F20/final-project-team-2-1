@@ -8,11 +8,12 @@ import src.cell.Cell;
  * This is the Board class that is used to store all the cell
  */
 public class Board {
-    private final Cell[][] cells;
+    public final Cell[][] cells;
     private final CellList<Cell> pathCells;
 
     /**
      * Constructs Board using predefined attributes
+     * 
      * @param predefined attributes
      */
     private Board(BoardBuilder builder) {
@@ -36,9 +37,9 @@ public class Board {
 
     /**
      * 
-     * @return number of rows 
+     * @return number of rows
      */
-    public int getRows(){
+    public int getRows() {
         return cells.length;
     }
 
@@ -46,10 +47,10 @@ public class Board {
      * 
      * @return numbers of columns
      */
-    public int getColumns(){
+    public int getColumns() {
         return cells[0].length;
     }
-    
+
     /**
      * This will draw all the cells
      */
@@ -100,10 +101,11 @@ public class Board {
         private CellList<Cell> pathCells;
 
         /**
-        * Initializes the board using nonPath Cells
-        * @param number of rows
-        * @param number of columns
-        */
+         * Initializes the board using nonPath Cells
+         * 
+         * @param number of rows
+         * @param number of columns
+         */
         public BoardBuilder setBoardSize(int x, int y) {
 
             this.cells = new Cell[x][y];
@@ -117,6 +119,7 @@ public class Board {
 
         /**
          * This method turns Cells to path
+         * 
          * @param list of int x and y coordinates to choose Cells to be path
          */
         public BoardBuilder setPathCell(int[][] tobePathCells) {

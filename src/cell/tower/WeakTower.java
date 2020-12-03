@@ -1,6 +1,7 @@
 package src.cell.tower;
 
 import src.cell.Cell;
+ 
 
 /**
  * This class implements weak tower
@@ -27,7 +28,8 @@ public class WeakTower extends BaseTower {
      * Draws tower as blue box
      */
     @Override
-    public void draw(){
+    public Color draw(){
         System.out.println("Blue Box on " + position.getLocation());
+        return Color.BLUE;
     }
 }

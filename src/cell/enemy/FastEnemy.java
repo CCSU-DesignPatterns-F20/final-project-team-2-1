@@ -1,6 +1,7 @@
 package src.cell.enemy;
 
 import src.cell.Cell;
+import java.awt.Color;
 
 /**
  * This class implements fast enemy
@@ -29,8 +30,9 @@ public class FastEnemy extends Enemy {
     * Draws fast enemy as red box
     */
     @Override
-    public void draw() {
+    public Color draw() {
         System.out.println("Red Box on " + this.position.getLocation());
+        return Color.RED;
     }
 
 }

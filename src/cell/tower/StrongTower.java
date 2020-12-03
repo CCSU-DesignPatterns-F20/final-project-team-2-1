@@ -1,8 +1,10 @@
 package src.cell.tower;
+import java.awt.Color;
 /**
  * This class implements strong tower
  */
 
+import java.awt.Color;
 import java.util.Random;
 
 import src.cell.Cell;
@@ -33,8 +35,9 @@ public class StrongTower extends BaseTower {
      * Draws strong tower as purple box
      */
     @Override
-    public void draw(){
+    public Color draw(){
         System.out.println("Purple Box on " + position.getLocation());
+        return Color.CYAN;
     }
     
 }
