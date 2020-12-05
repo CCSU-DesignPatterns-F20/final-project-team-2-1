@@ -27,7 +27,6 @@ public class StrongTower extends BaseTower {
         System.out.println("Strong tower shoots");
         enemy.setHealth(enemy.getHealth()-this.getDamage());
         var cell = enemy.getPosition();
-        cell.removeIfDead(enemy);
         Random  r = new Random(); 
         float roll = r.nextFloat();
         double max = .10;

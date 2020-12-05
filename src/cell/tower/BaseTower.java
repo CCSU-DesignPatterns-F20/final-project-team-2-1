@@ -22,13 +22,19 @@ public abstract class BaseTower extends Tower{
      */
     @Override
     public void attack() {
-        System.out.println("Looking for enemy");
         for (Cell cell : this.rangeCells) {
             if (!cell.getSubComponents().isEmpty()) {
                 System.out.println("Enemy is found");
                 EnemyPrototype enemy = (EnemyPrototype) cell.getChild(0);
                 this.shoot(enemy);
-                enemy.getPosition().removeIfDead(enemy);
+                try{
+                    enemy.getPosition().removeIfDead(enemy);
+                }catch (Exception e){
+                    System.out.println(enemy.toString());
+                    System.out.println(cell.toString());
+                    System.out.println(cell.getSubComponents().size());
+                }
+                
                 break;
             };
             

@@ -16,6 +16,8 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
     protected IteratorInterface<Cell> cellPathIterator;
 
     public EnemyPrototype() {}
+
+    public EnemyPrototype(Cell position) {super(position);}
     /**
      * This method will allow the object to move from current cell to another
      */

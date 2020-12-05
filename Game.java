@@ -33,14 +33,24 @@ public class Game {
         gamePlay.drawBoard(board.displayBoard());
         CellComposite towers = new CellComposite();
         towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath()));
+        towers.add(towerFactory.createProduct("strongtower", board.getCell(1,9), board.getPath()));
         CellComposite enemies = new CellComposite();
+        // enemies.add(new SlowEnemy(board.getPath()));
+        // enemies.add(new SlowEnemy(board.getPath()));
+        // enemies.add(new SlowEnemy(board.getPath()));
+        enemies.add(enemy.clone());
+        enemies.add(enemy.clone());
+        enemies.add(enemy.clone());
         towers.add(tower);
         while (true) {
             try {
-                enemy.move();
+                for (int i =0; i<enemies.getSubComponents().size(); i++){
+                    ((EnemyPrototype)enemies.getChild(i)).move();
+                }
                 for (int i =0; i<towers.getSubComponents().size(); i++){
                     ((Tower)towers.getChild(i)).attack();
                 }
+                
                 // System.out.println(enemy.getHealth());
                 System.out.println(enemy.toString());
                 gamePlay.drawBoard(board.displayBoard());

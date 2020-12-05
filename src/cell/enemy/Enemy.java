@@ -16,7 +16,7 @@ public abstract class Enemy extends EnemyPrototype{
     }
 
     public Enemy(Enemy clone){
-        this.cellPathIterator = clone.getCellPathIterator();
+        this.cellPathIterator = clone.getCellPathIterator().clone();
         this.health = clone.getHealth();
         this.speed = clone.getSpeed();
         this.health = clone.getHealth();
