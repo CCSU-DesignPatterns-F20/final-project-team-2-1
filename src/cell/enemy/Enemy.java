@@ -11,7 +11,7 @@ import src.cell.Cell;
 public abstract class Enemy extends EnemyPrototype{
 
     public Enemy(IteratorInterface cellPathIterator){
-        this.health = 5;
+        this.health = 10;
         this.cellPathIterator = cellPathIterator;
     }
 
@@ -35,7 +35,6 @@ public abstract class Enemy extends EnemyPrototype{
             return true;
         }
         return false;
-
     }
 
     /**

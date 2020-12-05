@@ -80,10 +80,15 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
      * Returns object as string representation.
      */
     public String toString(){
-        String returnString = "Enemy at: x: " + this.position.getX() + " y: " + this.position.getY(); 
-        returnString = returnString + " Health: " + this.getHealth();
-        returnString = returnString + " Speed: " + this.speed;
-        return returnString;
+        if (this.position != null)
+        {
+            String returnString = "Enemy at: x: " + this.position.getX() + " y: " + this.position.getY(); 
+            returnString = returnString + " Health: " + this.getHealth();
+            returnString = returnString + " Speed: " + this.speed;
+            return returnString;
+        }
+        else return "";
+        
     }
 
 }

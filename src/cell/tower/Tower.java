@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import src.cell.CellComponent;
+import src.cell.enemy.EnemyPrototype;
 
 /**
  * This class specifies the framework for tower.
@@ -28,7 +29,7 @@ public abstract class Tower extends CellComponent {
             Cell cell = cellPathIterator.next();
             if (Math.abs(cell.getX() - this.position.getX()) <= this.range){
                 if (Math.abs(cell.getY() - this.position.getY()) <= this.range){
-                    newRangeCells.add(cell);
+                    newRangeCells.add(0, cell);
                 }
             }
         }
@@ -57,7 +58,7 @@ public abstract class Tower extends CellComponent {
     /**
      * This method will inflict damage to enemy
      */
-    public abstract void shoot();
+    public abstract void shoot(EnemyPrototype enemy);
 
     /**
      * This method will stall the tower before shooting again

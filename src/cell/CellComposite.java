@@ -2,6 +2,9 @@ package src.cell;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import src.cell.enemy.EnemyPrototype;
+
 import java.awt.Color;
 
 /**
@@ -60,6 +63,15 @@ public class CellComposite extends CellComponent {
 
     public List<CellComponent> getSubComponents() {
         return this.subComponents;
+    }
+
+    public void removeIfDead(EnemyPrototype enemy){
+        if (enemy.getHealth() <= 0){
+            this.remove(enemy);
+            System.out.println("Enemy is dead");
+            enemy.position = null;
+            while(enemy.getCellPathIterator().hasNext()) enemy.getCellPathIterator().next();
+        }
     }
 
     /**

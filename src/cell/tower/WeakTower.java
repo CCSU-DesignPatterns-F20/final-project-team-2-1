@@ -2,6 +2,8 @@ package src.cell.tower;
 
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
+import src.cell.enemy.EnemyPrototype;
+
 import java.awt.Color;
 
 /**
@@ -12,7 +14,7 @@ public class WeakTower extends BaseTower {
 
     public WeakTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell, cellPathIterator);
-        this.damage = 1;
+        this.damage = 2;
     }
     
     
@@ -21,9 +23,10 @@ public class WeakTower extends BaseTower {
      * Strong tower has 10% chance to shoot again
      */
     @Override
-    public void shoot() {
+    public void shoot(EnemyPrototype enemy) {
         System.out.println("Weak tower shoots");
         this.setReloadLeft(this.getSpeed());
+        enemy.setHealth(enemy.getHealth()-this.getDamage());
     }
     /**
      * Draws tower as blue box

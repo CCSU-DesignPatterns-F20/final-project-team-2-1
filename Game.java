@@ -5,6 +5,8 @@ import src.board.Board;
 import src.board.PathGenerator;
 import src.board.iterator.CellList;
 import src.cell.Cell;
+import src.cell.CellComponent;
+import src.cell.CellComposite;
 import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
 import src.cell.enemy.SlowEnemy;
@@ -29,12 +31,23 @@ public class Game {
         AbstractFactory<Tower> towerFactory = new TowerFactory();
         Tower tower = towerFactory.createProduct("weaktower", board.getCell(2,1), board.getPath());
         gamePlay.drawBoard(board.displayBoard());
-        while (enemy.move()) {
+        CellComposite towers = new CellComposite();
+        towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath()));
+        CellComposite enemies = new CellComposite();
+        towers.add(tower);
+        while (true) {
             try {
-                tower.printRange();
+                enemy.move();
+                for (int i =0; i<towers.getSubComponents().size(); i++){
+                    ((Tower)towers.getChild(i)).attack();
+                }
+                // System.out.println(enemy.getHealth());
+                System.out.println(enemy.toString());
                 gamePlay.drawBoard(board.displayBoard());
-                System.out.println("enemy moves");
                 Thread.sleep(1000);
+                System.out.println("=================================");
+                System.out.println("");
+                System.out.println("");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

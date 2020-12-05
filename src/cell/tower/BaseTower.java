@@ -2,6 +2,7 @@ package src.cell.tower;
 
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
+import src.cell.enemy.EnemyPrototype;
 
 /**
  * This class specifies the framework for tower template pattern.
@@ -21,19 +22,31 @@ public abstract class BaseTower extends Tower{
      */
     @Override
     public void attack() {
-        if (this.getReloadLeft() <= 0){
-            this.shoot();
-            this.setReloadLeft(this.getSpeed());
+        System.out.println("Looking for enemy");
+        for (Cell cell : this.rangeCells) {
+            if (!cell.getSubComponents().isEmpty()) {
+                System.out.println("Enemy is found");
+                EnemyPrototype enemy = (EnemyPrototype) cell.getChild(0);
+                this.shoot(enemy);
+                enemy.getPosition().removeIfDead(enemy);
+                break;
+            };
+            
         }
-        else{
-            this.reload();
-        }
+        
+        // if (this.getReloadLeft() <= 0){
+        //     this.shoot();
+        //     this.setReloadLeft(this.getSpeed());
+        // }
+        // else{
+        //     this.reload();
+        // }
     }
 
     /**
     * This method will inflict damage to enemy
     */
-    public abstract void shoot();
+    public abstract void shoot(EnemyPrototype enemy);
     
     /**
     * This method will stall the tower before shooting again

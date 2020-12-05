@@ -1,5 +1,8 @@
 package src.cell.tower;
+
 import java.awt.Color;
+
+import src.cell.enemy.EnemyPrototype;
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -24,8 +27,8 @@ public abstract class TowerDecorator extends Tower{
      * This method will inflict damage to enemy
      */
     @Override
-    public void shoot(){
-        this.decoratedTower.shoot();
+    public void shoot(EnemyPrototype enemy){
+        this.decoratedTower.shoot(enemy);
     }
 
     /**
