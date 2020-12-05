@@ -14,7 +14,7 @@ public class WeakTower extends BaseTower {
 
     public WeakTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell, cellPathIterator);
-        this.damage = 2;
+        this.damage = 1;
     }
     
     

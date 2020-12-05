@@ -31,6 +31,27 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
         return this.cellPathIterator;
     }
 
+    public void removeIfDead(){
+        if (this.getHealth() <= 0){
+            this.getPosition().remove(this);            
+            System.out.println("Enemy is dead");
+            this.position = null;
+            while(this.getCellPathIterator().hasNext()) {
+                this.getCellPathIterator().next();
+            }
+        }
+    }
+
+    public void removeIfFinishPath() {
+        if (this.getPosition() != null)
+        {
+            this.getPosition().remove(this);
+            this.position = null;
+            System.out.println("enemy escapes");
+        }
+
+    }
+
     public abstract boolean move();
 
     /** Returns health */

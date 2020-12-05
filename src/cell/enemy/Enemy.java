@@ -36,7 +36,11 @@ public abstract class Enemy extends EnemyPrototype{
             System.out.printf("Enemy is moving to %s\n", this.position.toString());
             return true;
         }
-        return false;
+        else
+        {
+            this.removeIfFinishPath();
+            return false;
+        }
     }
 
     /**
