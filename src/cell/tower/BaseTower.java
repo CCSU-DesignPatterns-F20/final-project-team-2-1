@@ -1,15 +1,19 @@
 package src.cell.tower;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
+import src.cell.enemy.EnemyPrototype;
 
 /**
  * This class specifies the framework for tower template pattern.
  * Strong and weak tower classes will build off of this and provide implementation
  */
 public abstract class BaseTower extends Tower{
-    public BaseTower(Cell cell){
+    public BaseTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell);
         this.speed = 3;
+        this.range = 1;
+        this.setRangeCells(cellPathIterator);
         this.reloadLeft = 0;
     }
 
@@ -18,19 +22,37 @@ public abstract class BaseTower extends Tower{
      */
     @Override
     public void attack() {
-        if (this.getReloadLeft() <= 0){
-            this.shoot();
-            this.setReloadLeft(this.getSpeed());
+        for (Cell cell : this.rangeCells) {
+            if (!cell.getSubComponents().isEmpty()) {
+                System.out.println("Enemy is found");
+                EnemyPrototype enemy = (EnemyPrototype) cell.getChild(0);
+                this.shoot(enemy);
+                try{
+                    enemy.getPosition().removeIfDead(enemy);
+                }catch (Exception e){
+                    System.out.println(enemy.toString());
+                    System.out.println(cell.toString());
+                    System.out.println(cell.getSubComponents().size());
+                }
+                
+                break;
+            };
+            
         }
-        else{
-            this.reload();
-        }
+        
+        // if (this.getReloadLeft() <= 0){
+        //     this.shoot();
+        //     this.setReloadLeft(this.getSpeed());
+        // }
+        // else{
+        //     this.reload();
+        // }
     }
 
     /**
     * This method will inflict damage to enemy
     */
-    public abstract void shoot();
+    public abstract void shoot(EnemyPrototype enemy);
     
     /**
     * This method will stall the tower before shooting again

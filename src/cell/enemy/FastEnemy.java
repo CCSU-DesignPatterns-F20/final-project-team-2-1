@@ -1,5 +1,6 @@
 package src.cell.enemy;
 
+import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import java.awt.Color;
@@ -9,8 +10,8 @@ import java.awt.Color;
  */
 public class FastEnemy extends Enemy {
 
-    public FastEnemy(IteratorInterface<Cell> cellPathIterator){
-        super(cellPathIterator);
+    public FastEnemy(CellList<Cell> cellPath){
+        super(cellPath);
         this.speed = 5;
     }
 
@@ -32,7 +33,7 @@ public class FastEnemy extends Enemy {
     */
     @Override
     public Color draw() {
-        System.out.println("Red Box on " + this.position.getLocation());
+        // System.out.println("Red Box on " + this.position.getLocation());
         return Color.RED;
     }
 
