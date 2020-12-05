@@ -65,7 +65,7 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
     
     /**
      * Compare objects based on health, speed
-     * @param Object to compare
+     * @param other to compare
      */
     public boolean equals(Object other){
         if (other == null) {return false;}
