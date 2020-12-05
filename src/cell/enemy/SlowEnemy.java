@@ -29,7 +29,7 @@ public class SlowEnemy extends Enemy {
     */
     @Override
     public Color draw() {
-        System.out.println("Orange Box on " + this.position.getLocation());
+        // System.out.println("Orange Box on " + this.position.getLocation());
         return Color.ORANGE;
     }
 

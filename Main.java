@@ -21,7 +21,7 @@ public class Main {
       
         // // Creates board and path
         // System.out.println("\nCreating The Board");
-        // var path = PathGenerator.create10by10EasyPath();
+        // var path = PathGenerator.create10by10EasyPath();gi
       
         // Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).build();
 

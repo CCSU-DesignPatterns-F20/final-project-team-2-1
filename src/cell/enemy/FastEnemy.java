@@ -32,7 +32,7 @@ public class FastEnemy extends Enemy {
     */
     @Override
     public Color draw() {
-        System.out.println("Red Box on " + this.position.getLocation());
+        // System.out.println("Red Box on " + this.position.getLocation());
         return Color.RED;
     }
 

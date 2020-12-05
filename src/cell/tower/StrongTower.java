@@ -1,4 +1,5 @@
 package src.cell.tower;
+
 import java.awt.Color;
 /**
  * This class implements strong tower
@@ -7,11 +8,12 @@ import java.awt.Color;
 import java.awt.Color;
 import java.util.Random;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 public class StrongTower extends BaseTower {
 
-    public StrongTower(Cell cell){
-        super(cell);
+    public StrongTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
+        super(cell, cellPathIterator);
         this.damage = 2.0;
     }
 
@@ -36,7 +38,7 @@ public class StrongTower extends BaseTower {
      */
     @Override
     public Color draw(){
-        System.out.println("Purple Box on " + position.getLocation());
+        // System.out.println("Purple Box on " + position.getLocation());
         return Color.CYAN;
     }
     

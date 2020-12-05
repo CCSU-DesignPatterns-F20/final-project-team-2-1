@@ -1,5 +1,6 @@
 package src.cell.tower;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import java.awt.Color;
 
@@ -9,8 +10,8 @@ import java.awt.Color;
 
 public class WeakTower extends BaseTower {
 
-    public WeakTower(Cell cell){
-        super(cell);
+    public WeakTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
+        super(cell, cellPathIterator);
         this.damage = 1;
     }
     
@@ -29,7 +30,7 @@ public class WeakTower extends BaseTower {
      */
     @Override
     public Color draw(){
-        System.out.println("Blue Box on " + position.getLocation());
+        // System.out.println("Blue Box on " + position.getLocation());
         return Color.BLUE;
     }
 }

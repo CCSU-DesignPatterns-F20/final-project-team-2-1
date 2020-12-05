@@ -26,7 +26,7 @@ public class EnemyFactory implements AbstractFactory<Enemy> {
     }
 
     @Override
-    public Enemy createProduct(String cellObject, Cell cell) {
+    public Enemy createProduct(String cellObject, Cell cell, IteratorInterface<Cell> pathCellIterator) {
         return null;
     }
 

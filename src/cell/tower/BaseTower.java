@@ -1,5 +1,6 @@
 package src.cell.tower;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -7,9 +8,11 @@ import src.cell.Cell;
  * Strong and weak tower classes will build off of this and provide implementation
  */
 public abstract class BaseTower extends Tower{
-    public BaseTower(Cell cell){
+    public BaseTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell);
         this.speed = 3;
+        this.range = 1;
+        this.setRangeCells(cellPathIterator);
         this.reloadLeft = 0;
     }
 

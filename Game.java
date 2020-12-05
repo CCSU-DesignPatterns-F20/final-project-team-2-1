@@ -27,11 +27,11 @@ public class Game {
 //        EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
         SlowEnemy enemy = new SlowEnemy(board.getPath());
         AbstractFactory<Tower> towerFactory = new TowerFactory();
-        towerFactory.createProduct("weaktower", board.getCell(2,1));
+        Tower tower = towerFactory.createProduct("weaktower", board.getCell(2,1), board.getPath());
         gamePlay.drawBoard(board.displayBoard());
         while (enemy.move()) {
             try {
-
+                tower.printRange();
                 gamePlay.drawBoard(board.displayBoard());
                 System.out.println("enemy moves");
                 Thread.sleep(1000);

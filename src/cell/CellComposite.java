@@ -58,6 +58,10 @@ public class CellComposite extends CellComponent {
         }
     }
 
+    public List<CellComponent> getSubComponents() {
+        return this.subComponents;
+    }
+
     /**
      * returns itself (list)
      */

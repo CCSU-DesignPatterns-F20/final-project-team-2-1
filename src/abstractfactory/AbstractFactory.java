@@ -9,5 +9,5 @@ import src.cell.Cell;
  */
 public interface AbstractFactory<T extends Object> {
     public T createProduct(String cellObject, IteratorInterface<Cell> pathCellIterator);
-    public T createProduct(String cellObject, Cell cell);
+    public T createProduct(String cellObject, Cell cell, IteratorInterface<Cell> pathCellIterator);
 }

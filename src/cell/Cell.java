@@ -127,7 +127,7 @@ public class Cell extends CellComposite {
      */
     @Override
     public Color draw() {
-        System.out.println("Green Box on " + this.getLocation());
+        // System.out.println("Green Box on " + this.getLocation());
         for (int i = 0; i < this.subComponents.size(); i++) {
             this.getChild(i).draw();
         }
