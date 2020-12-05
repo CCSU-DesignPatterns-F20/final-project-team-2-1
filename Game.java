@@ -29,11 +29,11 @@ public class Game {
 //        EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
         SlowEnemy enemy = new SlowEnemy(board.getPath());
         AbstractFactory<Tower> towerFactory = new TowerFactory();
-        Tower tower = towerFactory.createProduct("weaktower", board.getCell(2,1), board.getPath());
+        Tower tower = towerFactory.createProduct("weaktower", board.getCell(2,1), board.getPath().getCellPathIterator());
         gamePlay.drawBoard(board.displayBoard());
         CellComposite towers = new CellComposite();
-        towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath()));
-        towers.add(towerFactory.createProduct("strongtower", board.getCell(1,9), board.getPath()));
+        towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath().getCellPathIterator()));
+        towers.add(towerFactory.createProduct("strongtower", board.getCell(1,9), board.getPath().getCellPathIterator()));
         CellComposite enemies = new CellComposite();
         // enemies.add(new SlowEnemy(board.getPath()));
         // enemies.add(new SlowEnemy(board.getPath()));

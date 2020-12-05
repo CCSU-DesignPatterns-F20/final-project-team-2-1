@@ -28,8 +28,8 @@ public class Board extends JPanel {
     /**
      * returns the Iterator for the path
      */
-    public IteratorInterface<Cell> getPath() {
-        return pathCells.getCellPathIterator();
+    public CellList<Cell> getPath() {
+        return pathCells;
     }
 
     /**

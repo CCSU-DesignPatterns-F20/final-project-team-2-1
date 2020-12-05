@@ -13,6 +13,7 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
 
     protected double health;
     protected double speed;
+    protected CellList<Cell> pathCellList;
     protected IteratorInterface<Cell> cellPathIterator;
 
     public EnemyPrototype() {}
@@ -22,8 +23,8 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
      * This method will allow the object to move from current cell to another
      */
 
-    public void setCellPathIterator(IteratorInterface<Cell> cellPathIterator) {
-        this.cellPathIterator = cellPathIterator;
+    public void setCellPathIterator(CellList<Cell> pathCellList) {
+        this.pathCellList = pathCellList;
     }
 
     public IteratorInterface<Cell> getCellPathIterator() {

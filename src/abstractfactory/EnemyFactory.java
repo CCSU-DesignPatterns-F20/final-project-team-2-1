@@ -1,5 +1,6 @@
 package src.abstractfactory;
 
+import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import src.cell.enemy.Enemy;
@@ -16,13 +17,13 @@ public class EnemyFactory implements AbstractFactory<Enemy> {
      * @param enemy to tell which enemy to create
      */
     @Override
-    public Enemy createProduct(String enemy, IteratorInterface<Cell> pathCellIterator) {
+    public Enemy createProduct(String enemy, CellList<Cell> cellPath) {
         if (enemy.equalsIgnoreCase("slowenemy"))
-            return new SlowEnemy(pathCellIterator);
+            return new SlowEnemy(cellPath);
         else if (enemy.equalsIgnoreCase("fastenemy"))
-            return new FastEnemy(pathCellIterator);
+            return new FastEnemy(cellPath);
         else
-            return new SlowEnemy(pathCellIterator);
+            return new SlowEnemy(cellPath);
     }
 
     @Override

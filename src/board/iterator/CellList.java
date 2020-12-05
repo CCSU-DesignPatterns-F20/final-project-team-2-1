@@ -1,5 +1,6 @@
 package src.board.iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 /**
  * This class has a list of Objects and Iterator to loop through the list
@@ -15,32 +16,16 @@ public class CellList<E> extends LinkedList<E> implements Cloneable {
     /**
      * Linked List Object Path Iterator implementtation
      */
-    private class CellPathIterator implements IteratorInterface<E>, Cloneable {
+    private class CellPathIterator implements IteratorInterface<E> {
         private ListIterator<E> listIterator;
 
         public CellPathIterator() {
             this.listIterator = CellList.this.listIterator();
         }
 
-        public CellPathIterator(CellPathIterator clone) {
-            // copy the cell list
-            // create new iterator from that copy
-            // get access to the outer class instance because it is the list
-            // then call clone() on the outer class instance. Because a list is cloneable in Java
-            // then create new iterator from that clone
-            CellList cloneList = (CellList) CellList.this.clone(); // this is clone of list
-            ListIterator<E> cloneIterator = cloneList.listIterator();
-            this.listIterator = cloneIterator;
-        }
-
         public ListIterator<E> getListIterator() {
             return this.listIterator;
         }
-
-        public IteratorInterface<E> clone() {
-            return new CellPathIterator(this);
-        }
-
 
         /**
          * Returns true if there is more Objects in the list

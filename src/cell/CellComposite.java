@@ -70,7 +70,16 @@ public class CellComposite extends CellComponent {
             this.remove(enemy);
             System.out.println("Enemy is dead");
             enemy.position = null;
-            while(enemy.getCellPathIterator().hasNext()) enemy.getCellPathIterator().next();
+            while(enemy.getCellPathIterator().hasNext()) {
+                enemy.getCellPathIterator().next();
+                System.out.println("inside while dead");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("outside while dead");
         }
     }
 

@@ -1,5 +1,6 @@
 package src.abstractfactory;
 
+import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import src.cell.tower.StrongTower;
@@ -26,7 +27,7 @@ public class TowerFactory implements AbstractFactory<Tower> {
 
 
     @Override
-    public Tower createProduct(String cellObject, IteratorInterface<Cell> pathCellIterator) {
+    public Tower createProduct(String cellObject, CellList<Cell> pathCellIterator) {
         return null;
     }
 

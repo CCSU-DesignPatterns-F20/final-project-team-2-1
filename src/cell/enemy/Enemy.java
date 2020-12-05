@@ -10,13 +10,15 @@ import src.cell.Cell;
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    public Enemy(IteratorInterface cellPathIterator){
+    public Enemy(CellList<Cell> cellPath){
         this.health = 10;
-        this.cellPathIterator = cellPathIterator;
+        this.pathCellList = cellPath;
+        this.cellPathIterator = this.pathCellList.getCellPathIterator();
+        System.out.printf("object id is "  + System.identityHashCode(this.cellPathIterator) + "\n");
     }
 
     public Enemy(Enemy clone){
-        this.cellPathIterator = clone.getCellPathIterator().clone();
+        this.cellPathIterator = clone.pathCellList.getCellPathIterator();
         this.health = clone.getHealth();
         this.speed = clone.getSpeed();
         this.health = clone.getHealth();
