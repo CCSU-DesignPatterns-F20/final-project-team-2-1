@@ -1,5 +1,7 @@
 package src.cell.enemy;
 
+import src.board.iterator.CellList;
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -8,13 +10,13 @@ import src.cell.Cell;
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    public Enemy(Cell cell){
-        super(cell);
+    public Enemy(IteratorInterface cellPathIterator){
         this.health = 5;
+        this.cellPathIterator = cellPathIterator;
     }
 
     public Enemy(Enemy clone){
-        super(clone.getPosition());
+        this.cellPathIterator = clone.getCellPathIterator();
         this.health = clone.getHealth();
         this.speed = clone.getSpeed();
         this.health = clone.getHealth();
@@ -23,10 +25,17 @@ public abstract class Enemy extends EnemyPrototype{
     /**
      * This method will allow the object to move from current cell to another
      */
-    public void move(){
-        Cell newPosition = this.position;
-        
-        System.out.println("Enemy is moving for ya");
+    public boolean move(){
+        if (this.cellPathIterator.hasNext())
+        {
+            if (this.position != null)
+                this.position.remove(this);
+            setPosition(this.cellPathIterator.next());
+            System.out.printf("Enemy is moving to %s\n", this.position.toString());
+            return true;
+        }
+        return false;
+
     }
 
     /**

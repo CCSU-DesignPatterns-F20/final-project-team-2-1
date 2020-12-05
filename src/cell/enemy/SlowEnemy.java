@@ -2,6 +2,7 @@ package src.cell.enemy;
 
 import java.awt.Color;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -9,17 +10,18 @@ import src.cell.Cell;
  */
 public class SlowEnemy extends Enemy {
 
-    public SlowEnemy(Cell cell){
-        super(cell);
+    public SlowEnemy(IteratorInterface<Cell> pathCellIterator){
+        super(pathCellIterator);
         this.speed = 1;
     }
+
     
     /**
     * Clones the enemy instance
     */
     @Override
     public SlowEnemy clone(){
-        return new SlowEnemy(this.position);
+        return new SlowEnemy(this.cellPathIterator);
     }
 
     /**

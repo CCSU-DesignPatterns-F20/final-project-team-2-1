@@ -11,7 +11,6 @@ public class CellList<E> extends LinkedList<E> {
     public IteratorInterface<E> getCellPathIterator() {
         return new CellPathIterator();
     }
-
     /**
      * Linked List Object Path Iterator implementtation
      */

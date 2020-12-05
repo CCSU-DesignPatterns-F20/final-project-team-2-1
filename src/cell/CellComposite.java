@@ -27,7 +27,8 @@ public class CellComposite extends CellComponent {
      * @param cellComponent to be removed
      */
     public void remove(CellComponent cellComponent) {
-        this.subComponents.remove(cellComponent);
+        if (this.subComponents.contains(cellComponent))
+            this.subComponents.remove(cellComponent);
     }
 
     /**

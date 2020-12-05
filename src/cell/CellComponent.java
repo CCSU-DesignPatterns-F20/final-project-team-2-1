@@ -47,5 +47,6 @@ public abstract class CellComponent{
      */
     public void setPosition(Cell position){
         this.position = position;
+        this.position.add(this);
     }
 }

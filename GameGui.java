@@ -126,7 +126,14 @@ public class GameGui {
 
     public void drawBoard(JPanel board) {
         // gamePanel1.add(board);
+
+        gameWindow.remove(gamePanel1);
         gamePanel1 = board;
+        gameWindow.add(gamePanel1);
+        gameWindow.revalidate();
+        gameWindow.repaint();
+        gameWindow.setVisible(true);
+
     }
 
     public void setxBox(int length) {

@@ -1,5 +1,7 @@
 package src.cell.enemy;
 
+import src.board.iterator.CellList;
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import src.cell.CellComponent;
 
@@ -11,15 +13,22 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
 
     protected double health;
     protected double speed;
+    protected IteratorInterface<Cell> cellPathIterator;
 
-    public EnemyPrototype(Cell cell){
-        super(cell);
-    }
-
+    public EnemyPrototype() {}
     /**
      * This method will allow the object to move from current cell to another
      */
-    public abstract void move();
+
+    public void setCellPathIterator(IteratorInterface<Cell> cellPathIterator) {
+        this.cellPathIterator = cellPathIterator;
+    }
+
+    public IteratorInterface<Cell> getCellPathIterator() {
+        return this.cellPathIterator;
+    }
+
+    public abstract boolean move();
 
     /** Returns health */
     public abstract double getHealth();

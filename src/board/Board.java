@@ -11,7 +11,7 @@ import src.cell.Cell;
 /**
  * This is the Board class that is used to store all the cell
  */
-public class Board {
+public class Board extends JPanel {
     public final Cell[][] cells;
     private final CellList<Cell> pathCells;
 

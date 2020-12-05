@@ -8,7 +8,6 @@ public abstract class EnemyDecorator extends EnemyPrototype{
    protected final EnemyPrototype decoratedEnemy;
 
    public EnemyDecorator(EnemyPrototype decoratedEnemy){
-        super(decoratedEnemy.getPosition());
         this.decoratedEnemy = decoratedEnemy;
     }
 
@@ -55,7 +54,7 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     
     /**
     * Compare objects based on damage, range, and speed
-    * @param Object to compare
+    * @param
     */
     public boolean equals(Object other){
         return this.decoratedEnemy.equals(other);
@@ -64,8 +63,8 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     /**
      * This method will allow the object to move from current cell to another
      */
-    public void move(){
-        this.decoratedEnemy.move();
+    public boolean move(){
+        return this.decoratedEnemy.move();
     }
 
 }

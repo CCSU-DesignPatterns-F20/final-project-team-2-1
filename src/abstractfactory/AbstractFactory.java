@@ -1,5 +1,6 @@
 package src.abstractfactory;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -7,5 +8,6 @@ import src.cell.Cell;
  * is used to create a CellObject (tower or enemy).
  */
 public interface AbstractFactory<T extends Object> {
+    public T createProduct(String cellObject, IteratorInterface<Cell> pathCellIterator);
     public T createProduct(String cellObject, Cell cell);
 }

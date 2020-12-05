@@ -1,9 +1,15 @@
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.EnemyFactory;
+import src.abstractfactory.TowerFactory;
 import src.board.Board;
 import src.board.PathGenerator;
+import src.board.iterator.CellList;
+import src.cell.Cell;
 import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
+import src.cell.enemy.SlowEnemy;
+import src.cell.tower.Tower;
+import src.cell.tower.WeakTower;
 
 public class Game {
     public static void play(){
@@ -17,11 +23,24 @@ public class Game {
         gamePlay.setxBox(gamePlay.getxCanvas()/board.getRows());
         gamePlay.setyBox(gamePlay.getyCanvas()/board.getColumns());
         AbstractFactory<Enemy> enemyFactory = new EnemyFactory();
-        EnemyPrototype enemy1 = enemyFactory.createProduct("slowenemy",board.getCell(2,1));
-        EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
+//        EnemyPrototype enemy1 = enemyFactory.createProduct("slowenemy",board.getCell(2,1));
+//        EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
+        SlowEnemy enemy = new SlowEnemy(board.getPath());
+        AbstractFactory<Tower> towerFactory = new TowerFactory();
+        towerFactory.createProduct("weaktower", board.getCell(2,1));
         gamePlay.drawBoard(board.displayBoard());
-        enemy1.move();
-        gamePlay.drawBoard(board.displayBoard());
+        while (enemy.move()) {
+            try {
+
+                gamePlay.drawBoard(board.displayBoard());
+                System.out.println("enemy moves");
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
     }
 }

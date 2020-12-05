@@ -1,5 +1,6 @@
 package src.cell.enemy;
 
+import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 import java.awt.Color;
 
@@ -8,8 +9,8 @@ import java.awt.Color;
  */
 public class FastEnemy extends Enemy {
 
-    public FastEnemy(Cell cell){
-        super(cell);
+    public FastEnemy(IteratorInterface<Cell> cellPathIterator){
+        super(cellPathIterator);
         this.speed = 5;
     }
 
