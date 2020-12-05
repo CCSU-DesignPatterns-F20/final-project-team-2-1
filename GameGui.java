@@ -51,11 +51,11 @@ public class GameGui {
                 label.setFont(new Font("Tahoma", Font.BOLD, 15));
 
                 //Displays the Game
-                gamePanel1.setBackground(Color.white);
+                gamePanel1.setBackground(Color.WHITE);
                 gamePanel1.setPreferredSize(new Dimension(1000, 200));
 
                 //Display the game Infomation
-                infoPanel.setBackground(Color.BLUE);
+                infoPanel.setBackground(Color.white);
                 infoPanel.setPreferredSize(new Dimension(100,100));
                 infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                 infoPanel.add(label);
@@ -129,20 +129,20 @@ public class GameGui {
                 
                 // BADDDDDDD
 
-
-
                 xCanvas = gamePanel1.getWidth();
                 yCanvas = gamePanel1.getHeight();
                 uiWindow.dispose();
 
-                // Display x and y coordinate with mouse click
+                // Display x and y coordinate of the cell with mouse click
                 gameWindow.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
-                        label.setText("X = " + e.getX() + " ; Y = " + e.getY());
+                        label.setText("X= " + (e.getX()/getxBox()+1) + ", " + "Y= " + (((e.getY()-10)/getyBox() + 1))
+                        );
                     }
                 });
             }
         });
+        
 
         // Button that exit the current frame
         quitButton.addActionListener(new ActionListener() {
@@ -214,15 +214,15 @@ public class GameGui {
         return yCanvas;
     }
 
-    public JPanel paintBoardCells(int cellCount) {
-        JPanel gamePanelCell = new JPanel();
-        JLabel squareText = new JLabel("" + cellCount);
-        gamePanelCell.setBackground(Color.gray);
-        gamePanelCell.setPreferredSize(new Dimension(50, 50));
-        gamePanelCell.add(squareText);
-        // gamePanelPath.setBounds(25+pathLength,25+pathLength,
-        // gamePanelPath.getPreferredSize().width,
-        // gamePanelPath.getPreferredSize().height);
-        return gamePanelCell;
-    }
+    // public JPanel paintBoardCells(int cellCount) {
+    //     JPanel gamePanelCell = new JPanel();
+    //     JLabel squareText = new JLabel("" + cellCount);
+    //     gamePanelCell.setBackground(Color.gray);
+    //     gamePanelCell.setPreferredSize(new Dimension(50, 50));
+    //     gamePanelCell.add(squareText);
+    //     // gamePanelPath.setBounds(25+pathLength,25+pathLength,
+    //     // gamePanelPath.getPreferredSize().width,
+    //     // gamePanelPath.getPreferredSize().height);
+    //     return gamePanelCell;
+    // }
 }
