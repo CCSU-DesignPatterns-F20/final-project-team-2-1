@@ -57,7 +57,7 @@ public class Cell extends CellComposite {
     /**
      * Returns isPath
      */
-    public boolean getPath() {
+    public boolean isPath() {
         return this.isPath;
     }
 
@@ -94,7 +94,7 @@ public class Cell extends CellComposite {
         } else if (other instanceof Cell) {
             Cell otherObj = (Cell) other;
             if (this.getX() == otherObj.getX() && this.getY() == otherObj.getY()
-                    && this.getPath() == otherObj.getPath()) {
+                    && this.isPath() == otherObj.isPath()) {
                 return true;
             }
         }
@@ -129,11 +129,11 @@ public class Cell extends CellComposite {
     public Color draw() {
         // System.out.println("Green Box on " + this.getLocation());
         for (int i = 0; i < this.subComponents.size(); i++) {
-            this.getChild(i).draw();
+            this.getSubComponentAtIndex(i).draw();
         }
         Color color = super.draw();
         if (color == null) { // if there is nothing in the cell. Draw color of cell
-            if (this.getPath())
+            if (this.isPath())
                 return Color.GREEN;
             else
                 return Color.GRAY;

@@ -1,17 +1,11 @@
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.EnemyFactory;
-import src.abstractfactory.TowerFactory;
 import src.board.Board;
 import src.board.PathGenerator;
-import src.board.iterator.CellList;
-import src.cell.Cell;
-import src.cell.CellComponent;
 import src.cell.CellComposite;
 import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
 import src.cell.enemy.SlowEnemy;
-import src.cell.tower.Tower;
-import src.cell.tower.WeakTower;
 
 public class Game {
     public static void play(){
@@ -20,7 +14,9 @@ public class Game {
         System.out.println("\nCreating The Board");
         var path = PathGenerator.create10by10EasyPath();
       
-        Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).build();
+        Board.BoardBuilder boardBuilder = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).setGold(500);
+        Board board = Board.getBoardInstance(boardBuilder);
+
         GameGui gamePlay = new GameGui(board);
         
         gamePlay.setxBox(gamePlay.getxCanvas()/board.getRows());
@@ -36,17 +32,17 @@ public class Game {
 //        towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath().getCellPathIterator()));
 //        towers.add(towerFactory.createProduct("strongtower", board.getCell(1,9), board.getPath().getCellPathIterator()));
         CellComposite enemies = new CellComposite();
-        // enemies.add(new SlowEnemy(board.getPath()));
-        // enemies.add(new SlowEnemy(board.getPath()));
-        // enemies.add(new SlowEnemy(board.getPath()));
+        enemies.add(enemy.clone());
+        enemies.add(enemy.clone());
+        enemies.add(enemy.clone());
         enemies.add(enemy.clone());
         enemies.add(enemy.clone());
         enemies.add(enemy.clone());
 //        towers.add(tower);
-        while (true) {
+        while (board.getHealth() > 0) {
             try {
                 for (int i =0; i<enemies.getSubComponents().size(); i++){
-                    ((EnemyPrototype)enemies.getChild(i)).move();
+                    ((EnemyPrototype)enemies.getSubComponentAtIndex(i)).move();
                 }
 
                 for (var tower : board.getTowerList()) tower.attack();
@@ -62,6 +58,7 @@ public class Game {
                 e.printStackTrace();
             }
         }
+        System.out.println("GAME OVER");
 
 
         // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);

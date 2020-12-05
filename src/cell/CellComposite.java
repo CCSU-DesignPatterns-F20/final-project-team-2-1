@@ -3,8 +3,6 @@ package src.cell;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.cell.enemy.EnemyPrototype;
-
 import java.awt.Color;
 
 /**
@@ -39,7 +37,7 @@ public class CellComposite extends CellComponent {
      * 
      * @param index used to retrive the specific child from the list
      */
-    public CellComponent getChild(int index) {
+    public CellComponent getSubComponentAtIndex(int index) {
         return this.subComponents.get(index);
     }
 
@@ -57,7 +55,7 @@ public class CellComposite extends CellComponent {
      */
     public void printAllComponenents() {
         for (int i = 0; i < this.subComponents.size(); i++) {
-            System.out.println(this.getChild(i).toString());
+            System.out.println(this.getSubComponentAtIndex(i).toString());
         }
     }
 

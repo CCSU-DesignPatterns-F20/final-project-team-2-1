@@ -6,26 +6,26 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.text.Utilities;
 
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
-import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
-import src.cell.CellComponent;
 import src.cell.tower.Tower;
 
 /**
  * This is the Board class that is used to store all the cell
  */
 public class Board {
+    private static Board board = null;
     public final Cell[][] cells;
     private final CellList<Cell> pathCells;
-    private int health = 20;
+    private int health = 4;
     private List<Tower> towerList;
     private AbstractFactory<Tower> towerFactory;
-    private String state;
+    private int gold;
 
     /**
      * Constructs Board using predefined attributes
@@ -37,6 +37,28 @@ public class Board {
         this.pathCells = builder.pathCells;
         this.towerFactory = new TowerFactory();
         this.towerList = new ArrayList<>();
+        this.gold = builder.gold;
+    }
+
+    /**
+     * to be called once to create the board
+     * @param builder
+     * @return
+     */
+    public static Board getBoardInstance(BoardBuilder builder) {
+        if (board == null)
+            board = new Board(builder);
+        return board;
+    }
+
+    /**
+     * to be called whenever needed access to the board
+     * @return
+     * @throws Exception
+     */
+    public static Board getBoardInstance() throws Exception {
+        if (board != null) return board;
+        else throw new Exception("First call to board must pass a builder");
     }
 
     /**
@@ -46,13 +68,8 @@ public class Board {
         return pathCells;
     }
 
-    /**
-     * This refresh the board in the console
-     */
-    public void refreshBoard() {
-
-    }
-
+    public int getHealth() { return this.health; }
+    public void setHealth(int health) { this.health = health; }
     /**
      * 
      * @return number of rows
@@ -69,17 +86,7 @@ public class Board {
         return cells[0].length;
     }
 
-    // /**
-    //  * This will draw all the cells
-    //  */
-    // public void displayBoard() {
-    //     for (int r = 0; r < this.cells.length; r++) {
-    //         for (int c = 0; c < this.cells[0].length; c++) {
-    //             cells[r][c].draw();
-    //             // System.out.println(cells[r][c].toString());
-    //         }
-    //     }
-    // }
+
 
     public List<Tower> getTowerList() {
         return this.towerList;
@@ -101,15 +108,21 @@ public class Board {
                     public void mouseClicked(MouseEvent e) {
 //                        if (state == "playing") return;
                         var clickedCell = cells[finalR][finalC];
-                        if (pathCells.contains(clickedCell)) return; // prevent adding tower to path
+                        if (clickedCell.isPath()) return; // prevent adding tower to path
+                        if (clickedCell.getSubComponents().size() > 0) return; // prevent double adding tower to same cell
                         Tower tower;
-                        if (e.getClickCount() == 1) // 1 click for weak tower
+                        if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
+                        {
                             tower = towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator());
-                        else // double click for strong tower
-                            tower = towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator());
-                        towerList.add(tower);
-                    }
+                            towerList.add(tower);
 
+                        }
+                        else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
+                        {
+                            tower = towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator());
+                        }
+
+                    }
                 });
 
                 cell.setBackground(cells[r][c].draw());
@@ -156,6 +169,7 @@ public class Board {
     public static class BoardBuilder {
         private Cell[][] cells;
         private CellList<Cell> pathCells;
+        private int gold;
 
         /**
          * Initializes the board using nonPath Cells
@@ -171,6 +185,11 @@ public class Board {
                     this.cells[r][c] = new Cell(r, c, false);
                 }
             }
+            return this;
+        }
+
+        public BoardBuilder setGold(int gold) {
+            this.gold = gold;
             return this;
         }
 
