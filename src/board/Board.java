@@ -1,12 +1,20 @@
 package src.board;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
+import src.abstractfactory.AbstractFactory;
+import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
+import src.cell.CellComponent;
+import src.cell.tower.Tower;
 
 /**
  * This is the Board class that is used to store all the cell
@@ -15,15 +23,20 @@ public class Board {
     public final Cell[][] cells;
     private final CellList<Cell> pathCells;
     private int health = 20;
+    private List<Tower> towerList;
+    private AbstractFactory<Tower> towerFactory;
+    private String state;
 
     /**
      * Constructs Board using predefined attributes
      * 
-     * @param predefined attributes
+     * @param builder attributes
      */
     private Board(BoardBuilder builder) {
         this.cells = builder.cells;
         this.pathCells = builder.pathCells;
+        this.towerFactory = new TowerFactory();
+        this.towerList = new ArrayList<>();
     }
 
     /**
@@ -68,6 +81,10 @@ public class Board {
     //     }
     // }
 
+    public List<Tower> getTowerList() {
+        return this.towerList;
+    }
+
     /**
      * This will draw all the cells
      */
@@ -76,10 +93,28 @@ public class Board {
         drawnBoard.setPreferredSize(new Dimension(1000, 200));
         for (int r = 0; r < this.cells.length; r++) {
             for (int c = 0; c < this.cells[0].length; c++) {
-                JPanel cellPanel = new JPanel();
-                cellPanel.setBackground(cells[r][c].draw());
-                cellPanel.setPreferredSize(new Dimension(50, 50));
-                drawnBoard.add(cellPanel);
+                JPanel cell = new JPanel();
+                int finalR = r; // to be used in anonymous class
+                int finalC = c;// to be used in anonymous class
+                cell.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+//                        if (state == "playing") return;
+                        var clickedCell = cells[finalR][finalC];
+                        if (pathCells.contains(clickedCell)) return; // prevent adding tower to path
+                        Tower tower;
+                        if (e.getClickCount() == 1) // 1 click for weak tower
+                            tower = towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator());
+                        else // double click for strong tower
+                            tower = towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator());
+                        towerList.add(tower);
+                    }
+
+                });
+
+                cell.setBackground(cells[r][c].draw());
+                cell.setPreferredSize(new Dimension(50, 50));
+                drawnBoard.add(cell);
             }
         }
         return drawnBoard;
@@ -89,7 +124,7 @@ public class Board {
      * Access specific cell
      * 
      * @param row
-     * @param column
+     * @param col
      */
     public Cell getCell(int row, int col) {
         return cells[row][col];
@@ -99,7 +134,7 @@ public class Board {
      * Sets cell as path
      * 
      * @param row
-     * @param column
+     * @param col
      */
     public void setPath(int row, int col) {
         this.cells[row][col].setPath(true);
@@ -125,8 +160,8 @@ public class Board {
         /**
          * Initializes the board using nonPath Cells
          * 
-         * @param number of rows
-         * @param number of columns
+         * @param x of rows
+         * @param y of columns
          */
         public BoardBuilder setBoardSize(int x, int y) {
 
@@ -142,7 +177,7 @@ public class Board {
         /**
          * This method turns Cells to path
          * 
-         * @param list of int x and y coordinates to choose Cells to be path
+         * @param tobePathCells of int x and y coordinates to choose Cells to be path
          */
         public BoardBuilder setPathCell(int[][] tobePathCells) {
             this.pathCells = new CellList<Cell>();

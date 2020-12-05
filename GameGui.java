@@ -43,7 +43,9 @@ public class GameGui {
     private int yBox = 10;
     Graphics g;
 
-    GameGui() {
+    private Board board;
+
+    GameGui(Board board) {
         // Button that starts a new frame
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -98,37 +100,6 @@ public class GameGui {
                 gameWindow.setVisible(true);
                 gameWindow.setResizable(false);
 
-                // for (int i = 0; i < 100; i++) {
-                // gamePanel1.add(paintBoardCells(i));
-                // }
-
-
-                // BADDDDDDD
-                // var path = PathGenerator.create10by10EasyPath();
-
-                // Board board = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).build();
-                //  AbstractFactory<Enemy> enemyFactory = new EnemyFactory();
-                // EnemyPrototype enemy1 = enemyFactory.createProduct("slowenemy",board.getCell(2,1));
-                // EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
-                // for (int i = 0; i < board.cells.length; i++) {
-                //     for (int j = 0; j < board.cells[0].length; j++) {
-                //         JPanelObject jpanelCell = new JPanelObject<Cell>();
-                //         jpanelCell.object = board.cells[i][j];
-                //         jpanelCell.jpanel = new JPanel();
-                //         JLabel pathFlag;
-                //         var color = ((Cell) jpanelCell.object).draw();
-                //         jpanelCell.jpanel.setBackground(color);
-                        
-
-                //         jpanelCell.jpanel.setPreferredSize(new Dimension(50, 50));
-                //         // jpanelCell.jpanel.add(pathFlag);
-                        
-                //     }
-                // }
-
-                
-                // BADDDDDDD
-
                 xCanvas = gamePanel1.getWidth();
                 yCanvas = gamePanel1.getHeight();
                 uiWindow.dispose();
@@ -142,7 +113,13 @@ public class GameGui {
                 });
             }
         });
-        
+
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         // Button that exit the current frame
         quitButton.addActionListener(new ActionListener() {
