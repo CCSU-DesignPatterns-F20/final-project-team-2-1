@@ -14,7 +14,7 @@ public abstract class EnemyDecorator extends EnemyPrototype{
    /* Returns health*/
    @Override
     public double getHealth(){
-        return decoratedEnemy.health;
+        return decoratedEnemy.getHealth();
     };
 
     /* Returns speed*/
@@ -48,17 +48,17 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     /**
     * Returns hash code
     */
-    public int hashCode(){
-        return this.decoratedEnemy.hashCode();
-    }
+    // public int hashCode(){
+    //     return this.decoratedEnemy.hashCode();
+    // }
     
-    /**
-    * Compare objects based on damage, range, and speed
-    * @param
-    */
-    public boolean equals(Object other){
-        return this.decoratedEnemy.equals(other);
-    }
+    // /**
+    // * Compare objects based on damage, range, and speed
+    // * @param
+    // */
+    // public boolean equals(Object other){
+    //     return this.decoratedEnemy.equals(other);
+    // }
 
     /**
      * This method will allow the object to move from current cell to another

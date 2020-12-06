@@ -26,7 +26,9 @@ public class WeakTower extends BaseTower {
     public void shoot(EnemyPrototype enemy) {
         System.out.println("Weak tower shoots");
         this.setReloadLeft(this.getSpeed());
+        System.out.printf("enemy before shot " + enemy.getHealth());
         enemy.setHealth(enemy.getHealth()-this.getDamage());
+        System.out.println("enemy health after shot " + enemy.getHealth());
     }
     /**
      * Draws tower as blue box

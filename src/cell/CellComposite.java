@@ -20,7 +20,6 @@ public class CellComposite extends CellComponent {
     public void add(CellComponent cellComponent) {
         if (cellComponent != null) {
             this.subComponents.add(cellComponent);
-            System.out.printf("after adding subcomponent size is %s\n", subComponents.size());
         }
 
     }
@@ -36,9 +35,7 @@ public class CellComposite extends CellComponent {
      */
     public void remove(CellComponent cellComponent) {
         if (this.subComponents.contains(cellComponent)) {
-            System.out.println("tower is found inside subcomponent");
             this.subComponents.remove(cellComponent);
-            System.out.printf("after remove subcomponent size is %s\n", subComponents.size());
         }
     }
 

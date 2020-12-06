@@ -14,7 +14,7 @@ public abstract class Enemy extends EnemyPrototype{
         this.health = 1;
         this.pathCellList = cellPath;
         this.cellPathIterator = this.pathCellList.getCellPathIterator();
-        System.out.printf("object id is "  + System.identityHashCode(this.cellPathIterator) + "\n");
+
     }
 
     public Enemy(Enemy clone){
@@ -33,7 +33,7 @@ public abstract class Enemy extends EnemyPrototype{
             if (this.position != null)
                 this.position.remove(this);
             setPosition(this.cellPathIterator.next());
-            System.out.printf("Enemy is moving to %s\n", this.position.toString());
+
             return true;
         }
         else

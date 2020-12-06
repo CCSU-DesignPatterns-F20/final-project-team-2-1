@@ -99,11 +99,13 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
     public boolean equals(Object other){
         if (other == null) {return false;}
         else if (this == other) {return true;}
-        else if (other instanceof Enemy){
-            Enemy otherObj = (Enemy) other;
-            if (this.getHealth() == otherObj.getHealth() &&  this.getSpeed() == otherObj.getSpeed()){
-                return true;
-            }
+        else if (other instanceof EnemyPrototype){
+            EnemyPrototype otherObj = (EnemyPrototype) other;
+            if (this.getHealth() == otherObj.getHealth()
+                &&  this.getSpeed() == otherObj.getSpeed())
+                {
+                    return true;
+                }
         }
         return false;
     }

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.text.Utilities;
 
+
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
@@ -16,6 +17,7 @@ import src.cell.Cell;
 import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
 import src.cell.enemy.HealthDecorator;
+import src.cell.enemy.SlowEnemy;
 import src.cell.tower.DamageDecorator;
 import src.cell.tower.Tower;
 
@@ -23,6 +25,7 @@ import src.cell.tower.Tower;
  * This is the Board class that is used to store all the cell
  */
 public class Board {
+    private EnemyPrototype originalEnemy;
     private static Board board = null;
     public final Cell[][] cells;
     private final CellList<Cell> pathCells;
@@ -44,6 +47,7 @@ public class Board {
         this.towerList = new ArrayList<>();
         this.gold = builder.gold;
         this.enemyList = new ArrayList<>();
+        this.originalEnemy = new SlowEnemy(pathCells);
     }
 
 
@@ -69,12 +73,13 @@ public class Board {
         return null;
     }
 
-    public ArrayList<EnemyPrototype> createNewWave(EnemyPrototype slowEnemy){
+    public ArrayList<EnemyPrototype> createNewWave(){
         ArrayList<EnemyPrototype> newWave = new ArrayList<EnemyPrototype>();
         System.out.println("new wave is approaching");
-        slowEnemy = new HealthDecorator(slowEnemy, 2); // change slowenemy to enemydecorator instance
-        for (int i=0; i<5; i++){
-            newWave.add(slowEnemy.clone());
+        originalEnemy = new HealthDecorator(originalEnemy, 2); // change slowenemy to enemydecorator instance
+
+        for (int i=0; i<1; i++){
+            newWave.add(originalEnemy.clone());
         }
         return newWave;
     }
@@ -116,9 +121,12 @@ public class Board {
     }
 
     public void remove(EnemyPrototype enemy){
+
         for (int i = 0; i<enemyList.size(); i++){
+
             if (enemy.equals(enemyList.get(i))){
                 enemyList.remove(i);
+
             }
         }
     }
@@ -150,7 +158,7 @@ public class Board {
                             // replace tower in towerList by decoratedTower
                             for (int i=0; i<towerList.size(); i++) {
                                 if (towerList.get(i).equals(tobeSearchedTower)) {
-                                    System.out.println("replacing tower by decorated tower");
+
                                     towerList.set(i, decoratedTower);
                                 }
                             }
@@ -159,14 +167,11 @@ public class Board {
 
                             if (Board.getBoardInstance().getGold() >= 75)
                                 Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 75);
-                            System.out.printf("number of subcomponent in cell %s %s is %s\n", finalR, finalC, cells[finalR][finalC].getSubComponents().size());
-                            System.out.printf("number of tower in tower list is %s\n", towerList.size());
                         } else { // will add tower
                             if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
                             {
                                 if (Board.getBoardInstance().getGold() >= 100 )
                                 {
-                                    System.out.println("weak tower is added");
                                     towerList.add(towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator()));
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 100);
                                 }
@@ -174,8 +179,6 @@ public class Board {
                             else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
                             {
                                 if (Board.getBoardInstance().getGold() >= 150) {
-                                    System.out.println("strong tower is added");
-
                                     towerList.add(towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator()));
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 150);
                                 }

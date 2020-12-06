@@ -26,6 +26,7 @@ public abstract class BaseTower extends Tower{
             if (!cell.getSubComponents().isEmpty()) {
                 System.out.println("Enemy is found");
                 EnemyPrototype enemy = (EnemyPrototype) cell.getSubComponentAtIndex(0);
+                System.out.println("enemy being shot object id is " + System.identityHashCode(enemy));
                 this.shoot(enemy);
                 enemy.removeIfDead();
                 break;
