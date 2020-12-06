@@ -68,6 +68,13 @@ public class Board {
         return pathCells;
     }
 
+    public int getGold() { return this.gold; }
+    public void setGold(int gold) { this.gold = gold; }
+    /**
+     * 
+     * @return number of rows
+     */
+
     public int getHealth() { return this.health; }
     public void setHealth(int health) { this.health = health; }
     /**
@@ -134,7 +141,7 @@ public class Board {
     }
 
     /**
-     * Access specific cell
+     * Access specific cells
      * 
      * @param row
      * @param col

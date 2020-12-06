@@ -13,11 +13,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameGui {
-    //Frames 
+    // Frames
     JFrame gameWindow = new JFrame("Stage 1");
     JFrame uiWindow = new JFrame("Tower Defense Game");
 
-    //Panels
+    // Panels
     JPanel uiPanel = new JPanel();
     JPanel gamePanel1 = new JPanel();
     JPanel gameControl = new JPanel();
@@ -26,7 +26,7 @@ public class GameGui {
     JPanel statPanel = new JPanel();
     JPanel functionPanel = new JPanel();
 
-    //Button + Labels
+    // Button + Labels
     JButton startButton = new JButton("Start Game");
     JButton quitButton = new JButton("Exit Game");
     JButton pauseButton = new JButton("Pause Game");
@@ -35,8 +35,10 @@ public class GameGui {
     JButton upgradeButton = new JButton("Upgrade");
     JButton sellButton = new JButton("Sell");
     JLabel text = new JLabel("Welcome to the tower defense game");
+    JLabel goldLabel = new JLabel("GOLD: " );
+    JLabel healthLabel = new JLabel("HEALTH: ");
 
-    //Variables
+    // Variables
     private int xCanvas = 600;
     private int yCanvas = 600;
     private int xBox = 10;
@@ -52,39 +54,42 @@ public class GameGui {
                 JLabel label = new JLabel();
                 label.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-                //Displays the Game
+                // Displays the Game
                 gamePanel1.setBackground(Color.WHITE);
                 gamePanel1.setPreferredSize(new Dimension(1000, 200));
 
-                //Display the game Infomation
-                infoPanel.setBackground(Color.white);
-                infoPanel.setPreferredSize(new Dimension(100,100));
-                infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-                infoPanel.add(label);
-                
-                //Buttons for buy, upgrade towers
-                buttonPanel.setLayout(new GridLayout(0,1,2,2));
+                // Display the game Infomation
+                // infoPanel.setBackground(Color.white);
+                // infoPanel.setPreferredSize(new Dimension(100, 100));
+                // infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                // infoPanel.add(goldLabel);
+                // infoPanel.add(healthLabel);
+                // infoPanel.add(label);
+                createInfoPanel();
+
+                // Buttons for buy, upgrade towers
+                buttonPanel.setLayout(new GridLayout(0, 1, 2, 2));
                 buttonPanel.setBackground(Color.white);
-                buttonPanel.setPreferredSize(new Dimension(100,100));
+                buttonPanel.setPreferredSize(new Dimension(100, 100));
                 buttonPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                 buttonPanel.add(buyButton);
                 buttonPanel.add(upgradeButton);
                 buttonPanel.add(sellButton);
 
-                //Stats of the tower/enemy
+                // Stats of the tower/enemy
                 statPanel.setBackground(Color.YELLOW);
-                statPanel.setPreferredSize(new Dimension(100,100));
+                statPanel.setPreferredSize(new Dimension(100, 100));
                 statPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
-                //Game functionality buttons
-                functionPanel.setLayout(new GridLayout(0,1,2,2));
-                functionPanel.setPreferredSize(new Dimension(100,100));
+                // Game functionality buttons
+                functionPanel.setLayout(new GridLayout(0, 1, 2, 2));
+                functionPanel.setPreferredSize(new Dimension(100, 100));
                 functionPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                 functionPanel.add(pauseButton);
                 functionPanel.add(resumeButton);
                 functionPanel.add(quitButton);
 
-                //Panel that holds all other Panels
+                // Panel that holds all other Panels
                 gameControl.setLayout(new BoxLayout(gameControl, BoxLayout.X_AXIS));
                 gameControl.add(infoPanel);
                 gameControl.add(buttonPanel);
@@ -92,7 +97,7 @@ public class GameGui {
                 gameControl.add(functionPanel);
                 gameControl.setPreferredSize(new Dimension(1000, 200));
 
-                //Game Window
+                // Game Window
                 gameWindow.getContentPane().add(gamePanel1, "Center");
                 gameWindow.add(gameControl, BorderLayout.PAGE_END);
                 gameWindow.setSize(xCanvas, yCanvas + 200);
@@ -107,8 +112,8 @@ public class GameGui {
                 // Display x and y coordinate of the cell with mouse click
                 gameWindow.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
-                        label.setText("X= " + (e.getX()/getxBox()+1) + ", " + "Y= " + (((e.getY()-10)/getyBox() + 1))
-                        );
+                        label.setText("X= " + (e.getX() / getxBox() + 1) + ", " + "Y= "
+                                + (((e.getY() - 10) / getyBox() + 1)));
                     }
                 });
             }
@@ -143,6 +148,22 @@ public class GameGui {
         uiWindow.setVisible(true);
     }
 
+    private void createInfoPanel(){
+        // Display the game Infomation
+        infoPanel.removeAll();
+        goldLabel = new JLabel("GOLD: " + board.getBoardInstance().getGold());
+        healthLabel = new JLabel("HEALTH: " + board.getBoardInstance().getGold());
+        infoPanel.setBackground(Color.white);
+        infoPanel.setPreferredSize(new Dimension(100, 100));
+        infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        infoPanel.add(goldLabel);
+        infoPanel.add(healthLabel);
+        infoPanel.add(label);
+        gameControl.revalidate();
+        gameControl.repaint();
+        gameControl.setVisible(true);
+    }
+
     public JPanel getJPanel() {
         return gamePanel1;
     }
@@ -156,6 +177,18 @@ public class GameGui {
         gameWindow.revalidate();
         gameWindow.repaint();
         gameWindow.setVisible(true);
+
+    }
+
+    public void drawInfoPage(JPanel infoPage) {
+        // gamePanel1.add(board);
+
+        gameControl.remove(infoPanel);
+        infoPanel = infoPage;
+        gameControl.add(infoPanel);
+        gameControl.revalidate();
+        gameControl.repaint();
+        gameControl.setVisible(true);
 
     }
 
@@ -192,14 +225,14 @@ public class GameGui {
     }
 
     // public JPanel paintBoardCells(int cellCount) {
-    //     JPanel gamePanelCell = new JPanel();
-    //     JLabel squareText = new JLabel("" + cellCount);
-    //     gamePanelCell.setBackground(Color.gray);
-    //     gamePanelCell.setPreferredSize(new Dimension(50, 50));
-    //     gamePanelCell.add(squareText);
-    //     // gamePanelPath.setBounds(25+pathLength,25+pathLength,
-    //     // gamePanelPath.getPreferredSize().width,
-    //     // gamePanelPath.getPreferredSize().height);
-    //     return gamePanelCell;
+    // JPanel gamePanelCell = new JPanel();
+    // JLabel squareText = new JLabel("" + cellCount);
+    // gamePanelCell.setBackground(Color.gray);
+    // gamePanelCell.setPreferredSize(new Dimension(50, 50));
+    // gamePanelCell.add(squareText);
+    // // gamePanelPath.setBounds(25+pathLength,25+pathLength,
+    // // gamePanelPath.getPreferredSize().width,
+    // // gamePanelPath.getPreferredSize().height);
+    // return gamePanelCell;
     // }
 }
