@@ -56,9 +56,9 @@ public class Board {
      * @return
      * @throws Exception
      */
-    public static Board getBoardInstance() throws Exception {
+    public static Board getBoardInstance() {
         if (board != null) return board;
-        else throw new Exception("First call to board must pass a builder");
+        return null;
     }
 
     /**

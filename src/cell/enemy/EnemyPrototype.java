@@ -49,14 +49,11 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
             this.getPosition().remove(this);
             this.position = null;
             System.out.println("enemy escapes");
-            try {
-                var board = Board.getBoardInstance();
-                board.setHealth(board.getHealth() - 1);
-                System.out.println("Enemy passed through, board health is " + board.getHealth());
-                System.out.println("checking static " + Board.getBoardInstance().getHealth());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            var board = Board.getBoardInstance();
+            board.setHealth(board.getHealth() - 1);
+            System.out.println("Enemy passed through, board health is " + board.getHealth());
+            System.out.println("checking static " + Board.getBoardInstance().getHealth());
+
         }
 
     }

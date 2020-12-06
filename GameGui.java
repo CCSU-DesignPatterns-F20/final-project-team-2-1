@@ -158,7 +158,7 @@ public class GameGui {
         infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         infoPanel.add(goldLabel);
         infoPanel.add(healthLabel);
-        infoPanel.add(label);
+
         gameControl.revalidate();
         gameControl.repaint();
         gameControl.setVisible(true);
