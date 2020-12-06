@@ -15,7 +15,7 @@ public class StrongTower extends BaseTower {
 
     public StrongTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell, cellPathIterator);
-        this.damage = 2.0;
+        this.damage = 2;
     }
 
     /**

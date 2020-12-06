@@ -13,7 +13,7 @@ import src.cell.enemy.EnemyPrototype;
  * and range (how far it can reach enemies) attributes.
  */
 public abstract class Tower extends CellComponent {
-    protected double damage;
+    protected int damage;
     protected double speed;
     protected double reloadLeft;
     protected int range;
@@ -66,7 +66,7 @@ public abstract class Tower extends CellComponent {
     public abstract void reload();
 
     /* Returns damage*/
-    public abstract double getDamage();
+    public abstract int getDamage();
 
     /* Returns range */
     public abstract int getRange();
@@ -80,7 +80,7 @@ public abstract class Tower extends CellComponent {
     /* sets the damage
     * @param newDamage is used to replace previous tower damage value
     */
-    public abstract void setDamage(double newDamage);
+    public abstract void setDamage(int newDamage);
 
     /* sets the attack range 
     * @param newRange is used to replace previous tower range value
@@ -102,22 +102,27 @@ public abstract class Tower extends CellComponent {
     */
     public int hashCode(){
         int hash = 0;
-        hash += (this.damage == 0 ? 0: Double.valueOf(this.damage).hashCode());
+        hash += (this.damage == 0 ? 0: Integer.valueOf(this.damage).hashCode());
         hash += this.range;
         hash += (this.speed == 0 ? 0: Double.valueOf(this.speed).hashCode());
+        hash += (this.getPosition().hashCode());
         return hash;
     }
     
     /**
     * Compare objects based on damage, range, and speed
-    * @param Object to compare
+    * @param other to compare
     */
     public boolean equals(Object other){
         if (other == null) {return false;}
         else if (this == other) {return true;}
         else if (other instanceof Tower){
             Tower otherObj = (Tower) other;
-            if (this.getRange() == otherObj.getRange() && this.getDamage() == otherObj.getDamage() && this.getSpeed() == otherObj.getSpeed()){
+            if (this.getRange() == otherObj.getRange()
+                    && this.getDamage() == otherObj.getDamage()
+                    && this.getSpeed() == otherObj.getSpeed()
+                    && this.getPosition().equals(otherObj.getPosition())
+                ){
                 return true;
             }
         }

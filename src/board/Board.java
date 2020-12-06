@@ -13,6 +13,7 @@ import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
 import src.cell.Cell;
+import src.cell.tower.DamageDecorator;
 import src.cell.tower.Tower;
 
 /**
@@ -116,23 +117,49 @@ public class Board {
 //                        if (state == "playing") return;
                         var clickedCell = cells[finalR][finalC];
                         if (clickedCell.isPath()) return; // prevent adding tower to path
-                        if (clickedCell.getSubComponents().size() > 0) return; // prevent double adding tower to same cell
-                        Tower tower;
-                        if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
-                        {
-                            tower = towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator());
-                            towerList.add(tower);
+                        if (clickedCell.getSubComponents().size() > 0) { // will upgrade tower
+                            Tower tobeSearchedTower = (Tower) clickedCell.getSubComponentAtIndex(0);
+                            Tower decoratedTower = new DamageDecorator(tobeSearchedTower, 2);
+                            // replace tower in towerList by decoratedTower
+                            for (int i=0; i<towerList.size(); i++) {
+                                if (towerList.get(i).equals(tobeSearchedTower)) {
+                                    System.out.println("replacing tower by decorated tower");
+                                    towerList.set(i, decoratedTower);
+                                }
+                            }
+                            // replacing the first item
+                            clickedCell.remove(tobeSearchedTower);
 
-                        }
-                        else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
-                        {
-                            tower = towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator());
-                        }
+                            if (Board.getBoardInstance().getGold() >= 75)
+                                Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 75);
+                            System.out.printf("number of subcomponent in cell %s %s is %s\n", finalR, finalC, cells[finalR][finalC].getSubComponents().size());
+                            System.out.printf("number of tower in tower list is %s\n", towerList.size());
+                        } else { // will add tower
+                            if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
+                            {
+                                if (Board.getBoardInstance().getGold() >= 100 )
+                                {
+                                    System.out.println("weak tower is added");
+                                    towerList.add(towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator()));
+                                    Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 100);
+                                }
+                            }
+                            else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
+                            {
+                                if (Board.getBoardInstance().getGold() >= 150) {
+                                    System.out.println("strong tower is added");
 
+                                    towerList.add(towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator()));
+                                    Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 150);
+                                }
+                            }
+                        }
                     }
                 });
 
                 cell.setBackground(cells[r][c].draw());
+                JLabel enemyNum = new JLabel(cells[r][c].getSubComponents().size() + "");
+                cell.add(enemyNum);
                 cell.setPreferredSize(new Dimension(50, 50));
                 drawnBoard.add(cell);
             }

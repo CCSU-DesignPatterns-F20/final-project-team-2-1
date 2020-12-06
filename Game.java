@@ -14,7 +14,7 @@ public class Game {
         System.out.println("\nCreating The Board");
         var path = PathGenerator.create10by10EasyPath();
       
-        Board.BoardBuilder boardBuilder = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).setGold(500);
+        Board.BoardBuilder boardBuilder = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path).setGold(10000);
         Board board = Board.getBoardInstance(boardBuilder);
 
         GameGui gamePlay = new GameGui(board);
@@ -39,7 +39,8 @@ public class Game {
         enemies.add(enemy.clone());
         enemies.add(enemy.clone());
 //        towers.add(tower);
-        while (board.getHealth() > 0) {
+//        while (board.getHealth() > 0) {
+        while (true) {
             try {
                 for (int i =0; i<enemies.getSubComponents().size(); i++){
                     ((EnemyPrototype)enemies.getSubComponentAtIndex(i)).move();
@@ -50,7 +51,8 @@ public class Game {
                 // System.out.println(enemy.getHealth());
                 System.out.println(enemy.toString());
                 gamePlay.drawBoard(board.displayBoard());
-                Thread.sleep(1000);
+                gamePlay.createInfoPanel();
+                Thread.sleep(2000);
                 System.out.println("=================================");
                 System.out.println("");
                 System.out.println("");
@@ -58,7 +60,7 @@ public class Game {
                 e.printStackTrace();
             }
         }
-        System.out.println("GAME OVER");
+//        System.out.println("GAME OVER");
 
 
         // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);

@@ -10,6 +10,7 @@ public abstract class CellComponent{
     public CellComponent(Cell position){
         this.position = position;
         this.position.add(this);
+
     }
 
     public CellComponent(){

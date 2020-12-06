@@ -148,11 +148,11 @@ public class GameGui {
         uiWindow.setVisible(true);
     }
 
-    private void createInfoPanel(){
+    public void createInfoPanel(){
         // Display the game Infomation
         infoPanel.removeAll();
         goldLabel = new JLabel("GOLD: " + board.getBoardInstance().getGold());
-        healthLabel = new JLabel("HEALTH: " + board.getBoardInstance().getGold());
+        healthLabel = new JLabel("HEALTH: " + board.getBoardInstance().getHealth());
         infoPanel.setBackground(Color.white);
         infoPanel.setPreferredSize(new Dimension(100, 100));
         infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));

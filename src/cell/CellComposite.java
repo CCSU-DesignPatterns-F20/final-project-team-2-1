@@ -18,8 +18,15 @@ public class CellComposite extends CellComponent {
      * @param cellComponent to be added
      */
     public void add(CellComponent cellComponent) {
-        if (cellComponent != null)
+        if (cellComponent != null) {
             this.subComponents.add(cellComponent);
+            System.out.printf("after adding subcomponent size is %s\n", subComponents.size());
+        }
+
+    }
+
+    public void set(int index, CellComponent cellComponent) {
+        this.subComponents.set(index, cellComponent);
     }
 
     /**
@@ -28,8 +35,11 @@ public class CellComposite extends CellComponent {
      * @param cellComponent to be removed
      */
     public void remove(CellComponent cellComponent) {
-        if (this.subComponents.contains(cellComponent))
+        if (this.subComponents.contains(cellComponent)) {
+            System.out.println("tower is found inside subcomponent");
             this.subComponents.remove(cellComponent);
+            System.out.printf("after remove subcomponent size is %s\n", subComponents.size());
+        }
     }
 
     /**

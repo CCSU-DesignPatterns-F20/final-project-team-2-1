@@ -41,7 +41,7 @@ public abstract class TowerDecorator extends Tower{
 
     /* Returns damage*/
     @Override
-    public double getDamage(){
+    public int getDamage(){
         return this.decoratedTower.getDamage();
     }
 
@@ -67,7 +67,7 @@ public abstract class TowerDecorator extends Tower{
     * @param newDamage is used to replace previous tower damage value
     */
     @Override
-    public void setDamage(double newDamage){
+    public void setDamage(int newDamage){
         this.decoratedTower.setDamage(newDamage);
     }
 
@@ -104,16 +104,16 @@ public abstract class TowerDecorator extends Tower{
     /**
     * Returns hash code
     */
-    public int hashCode(){
-        return this.decoratedTower.hashCode();
-    }
+//    public int hashCode(){
+//        return this.decoratedTower.hashCode();
+//    }
     
     /**
     * Compare objects based on enemy's equals implemention
     * @param Object to compare
     */
-    public boolean equals(Object other){
-        return this.decoratedTower.equals(other);
-    }
+//    public boolean equals(Object other){
+//        return this.decoratedTower.equals(other);
+//    }
 
 }

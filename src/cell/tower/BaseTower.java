@@ -59,7 +59,7 @@ public abstract class BaseTower extends Tower{
     * Returns damage
     */
     @Override
-    public double getDamage(){
+    public int getDamage(){
         return this.damage;
     }
 
@@ -91,7 +91,7 @@ public abstract class BaseTower extends Tower{
     * @param newDamage is used to replace previous tower damage value
     */
     @Override
-    public void setDamage(double newDamage){
+    public void setDamage(int newDamage){
         this.damage = newDamage;
     }
 
