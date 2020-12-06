@@ -13,6 +13,9 @@ import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
 import src.cell.Cell;
+import src.cell.enemy.Enemy;
+import src.cell.enemy.EnemyPrototype;
+import src.cell.enemy.HealthDecorator;
 import src.cell.tower.DamageDecorator;
 import src.cell.tower.Tower;
 
@@ -25,6 +28,7 @@ public class Board {
     private final CellList<Cell> pathCells;
     private int health = 4;
     private List<Tower> towerList;
+    private List<EnemyPrototype> enemyList;
     private AbstractFactory<Tower> towerFactory;
     private int gold;
 
@@ -39,7 +43,10 @@ public class Board {
         this.towerFactory = new TowerFactory();
         this.towerList = new ArrayList<>();
         this.gold = builder.gold;
+        this.enemyList = new ArrayList<>();
     }
+
+
 
     /**
      * to be called once to create the board
@@ -60,6 +67,16 @@ public class Board {
     public static Board getBoardInstance() {
         if (board != null) return board;
         return null;
+    }
+
+    public ArrayList<EnemyPrototype> createNewWave(EnemyPrototype slowEnemy){
+        ArrayList<EnemyPrototype> newWave = new ArrayList<EnemyPrototype>();
+        System.out.println("new wave is approaching");
+        slowEnemy = new HealthDecorator(slowEnemy, 2); // change slowenemy to enemydecorator instance
+        for (int i=0; i<5; i++){
+            newWave.add(slowEnemy.clone());
+        }
+        return newWave;
     }
 
     /**
@@ -94,7 +111,17 @@ public class Board {
         return cells[0].length;
     }
 
+    public List<EnemyPrototype> getEnemyList() {
+        return this.enemyList;
+    }
 
+    public void remove(EnemyPrototype enemy){
+        for (int i = 0; i<enemyList.size(); i++){
+            if (enemy.equals(enemyList.get(i))){
+                enemyList.remove(i);
+            }
+        }
+    }
 
     public List<Tower> getTowerList() {
         return this.towerList;

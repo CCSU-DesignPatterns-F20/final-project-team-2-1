@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.EnemyFactory;
 import src.board.Board;
@@ -5,6 +7,8 @@ import src.board.PathGenerator;
 import src.cell.CellComposite;
 import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
+import src.cell.enemy.FastEnemy;
+import src.cell.enemy.HealthDecorator;
 import src.cell.enemy.SlowEnemy;
 
 public class Game {
@@ -22,37 +26,41 @@ public class Game {
         gamePlay.setxBox(gamePlay.getxCanvas()/board.getRows());
         gamePlay.setyBox(gamePlay.getyCanvas()/board.getColumns());
         AbstractFactory<Enemy> enemyFactory = new EnemyFactory();
-//        EnemyPrototype enemy1 = enemyFactory.createProduct("slowenemy",board.getCell(2,1));
-//        EnemyPrototype enemy2 = enemyFactory.createProduct("fastenemy",board.getCell(0,0));
-        SlowEnemy enemy = new SlowEnemy(board.getPath());
-//        AbstractFactory<Tower> towerFactory = new TowerFactory();
-//        Tower tower = towerFactory.createProduct("weaktower", board.getCell(2,1), board.getPath().getCellPathIterator());
+        SlowEnemy slowEnemy = new SlowEnemy(board.getPath());
+        FastEnemy fastEnemy = new FastEnemy(board.getPath());
         gamePlay.drawBoard(board.displayBoard());
-//        CellComposite towers = new CellComposite();
-//        towers.add(towerFactory.createProduct("weaktower", board.getCell(2,2), board.getPath().getCellPathIterator()));
-//        towers.add(towerFactory.createProduct("strongtower", board.getCell(1,9), board.getPath().getCellPathIterator()));
-        CellComposite enemies = new CellComposite();
-        enemies.add(enemy.clone());
-        enemies.add(enemy.clone());
-        enemies.add(enemy.clone());
-        enemies.add(enemy.clone());
-        enemies.add(enemy.clone());
-        enemies.add(enemy.clone());
+        ArrayList<EnemyPrototype> enemyWave = new ArrayList<EnemyPrototype>();
+        ArrayList<EnemyPrototype> enemies = new ArrayList<EnemyPrototype>();
+        for (int i=0; i<5; i++){
+            enemyWave.add(slowEnemy.clone());
+        }
+        // for (int i=0; i<5; i++){
+        //     enemyWave.add(fastEnemy.clone());
+        // }
 //        towers.add(tower);
 //        while (board.getHealth() > 0) {
         while (true) {
             try {
-                for (int i =0; i<enemies.getSubComponents().size(); i++){
-                    ((EnemyPrototype)enemies.getSubComponentAtIndex(i)).move();
+                if (!enemyWave.isEmpty()){
+                    enemies.add(enemyWave.get(0));
+                    enemyWave.remove(0);
+                }
+                for (int i =0; i<enemies.size(); i++){
+                    ((EnemyPrototype)enemies.get(i)).move();
                 }
 
                 for (var tower : board.getTowerList()) tower.attack();
                 
                 // System.out.println(enemy.getHealth());
-                System.out.println(enemy.toString());
+                // System.out.println(enemy.toString());
                 gamePlay.drawBoard(board.displayBoard());
                 gamePlay.createInfoPanel();
-                Thread.sleep(2000);
+                System.out.println("The size of enemy wave is " + enemyWave.size());
+                System.out.println("The size of enemies on board is: " + enemies.size());
+                if (enemyWave.isEmpty() && enemies.isEmpty()){
+                    enemyWave = Board.getBoardInstance().createNewWave(slowEnemy);
+                }
+                Thread.sleep(1000);
                 System.out.println("=================================");
                 System.out.println("");
                 System.out.println("");
@@ -65,4 +73,5 @@ public class Game {
 
         // gamePlay.drawBox(gamePlay.getJPanel(), 1, 1);
     }
+
 }

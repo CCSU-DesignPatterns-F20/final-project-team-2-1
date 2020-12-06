@@ -11,7 +11,7 @@ import src.cell.Cell;
 public abstract class Enemy extends EnemyPrototype{
 
     public Enemy(CellList<Cell> cellPath){
-        this.health = 10;
+        this.health = 1;
         this.pathCellList = cellPath;
         this.cellPathIterator = this.pathCellList.getCellPathIterator();
         System.out.printf("object id is "  + System.identityHashCode(this.cellPathIterator) + "\n");

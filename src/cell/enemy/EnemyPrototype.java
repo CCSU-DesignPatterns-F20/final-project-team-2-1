@@ -35,6 +35,7 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
     public void removeIfDead(){
         if (this.getHealth() <= 0){
             Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() + 20);
+            Board.getBoardInstance().remove(this);
             this.getPosition().remove(this);            
             System.out.println("Enemy is dead");
             this.position = null;
