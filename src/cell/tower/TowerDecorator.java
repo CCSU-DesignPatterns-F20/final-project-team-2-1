@@ -101,6 +101,7 @@ public abstract class TowerDecorator extends Tower{
     }
     /**
      * Draws enemy according to its type
+     * @return returns color corresponding to this CellComponent
      */
     @Override
     public Color draw() {

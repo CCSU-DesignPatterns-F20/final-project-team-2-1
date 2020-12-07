@@ -32,6 +32,7 @@ public abstract class Enemy extends EnemyPrototype{
 
     /**
      * This method will allow the object to move from current cell to another
+     * @return true if moved/false if reached the end
      */
     public boolean move(){
         if (this.cellPathIterator.hasNext())

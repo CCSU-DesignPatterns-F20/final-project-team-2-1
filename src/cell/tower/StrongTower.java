@@ -43,6 +43,7 @@ public class StrongTower extends BaseTower {
 
     /**
      * Draws strong tower as purple box
+     * @return returns color corresponding to this CellComponent
      */
     @Override
     public Color draw(){

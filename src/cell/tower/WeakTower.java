@@ -36,6 +36,7 @@ public class WeakTower extends BaseTower {
     }
     /**
      * Draws tower as blue box
+     * @return returns color corresponding to this CellComponent
      */
     @Override
     public Color draw(){

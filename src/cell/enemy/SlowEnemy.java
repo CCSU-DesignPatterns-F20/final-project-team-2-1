@@ -29,6 +29,7 @@ public class SlowEnemy extends Enemy {
 
     /**
     * Clones the enemy instance
+    * @return new HealthDecorator with the same attributes values
     */
     @Override
     public SlowEnemy clone(){
@@ -37,6 +38,7 @@ public class SlowEnemy extends Enemy {
 
     /**
     * Draws slow enemy as orange box
+    * @return returns color corresponding to this CellComponent
     */
     @Override
     public Color draw() {

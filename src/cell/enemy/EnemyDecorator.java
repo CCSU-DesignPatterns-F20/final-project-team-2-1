@@ -35,22 +35,25 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     }
     /**
      * Draws enemy according to its type
+     * @return color corresponding to this CellComponent
      */
     @Override
     public Color draw() {
         return this.decoratedEnemy.draw();
     }
-
-    @Override
-    /* sets the health of enemy
+    
+    /**
+    * Sets the health of enemy
     * @param newHealth is used to replace health
     */
+    @Override
     public void setHealth(double newHealth){
          this.decoratedEnemy.setHealth(newHealth);
     };
 
     /**
      * This method will allow the object to move from current cell to another
+     * @return move successful
      */
     public boolean move(){
         return this.decoratedEnemy.move();

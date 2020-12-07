@@ -36,7 +36,20 @@ public class PathGenerator {
     * @return null by default
     */
     public static int[][] create10by10HardPath() {
-        // todo
-        return null;
+        return new int[][] { 
+            { 1, 0 }, 
+            { 1, 1 }, 
+            { 1, 2 }, 
+            { 1, 3 }, 
+            { 1, 4 }, 
+            { 2, 4 },
+            { 2, 5 },
+            { 2, 6 },
+            { 2, 7 },
+            { 2, 8 },
+            { 2, 9 },
+            { 3, 9 },
+            { 4, 9 },
+            { 5, 9 } };
     }
 }

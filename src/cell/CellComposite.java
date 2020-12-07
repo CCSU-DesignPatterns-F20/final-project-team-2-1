@@ -52,7 +52,7 @@ public class CellComposite extends CellComponent {
     }
 
     /**
-     * This draw shapes for all components. *Starts from 0 to skip the cell itself.
+     * This returns color of the last CellComponent in the list if exists
      */
     @Override
     public Color draw() {

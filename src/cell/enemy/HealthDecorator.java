@@ -17,7 +17,9 @@ public class HealthDecorator extends EnemyDecorator {
       this.healthIncrease = healthIncrease;
    }
 
-   /* This method will be used to clone/create copies of enemy objects */
+   /** This method will be used to clone/create copies of enemy objects 
+    * @return new HealthDecorator with the same attributes values
+   */
    @Override
    public HealthDecorator clone(){
       return new HealthDecorator(decoratedEnemy.clone(), this.healthIncrease);
