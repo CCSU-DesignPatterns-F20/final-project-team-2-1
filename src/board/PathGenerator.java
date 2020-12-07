@@ -13,6 +13,7 @@ public class PathGenerator {
     /**
     * Path for board 10 x 10 size
     * Easy path/Easy game level
+    * @return the array list of the cell path
     */
     public static int[][] create10by10EasyPath() {
         return new int[][] { 
@@ -21,19 +22,34 @@ public class PathGenerator {
             { 1, 2 }, 
             { 1, 3 }, 
             { 1, 4 }, 
-            { 1, 5 }, 
-            { 1, 6 }, 
-            { 1, 7 }, 
-            { 1, 8 },
-            { 1, 9 } };
+            { 2, 4 },
+            { 2, 5 },
+            { 2, 6 },
+            { 2, 7 },
+            { 2, 8 },
+            { 2, 9 } };
     }
 
     /**
     * Path for board 10 x 10 size
     * Hard path/Hard game level
+    * @return null by default
     */
     public static int[][] create10by10HardPath() {
-        // todo
-        return null;
+        return new int[][] { 
+            { 1, 0 }, 
+            { 1, 1 }, 
+            { 1, 2 }, 
+            { 1, 3 }, 
+            { 1, 4 }, 
+            { 2, 4 },
+            { 2, 5 },
+            { 2, 6 },
+            { 2, 7 },
+            { 2, 8 },
+            { 2, 9 },
+            { 3, 9 },
+            { 4, 9 },
+            { 5, 9 } };
     }
 }

@@ -1,5 +1,6 @@
 package src.cell.enemy;
 
+import src.board.iterator.CellList;
 import src.cell.Cell;
 
 /**
@@ -8,13 +9,22 @@ import src.cell.Cell;
  */
 public abstract class Enemy extends EnemyPrototype{
 
-    public Enemy(Cell cell){
-        super(cell);
-        this.health = 5;
+    /**
+     * Creates enemy
+     * @param Path Iterator List
+     */
+    public Enemy(CellList<Cell> cellPath){
+        this.health = 2;
+        this.pathCellList = cellPath;
+        this.cellPathIterator = this.pathCellList.getCellPathIterator();
     }
 
-    public Enemy(Enemy clone){
-        super(clone.getPosition());
+    /**
+     * Copies attributes from a clone into a new instance
+     * @param Enemy to be cloned from
+     */
+    public Enemy(EnemyPrototype clone){
+        this.cellPathIterator = clone.pathCellList.getCellPathIterator();
         this.health = clone.getHealth();
         this.speed = clone.getSpeed();
         this.health = clone.getHealth();
@@ -22,9 +32,22 @@ public abstract class Enemy extends EnemyPrototype{
 
     /**
      * This method will allow the object to move from current cell to another
+     * @return true if moved/false if reached the end
      */
-    public void move(){
-        System.out.println("Enemy is moving for ya");
+    public boolean move(){
+        if (this.cellPathIterator.hasNext())
+        {
+            if (this.position != null)
+                this.position.remove(this);
+            setPosition(this.cellPathIterator.next());
+
+            return true;
+        }
+        else
+        {
+            this.removeIfFinishPath();
+            return false;
+        }
     }
 
     /**
@@ -34,7 +57,7 @@ public abstract class Enemy extends EnemyPrototype{
         return this.health;
     }
 
-    /* 
+    /** 
     * sets the enemy health
     * @param newHealth is used to replace previous tower health value
     */
@@ -49,7 +72,7 @@ public abstract class Enemy extends EnemyPrototype{
         return this.speed;
     }
 
-    /* 
+    /** 
     * Sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */

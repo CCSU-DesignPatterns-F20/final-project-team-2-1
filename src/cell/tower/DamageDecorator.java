@@ -5,16 +5,21 @@ package src.cell.tower;
  */
 public class DamageDecorator extends TowerDecorator {
 
-   private double damageIncrease;
+   private int damageIncrease;
 
-   public DamageDecorator(Tower decoratedTower, double damageIncrease) {
+   /**
+     * Initializes a BaseTower with an additional parameter
+     * @param Basetower (Strong or Weak Towre)
+     * @param Damage Multiplier
+     */
+   public DamageDecorator(Tower decoratedTower, int damageIncrease) {
       super(decoratedTower);		
       this.damageIncrease = damageIncrease;
    }
 
    /* Returns modified damage*/
    @Override
-   public double getDamage(){
-      return this.decoratedTower.getDamage() * this.damageIncrease;
+   public int getDamage(){
+      return this.decoratedTower.getDamage() + this.damageIncrease;
    }
 }

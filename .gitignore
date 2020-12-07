@@ -2,3 +2,19 @@
 .vscode
 *.idea
 .vscode/launch.json
+
+**/target/
+/target/
+*/target/*
+.classpath
+.project
+.settings
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.iml
+*.ideaout/ 
+out/

@@ -1,4 +1,9 @@
 package src.cell.tower;
+
+import java.awt.Color;
+
+import src.cell.enemy.EnemyPrototype;
+
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -6,6 +11,10 @@ package src.cell.tower;
 public abstract class TowerDecorator extends Tower{
    protected final Tower decoratedTower;
 
+   /**
+     * Initializes a BaseTower
+     * @param Basetower (Strong or Weak Towre)
+     */
    public TowerDecorator(Tower decoratedTower){
         super(decoratedTower.getPosition());
         this.decoratedTower = decoratedTower;
@@ -23,8 +32,8 @@ public abstract class TowerDecorator extends Tower{
      * This method will inflict damage to enemy
      */
     @Override
-    public void shoot(){
-        this.decoratedTower.shoot();
+    public void shoot(EnemyPrototype enemy){
+        this.decoratedTower.shoot(enemy);
     }
 
     /**
@@ -37,7 +46,7 @@ public abstract class TowerDecorator extends Tower{
 
     /* Returns damage*/
     @Override
-    public double getDamage(){
+    public int getDamage(){
         return this.decoratedTower.getDamage();
     }
 
@@ -63,7 +72,7 @@ public abstract class TowerDecorator extends Tower{
     * @param newDamage is used to replace previous tower damage value
     */
     @Override
-    public void setDamage(double newDamage){
+    public void setDamage(int newDamage){
         this.decoratedTower.setDamage(newDamage);
     }
 
@@ -86,30 +95,17 @@ public abstract class TowerDecorator extends Tower{
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
+    @Override
     public void setSpeed(double newSpeed){
         this.decoratedTower.setSpeed(newSpeed);
     }
     /**
      * Draws enemy according to its type
+     * @return returns color corresponding to this CellComponent
      */
     @Override
-    public void draw() {
-        this.decoratedTower.draw();
-    }
-
-    /**
-    * Returns hash code
-    */
-    public int hashCode(){
-        return this.decoratedTower.hashCode();
-    }
-    
-    /**
-    * Compare objects based on enemy's equals implemention
-    * @param Object to compare
-    */
-    public boolean equals(Object other){
-        return this.decoratedTower.equals(other);
+    public Color draw() {
+        return this.decoratedTower.draw();
     }
 
 }

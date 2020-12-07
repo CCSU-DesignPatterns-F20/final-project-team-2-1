@@ -1,17 +1,27 @@
 package src.cell.enemy;
 
+import src.board.iterator.CellList;
 import src.cell.Cell;
+import java.awt.Color;
 
 /**
  * This class implements fast enemy
  */
 public class FastEnemy extends Enemy {
 
-    public FastEnemy(Cell cell){
-        super(cell);
+    /**
+     * Creates Path Iterator and sets speed
+     * @param Path iterator list
+     */
+    public FastEnemy(CellList<Cell> cellPath){
+        super(cellPath);
         this.speed = 5;
     }
 
+    /**
+     * Creates the same enemy as clone
+     * @param Path iterator list
+     */
     public FastEnemy(Enemy clone){
         super(clone);
     }
@@ -19,6 +29,7 @@ public class FastEnemy extends Enemy {
 
     /**
     * Clones the enemy instance
+    * @return new HealthDecorator with the same attributes values
     */
     @Override
     public FastEnemy clone(){
@@ -27,10 +38,11 @@ public class FastEnemy extends Enemy {
 
     /**
     * Draws fast enemy as red box
+    * @return returns color corresponding to this CellComponent
     */
     @Override
-    public void draw() {
-        System.out.println("Red Box on " + this.position.getLocation());
+    public Color draw() {
+        return Color.RED;
     }
 
 }

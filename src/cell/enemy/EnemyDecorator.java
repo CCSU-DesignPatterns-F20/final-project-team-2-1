@@ -1,4 +1,5 @@
 package src.cell.enemy;
+import java.awt.Color;
 /**
  * This class implements enemy.
  * Used for decorator pattern to modify enemy attributes
@@ -6,15 +7,18 @@ package src.cell.enemy;
 public abstract class EnemyDecorator extends EnemyPrototype{
    protected final EnemyPrototype decoratedEnemy;
 
-   public EnemyDecorator(EnemyPrototype decoratedEnemy){
-        super(decoratedEnemy.getPosition());
+    /**
+    * Creates a new enemy ready to be modified
+    * @param Modified Enemy
+    */
+    public EnemyDecorator(EnemyPrototype decoratedEnemy){
         this.decoratedEnemy = decoratedEnemy;
     }
 
-   /* Returns health*/
-   @Override
+    /* Returns health*/
+    @Override
     public double getHealth(){
-        return decoratedEnemy.health;
+        return decoratedEnemy.getHealth();
     };
 
     /* Returns speed*/
@@ -31,40 +35,28 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     }
     /**
      * Draws enemy according to its type
+     * @return color corresponding to this CellComponent
      */
     @Override
-    public void draw() {
-        this.decoratedEnemy.draw();
+    public Color draw() {
+        return this.decoratedEnemy.draw();
     }
-
-    @Override
-    /* sets the health of enemy
+    
+    /**
+    * Sets the health of enemy
     * @param newHealth is used to replace health
     */
+    @Override
     public void setHealth(double newHealth){
          this.decoratedEnemy.setHealth(newHealth);
     };
 
     /**
-    * Returns hash code
-    */
-    public int hashCode(){
-        return this.decoratedEnemy.hashCode();
-    }
-    
-    /**
-    * Compare objects based on damage, range, and speed
-    * @param Object to compare
-    */
-    public boolean equals(Object other){
-        return this.decoratedEnemy.equals(other);
-    }
-
-    /**
      * This method will allow the object to move from current cell to another
+     * @return move successful
      */
-    public void move(){
-        this.decoratedEnemy.move();
+    public boolean move(){
+        return this.decoratedEnemy.move();
     }
 
 }
