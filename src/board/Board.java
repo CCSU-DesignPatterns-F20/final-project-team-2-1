@@ -217,15 +217,19 @@ public class Board {
                             if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
                             {
                                 if (Board.getBoardInstance().getGold() >= 100) {
-                                    towerList.add(towerFactory.createProduct("weaktower", clickedCell,
-                                            pathCells.getCellPathIterator()));
+                                    Tower tower = towerFactory.createProduct("weaktower", clickedCell,
+                                    pathCells.getCellPathIterator());
+                                    towerList.add(tower);
+                                    Board.getBoardInstance().setTowerDamage(tower);
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 100);
                                 }
                             } else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
                             {
                                 if (Board.getBoardInstance().getGold() >= 150) {
-                                    towerList.add(towerFactory.createProduct("strongtower", clickedCell,
-                                            pathCells.getCellPathIterator()));
+                                    Tower tower = towerFactory.createProduct("strongtower", clickedCell,
+                                    pathCells.getCellPathIterator());
+                                    towerList.add(tower);
+                                    Board.getBoardInstance().setTowerDamage(tower);
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 150);
                                 }
                             }
