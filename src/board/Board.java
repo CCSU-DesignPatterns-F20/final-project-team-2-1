@@ -6,13 +6,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.text.Utilities;
 
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
 import src.board.iterator.CellList;
 import src.cell.Cell;
-import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
 import src.cell.enemy.HealthDecorator;
 import src.cell.enemy.SlowEnemy;
@@ -83,7 +81,7 @@ public class Board {
         System.out.println("new wave is approaching");
         originalEnemy = new HealthDecorator(originalEnemy, 2); // change slowenemy to enemydecorator instance
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 4; i++) {
             newWave.add(originalEnemy.clone());
         }
         return newWave;

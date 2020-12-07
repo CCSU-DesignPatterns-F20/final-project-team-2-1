@@ -1,11 +1,5 @@
-import src.abstractfactory.AbstractFactory;
-import src.abstractfactory.EnemyFactory;
+
 import src.board.Board;
-import src.board.PathGenerator;
-import src.cell.Cell;
-import src.cell.enemy.Enemy;
-import src.cell.enemy.EnemyPrototype;
-import src.cell.tower.Tower;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,8 +37,6 @@ public class GameGui {
     //Variables
     private int xCanvas = 600;
     private int yCanvas = 600;
-    private int xBox = 10;
-    private int yBox = 10;
 
     private Board board;
 
@@ -98,20 +90,6 @@ public class GameGui {
                 yCanvas = gamePanel1.getHeight();
                 uiWindow.dispose();
 
-                // Display x and y coordinate of the cell with mouse click
-                gameWindow.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        label.setText("X= " + (e.getX() / getxBox() + 1) + ", " + "Y= "
-                                + (((e.getY() - 10) / getyBox() + 1)));
-                    }
-                });
-            }
-        });
-
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
             }
         });
 
@@ -120,6 +98,7 @@ public class GameGui {
             public void actionPerformed(ActionEvent e) {
                 uiWindow.dispose();
                 gameWindow.dispose();
+                System.exit(0);
             }
         });
 
@@ -161,10 +140,6 @@ public class GameGui {
         gameControl.setVisible(true);
     }
 
-    public JPanel getJPanel() {
-        return gamePanel1;
-    }
-
     public void drawBoard(JPanel board) {
         gameWindow.remove(gamePanel1);
         gamePanel1 = board;
@@ -181,37 +156,5 @@ public class GameGui {
         gameControl.revalidate();
         gameControl.repaint();
         gameControl.setVisible(true);
-    }
-
-    public void setxBox(int length) {
-        this.xBox = length;
-    }
-
-    public void setyBox(int height) {
-        this.yBox = height;
-    }
-
-    public int getxBox() {
-        return xBox;
-    }
-
-    public int getyBox() {
-        return yBox;
-    }
-
-    public void setxCanvas(int length) {
-        this.xCanvas = length;
-    }
-
-    public void setyCanvas(int height) {
-        this.yCanvas = height;
-    }
-
-    public int getxCanvas() {
-        return xCanvas;
-    }
-
-    public int getyCanvas() {
-        return yCanvas;
     }
 }
