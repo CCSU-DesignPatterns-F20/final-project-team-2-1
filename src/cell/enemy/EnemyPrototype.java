@@ -60,6 +60,8 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
             while(this.getCellPathIterator().hasNext()) {
                 this.getCellPathIterator().next();
             }
+
+
         }
     }
 
@@ -74,6 +76,10 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
             System.out.println("enemy escapes");
             var board = Board.getBoardInstance();
             board.setHealth(board.getHealth() - 1);
+            System.out.println("enemy escapes. It will be removed from board enemy list");
+            System.out.println("before enemy removal. Enemy num is " + board.getEnemyList().size());
+            board.remove(this);
+            System.out.println("after enemy removal. Enemy num is " + board.getEnemyList().size());
         }
     }
 

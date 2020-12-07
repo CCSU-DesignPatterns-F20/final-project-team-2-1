@@ -83,7 +83,8 @@ public class Board {
         //change slowenemy to enemydecorator instance
         originalEnemy = new HealthDecorator(originalEnemy, 2);
         for (int i = 0; i < 4; i++) {
-            newWave.add(originalEnemy.clone());
+            // newWave.add(originalEnemy.clone());
+            newWave.add(new SlowEnemy(pathCells));
         }
         return newWave;
     }
@@ -197,8 +198,18 @@ public class Board {
      * @param enemy to be removed
      */
     public void remove(EnemyPrototype enemy) {
+        System.out.println("enemy to be removed: id " + System.identityHashCode(enemy));
+        System.out.println("enemy to be removed: class " + enemy.getClass().toString());
+        System.out.println("in remove method");
+
         for (int i = 0; i < enemyList.size(); i++) {
+            System.out.println("enemy is board list: id " + System.identityHashCode(enemyList.get(i)));
+            System.out.println("enemy to board list: class " + enemyList.get(i).getClass().toString());
+
+            System.out.println("in remove method for loop");
             if (enemy.equals(enemyList.get(i))) {
+                System.out.println("in remove method found enemy to remove");
+
                 enemyList.remove(i);
             }
         }
