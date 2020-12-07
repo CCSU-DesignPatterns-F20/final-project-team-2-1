@@ -18,7 +18,7 @@ import src.cell.tower.DamageDecorator;
 import src.cell.tower.Tower;
 
 /**
- * This is the Board class that is used to store all the cell
+ * This is the Board class that is used to store all the cells 
  */
 public class Board {
     private EnemyPrototype originalEnemy;
@@ -53,10 +53,9 @@ public class Board {
     }
 
     /**
-     * to be called once to create the board
-     * 
+     * This method is to be called once to create the board
      * @param builder
-     * @return
+     * @return the board object 
      */
     public static Board getBoardInstance(BoardBuilder builder) {
         if (board == null)
@@ -65,10 +64,8 @@ public class Board {
     }
 
     /**
-     * to be called whenever needed access to the board
-     * 
-     * @return
-     * @throws Exception
+     * To be called whenever needed access to the board
+     * @return board if not null other wise return null
      */
     public static Board getBoardInstance() {
         if (board != null)
@@ -76,11 +73,15 @@ public class Board {
         return null;
     }
 
+    /**
+     * @return a new wave of enemies.  
+     */
     public ArrayList<EnemyPrototype> createNewWave() {
         ArrayList<EnemyPrototype> newWave = new ArrayList<EnemyPrototype>();
         System.out.println("new wave is approaching");
-        originalEnemy = new HealthDecorator(originalEnemy, 2); // change slowenemy to enemydecorator instance
 
+        //change slowenemy to enemydecorator instance
+        originalEnemy = new HealthDecorator(originalEnemy, 2);
         for (int i = 0; i < 4; i++) {
             newWave.add(originalEnemy.clone());
         }
@@ -88,61 +89,89 @@ public class Board {
     }
 
     /**
-     * returns the Iterator for the path
+     * @return the cell that contains the path
      */
     public CellList<Cell> getPath() {
         return pathCells;
     }
 
+    /**
+     * @return the gold amount @
+     */
     public int getGold() {
         return this.gold;
     }
 
+    /**
+     * @param gold for the amount of gold to start with
+     */
     public void setGold(int gold) {
         this.gold = gold;
     }
 
+    /**
+     * @return the current wave number 
+     */
     public int getWaveNum() {
         return this.waveNum;
     }
 
+    /**
+     * @param waveNum for the intial wave number
+     */
     public void setWaveNum(int waveNum) {
         this.waveNum = waveNum;
     }
 
+    /**
+     * @return the health of the enemy
+     */
     public double getEnemyHalth() {
         return this.enemyHealth;
     }
 
+    /**
+     * @param d to set the enemy health 
+     */
     public void setEnemyHealth(double d){
         this.enemyHealth = d;
     }
 
+    /**
+     * @return the enemy that is moving on the cell
+     */
     public EnemyPrototype getEnemy(){
         return this.originalEnemy;
     }
+    
     /**
-     * 
-     * @return number of rows
+     * @return the lives of the gameplay
      */
-
     public int getHealth() {
         return this.health;
     }
 
+    /**
+     * @param health for the number of lives when the game starts
+     */
     public void setHealth(int health) {
         this.health = health;
     }
 
+    /**
+     * @return the information / Damage of the current tower
+     */
     public Tower getTowerDamage(){
         return this.towerDamage;
     }
 
+    /**
+     * @param damage to set the damage of the tower
+     */
     public void setTowerDamage(Tower damage) {
         this.towerDamage = damage;
     }
     /**
-     * 
      * @return number of rows
      */
     public int getRows() {
@@ -157,27 +186,36 @@ public class Board {
         return cells[0].length;
     }
 
+    /**
+     * @return the enemy list
+     */
     public List<EnemyPrototype> getEnemyList() {
         return this.enemyList;
     }
-
+    
+    /**
+     * @param enemy to be removed
+     */
     public void remove(EnemyPrototype enemy) {
-
         for (int i = 0; i < enemyList.size(); i++) {
-
             if (enemy.equals(enemyList.get(i))) {
                 enemyList.remove(i);
-
             }
         }
     }
 
+    /**
+     * @return the tower list
+     */
     public List<Tower> getTowerList() {
         return this.towerList;
     }
 
     /**
-     * This will draw all the cells
+     * This will draw all the cells, and display the board
+     * Towers can be added by mouse click, Left click -> weak tower, right click -> strong tower
+     * Gold will be deducted from purchashing towers
+     * @return the drawnBoard
      */
     public JPanel displayBoard() {
         JPanel drawnBoard = new JPanel();
@@ -245,13 +283,11 @@ public class Board {
         return drawnBoard;
     }
 
-    
-
     /**
      * Access specific cells
-     * 
      * @param row
      * @param col
+     * @return the cell with specific row and colum
      */
     public Cell getCell(int row, int col) {
         return cells[row][col];
@@ -259,7 +295,6 @@ public class Board {
 
     /**
      * Sets cell as path
-     * 
      * @param row
      * @param col
      */
@@ -268,7 +303,7 @@ public class Board {
     }
 
     /**
-     * This method returns String of all cells
+     * @return String of all cells
      */
     public String toString() {
         String allCells = "Cells: \n";
@@ -280,6 +315,9 @@ public class Board {
         return allCells;
     }
 
+    /**
+     * Nested class
+     */
     public static class BoardBuilder {
         private Tower towerDamage;
         private double enemyHealth;
@@ -290,9 +328,9 @@ public class Board {
 
         /**
          * Initializes the board using nonPath Cells
-         * 
          * @param x of rows
          * @param y of columns
+         * @return the cell
          */
         public BoardBuilder setBoardSize(int x, int y) {
 
@@ -305,21 +343,37 @@ public class Board {
             return this;
         }
 
+        /**
+         * @param gold
+         * @return 
+         */
         public BoardBuilder setGold(int gold) {
             this.gold = gold;
             return this;
         }
 
+        /**
+         * @param waveNum
+         * @return
+         */
         public BoardBuilder setWaveNum(int waveNum) {
             this.waveNum = waveNum;
             return this;
         }
 
+        /**
+         * @param enemyHealth
+         * @return
+         */
         public BoardBuilder setEnemyHealth(double enemyHealth) {
             this.enemyHealth = enemyHealth;
             return this;
         }
         
+        /**
+         * @param damage
+         * @return
+         */
         public BoardBuilder setTowerDamage(Tower damage) {
             this.towerDamage = damage;
             return this;
@@ -327,8 +381,8 @@ public class Board {
 
         /**
          * This method turns Cells to path
-         * 
          * @param tobePathCells of int x and y coordinates to choose Cells to be path
+         * @return the path 
          */
         public BoardBuilder setPathCell(int[][] tobePathCells) {
             this.pathCells = new CellList<Cell>();
@@ -341,12 +395,17 @@ public class Board {
         }
 
         /**
-         * Returns pre-constructed Board
+         * @return pre-constructed Board
          */
         public Board build() {
             return new Board(this);
         }
 
+        /** 
+         * This sets the damage of the tower at the intial state
+         * @param object
+         * @return null by default
+         */
 		public BoardBuilder setTowerDamage(Object object) {
 			return null;
 		}

@@ -15,6 +15,7 @@ public class EnemyFactory implements AbstractFactory<Enemy> {
     /**
      * This class will create and return a specific enemy. Slow enemy is default.
      * @param enemy to tell which enemy to create
+     * @param cellPath for enemy to move.  
      */
     @Override
     public Enemy createProduct(String enemy, CellList<Cell> cellPath) {
@@ -26,6 +27,12 @@ public class EnemyFactory implements AbstractFactory<Enemy> {
             return new SlowEnemy(cellPath);
     }
 
+    /**
+     * @param cellObject specifiy the object on the cell
+     * @param cell is the cell of the game board.
+     * @param pathCellIterator the iterator that iterates through the cell.
+     * @return null by default
+     */
     @Override
     public Enemy createProduct(String cellObject, Cell cell, IteratorInterface<Cell> pathCellIterator) {
         return null;

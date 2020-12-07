@@ -13,6 +13,7 @@ public class PathGenerator {
     /**
     * Path for board 10 x 10 size
     * Easy path/Easy game level
+    * @return the array list of the cell path
     */
     public static int[][] create10by10EasyPath() {
         return new int[][] { 
@@ -32,6 +33,7 @@ public class PathGenerator {
     /**
     * Path for board 10 x 10 size
     * Hard path/Hard game level
+    * @return null by default
     */
     public static int[][] create10by10HardPath() {
         // todo

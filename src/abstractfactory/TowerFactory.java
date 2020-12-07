@@ -8,7 +8,7 @@ import src.cell.tower.Tower;
 import src.cell.tower.WeakTower;
 
 /**
- * This class specifies how to create enemies
+ * This class specifies how to create the tower
  */
 public class TowerFactory implements AbstractFactory<Tower> {
 
@@ -25,7 +25,10 @@ public class TowerFactory implements AbstractFactory<Tower> {
         else return new WeakTower(cell, cellPathIterator);
     }
 
-
+    /**
+     * This will create the cellObject with the pathCellIterator.
+     * @param cellObject is the object on the cell 
+     */
     @Override
     public Tower createProduct(String cellObject, CellList<Cell> pathCellIterator) {
         return null;

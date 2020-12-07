@@ -8,6 +8,7 @@ import java.util.ListIterator;
 public class CellList<E> extends LinkedList<E> implements Cloneable {
     /**
      * Gets the Object Iterator  
+     * @return the new CellPathIterator
      */
     public IteratorInterface<E> getCellPathIterator() {
         return new CellPathIterator();
@@ -23,12 +24,15 @@ public class CellList<E> extends LinkedList<E> implements Cloneable {
             this.listIterator = CellList.this.listIterator();
         }
 
+        /**
+         * @return the listIterator
+         */
         public ListIterator<E> getListIterator() {
             return this.listIterator;
         }
 
         /**
-         * Returns true if there is more Objects in the list
+         * @return ture if there is more objects in the list
          */
         @Override
         public boolean hasNext() {
@@ -36,7 +40,7 @@ public class CellList<E> extends LinkedList<E> implements Cloneable {
         }
 
         /**
-         * Gets the next Object 
+         * @return the next object in the list
          */
         @Override
         public E next() {
