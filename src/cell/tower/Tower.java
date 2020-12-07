@@ -19,10 +19,18 @@ public abstract class Tower extends CellComponent {
     protected int range;
     protected ArrayList<Cell> rangeCells;
 
+    /**
+     * Takes in position and puts the CellComponent in it in the parent clas
+     * @param Position for the CellComponent
+     */
     public Tower(Cell cell){
         super(cell);
     }
-
+    
+    /**
+     * Creates a list of path Cells that the tower can reach to.
+     * This list will be used to attack enemies
+     */
     public void setRangeCells(IteratorInterface<Cell> cellPathIterator){
         ArrayList<Cell> newRangeCells = new ArrayList<Cell>();
         while (cellPathIterator.hasNext()){
@@ -36,6 +44,9 @@ public abstract class Tower extends CellComponent {
         this.rangeCells = newRangeCells;
     }
 
+    /**
+     * Checks the path cells that the tower can reach to and prints the visible enemies.
+     */
     public void printRange(){
         System.out.println(toString());
         for (Cell k:rangeCells){
@@ -65,34 +76,34 @@ public abstract class Tower extends CellComponent {
      */
     public abstract void reload();
 
-    /* Returns damage*/
+    /** Returns damage*/
     public abstract int getDamage();
 
-    /* Returns range */
+    /** Returns range */
     public abstract int getRange();
 
-    /* Returns speed*/
+    /** Returns speed*/
     public abstract double getSpeed();
 
-    /* Returns reloadLeft*/
+    /** Returns reloadLeft*/
     public abstract double getReloadLeft();
 
-    /* sets the damage
+    /** sets the damage
     * @param newDamage is used to replace previous tower damage value
     */
     public abstract void setDamage(int newDamage);
 
-    /* sets the attack range 
+    /** sets the attack range 
     * @param newRange is used to replace previous tower range value
     */
     public abstract void setRange(int newRange);
 
-    /* sets the attack speed 
+    /** sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
     public abstract void setSpeed(double newSpeed);
 
-    /* sets the reload time left 
+    /** sets the reload time left 
     * @param newReloadLeft is used to replace previous tower reloadLeft value
     */
     public abstract void setReloadLeft(double newReloadLeft);

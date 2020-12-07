@@ -7,15 +7,17 @@ public abstract class CellComponent{
     private CellComposite parent;
     protected Cell position;
 
+    /**
+     * Takes in position and puts the CellComponent in it
+     * @param Position for the CellComponent
+     */
     public CellComponent(Cell position){
         this.position = position;
         this.position.add(this);
 
     }
 
-    public CellComponent(){
-
-    }
+    public CellComponent(){}
 
     /**
      * return the parent object

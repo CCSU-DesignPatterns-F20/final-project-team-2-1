@@ -7,6 +7,11 @@ public class SpeedDecorator extends TowerDecorator {
 
    private double speedIncrease;
 
+   /**
+     * Initializes a BaseTower with an additional parameter
+     * @param Basetower (Strong or Weak Towre)
+     * @param Speed Multiplier
+     */
    public SpeedDecorator(Tower decoratedTower, double speedIncrease) {
       super(decoratedTower);		
       this.speedIncrease = speedIncrease;

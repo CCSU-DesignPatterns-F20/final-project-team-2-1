@@ -14,9 +14,8 @@ public class Cell extends CellComposite {
 
     /**
      * abstract instructor
-     * 
-     * @param x    axis location
-     * @param y    axis location
+     * @param x axis location
+     * @param y axis location
      * @param path for enemies to travel
      */
     public Cell(int x, int y, boolean isPath) {
@@ -25,6 +24,11 @@ public class Cell extends CellComposite {
         this.isPath = isPath;
     }
 
+    /**
+     * abstract instructor
+     * @param x axis location
+     * @param y axis location
+     */
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
@@ -71,7 +75,7 @@ public class Cell extends CellComposite {
     }
 
     /**
-     * Returns hash code based on locataion and path
+     * Returns hash code based on locatation and path
      */
     public int hashCode() {
         int hash = 0;
@@ -82,7 +86,7 @@ public class Cell extends CellComposite {
     }
 
     /**
-     * Compare objects based on locataion and path
+     * Compare objects based on locatation and path
      * 
      * @param Object to compare
      */
@@ -116,29 +120,32 @@ public class Cell extends CellComposite {
         if (this.isPath) {
             returnString = returnString + " (Path)";
         }
-        if (this.cellComponent != null) {
-            returnString = returnString + "Contains Object: " + cellComponent.toString();
+        returnString += "\nComponents:\n";
+        for (int i=0; i<this.getSubComponents().size(); i++){
+            returnString += this.getSubComponentAtIndex(i).toString();
         }
         return returnString;
     }
 
     /**
-     * Draws the Cell and the components currently residenting on this cell
+     * Draws the current residing component.
+     * If component does not exist, it draws the Cell.
+     * Green for path
+     * Gray for nonPath
      */
     @Override
     public Color draw() {
-        // System.out.println("Green Box on " + this.getLocation());
         for (int i = 0; i < this.subComponents.size(); i++) {
             this.getSubComponentAtIndex(i).draw();
         }
         Color color = super.draw();
-        if (color == null) { // if there is nothing in the cell. Draw color of cell
+        if (color == null) { 
             if (this.isPath())
                 return Color.GREEN;
             else
                 return Color.GRAY;
         } else
-            return color; // if there are tower,enemy in the cell. draw color of them
+            return color; 
 
     }
 }

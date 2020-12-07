@@ -17,21 +17,39 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
     protected CellList<Cell> pathCellList;
     protected IteratorInterface<Cell> cellPathIterator;
 
+    /**
+     * New initialized enemy outside of board
+     */
     public EnemyPrototype() {}
 
+    /**
+     * New initialized enemy inside of board
+     * @param position on board
+     */
     public EnemyPrototype(Cell position) {super(position);}
     /**
      * This method will allow the object to move from current cell to another
      */
 
+    /** 
+    * Sets the Iterator List
+    * @param Iterator path list
+    */
     public void setCellPathIterator(CellList<Cell> pathCellList) {
         this.pathCellList = pathCellList;
     }
 
+    /** 
+     * Return Iterator for iterating the Cell path
+     */
     public IteratorInterface<Cell> getCellPathIterator() {
         return this.cellPathIterator;
     }
 
+    /** 
+     * Removes the enemy if dead and
+     * add gold for kill
+     */
     public void removeIfDead(){
         if (this.getHealth() <= 0){
             Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() + 20);
@@ -45,6 +63,9 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
         }
     }
 
+     /** 
+     * Subract 1 from board's life after enemy passes through the path
+     */
     public void removeIfFinishPath() {
         if (this.getPosition() != null)
         {
@@ -53,13 +74,10 @@ public abstract class EnemyPrototype extends CellComponent implements Cloneable 
             System.out.println("enemy escapes");
             var board = Board.getBoardInstance();
             board.setHealth(board.getHealth() - 1);
-            System.out.println("Enemy passed through, board health is " + board.getHealth());
-            System.out.println("checking static " + Board.getBoardInstance().getHealth());
-
         }
-
     }
 
+    /** Enemy moves up the path */
     public abstract boolean move();
 
     /** Returns health */

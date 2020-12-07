@@ -1,6 +1,5 @@
 package src.board.iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 /**
  * This class has a list of Objects and Iterator to loop through the list
