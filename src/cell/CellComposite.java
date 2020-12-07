@@ -24,13 +24,17 @@ public class CellComposite extends CellComponent {
 
     }
 
+    /**
+     * Replaces the CellComponent based on index
+     * @param index of the list
+     * @param cellComponent to be added
+     */
     public void set(int index, CellComponent cellComponent) {
         this.subComponents.set(index, cellComponent);
     }
 
     /**
      * Removes Cell component from the array list
-     * 
      * @param cellComponent to be removed
      */
     public void remove(CellComponent cellComponent) {
@@ -41,7 +45,6 @@ public class CellComposite extends CellComponent {
 
     /**
      * Gets the child component based on its index
-     * 
      * @param index used to retrive the specific child from the list
      */
     public CellComponent getSubComponentAtIndex(int index) {
@@ -58,7 +61,7 @@ public class CellComposite extends CellComponent {
     }
 
     /**
-     * returns itself (list)
+     * Prints all components in the composite
      */
     public void printAllComponenents() {
         for (int i = 0; i < this.subComponents.size(); i++) {
@@ -66,6 +69,9 @@ public class CellComposite extends CellComponent {
         }
     }
 
+    /**
+     * returns itself (list)
+     */
     public List<CellComponent> getSubComponents() {
         return this.subComponents;
     }

@@ -3,6 +3,7 @@ package src.cell.tower;
 import java.awt.Color;
 
 import src.cell.enemy.EnemyPrototype;
+
 /**
  * This class implements tower.
  * Used for decorator pattern to modify tower attributes
@@ -10,6 +11,10 @@ import src.cell.enemy.EnemyPrototype;
 public abstract class TowerDecorator extends Tower{
    protected final Tower decoratedTower;
 
+   /**
+     * Initializes a BaseTower
+     * @param Basetower (Strong or Weak Towre)
+     */
    public TowerDecorator(Tower decoratedTower){
         super(decoratedTower.getPosition());
         this.decoratedTower = decoratedTower;
@@ -90,6 +95,7 @@ public abstract class TowerDecorator extends Tower{
     /* sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */
+    @Override
     public void setSpeed(double newSpeed){
         this.decoratedTower.setSpeed(newSpeed);
     }
@@ -100,20 +106,5 @@ public abstract class TowerDecorator extends Tower{
     public Color draw() {
         return this.decoratedTower.draw();
     }
-
-    /**
-    * Returns hash code
-    */
-//    public int hashCode(){
-//        return this.decoratedTower.hashCode();
-//    }
-    
-    /**
-    * Compare objects based on enemy's equals implemention
-    * @param Object to compare
-    */
-//    public boolean equals(Object other){
-//        return this.decoratedTower.equals(other);
-//    }
 
 }

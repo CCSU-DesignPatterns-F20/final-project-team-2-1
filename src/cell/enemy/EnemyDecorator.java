@@ -7,12 +7,16 @@ import java.awt.Color;
 public abstract class EnemyDecorator extends EnemyPrototype{
    protected final EnemyPrototype decoratedEnemy;
 
-   public EnemyDecorator(EnemyPrototype decoratedEnemy){
+    /**
+    * Creates a new enemy ready to be modified
+    * @param Modified Enemy
+    */
+    public EnemyDecorator(EnemyPrototype decoratedEnemy){
         this.decoratedEnemy = decoratedEnemy;
     }
 
-   /* Returns health*/
-   @Override
+    /* Returns health*/
+    @Override
     public double getHealth(){
         return decoratedEnemy.getHealth();
     };
@@ -44,21 +48,6 @@ public abstract class EnemyDecorator extends EnemyPrototype{
     public void setHealth(double newHealth){
          this.decoratedEnemy.setHealth(newHealth);
     };
-
-    /**
-    * Returns hash code
-    */
-    // public int hashCode(){
-    //     return this.decoratedEnemy.hashCode();
-    // }
-    
-    // /**
-    // * Compare objects based on damage, range, and speed
-    // * @param
-    // */
-    // public boolean equals(Object other){
-    //     return this.decoratedEnemy.equals(other);
-    // }
 
     /**
      * This method will allow the object to move from current cell to another

@@ -1,7 +1,6 @@
 package src.cell.enemy;
 
 import src.board.iterator.CellList;
-import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -10,14 +9,21 @@ import src.cell.Cell;
  */
 public abstract class Enemy extends EnemyPrototype{
 
+    /**
+     * Creates enemy
+     * @param Path Iterator List
+     */
     public Enemy(CellList<Cell> cellPath){
-        this.health = 1;
+        this.health = 2;
         this.pathCellList = cellPath;
         this.cellPathIterator = this.pathCellList.getCellPathIterator();
-
     }
 
-    public Enemy(Enemy clone){
+    /**
+     * Copies attributes from a clone into a new instance
+     * @param Enemy to be cloned from
+     */
+    public Enemy(EnemyPrototype clone){
         this.cellPathIterator = clone.pathCellList.getCellPathIterator();
         this.health = clone.getHealth();
         this.speed = clone.getSpeed();
@@ -50,7 +56,7 @@ public abstract class Enemy extends EnemyPrototype{
         return this.health;
     }
 
-    /* 
+    /** 
     * sets the enemy health
     * @param newHealth is used to replace previous tower health value
     */
@@ -65,7 +71,7 @@ public abstract class Enemy extends EnemyPrototype{
         return this.speed;
     }
 
-    /* 
+    /** 
     * Sets the attack speed 
     * @param newSpeed is used to replace previous tower speed value
     */

@@ -7,6 +7,11 @@ public class HealthDecorator extends EnemyDecorator {
 
    private double healthIncrease;
 
+   /**
+    * Creates new Enemy with modified life
+    * @param Modified Enemy
+    * @param modifier ratio
+    */
    public HealthDecorator(EnemyPrototype decoratedEnemy, double healthIncrease) {
       super(decoratedEnemy);
       this.healthIncrease = healthIncrease;

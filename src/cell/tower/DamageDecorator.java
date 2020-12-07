@@ -7,6 +7,11 @@ public class DamageDecorator extends TowerDecorator {
 
    private int damageIncrease;
 
+   /**
+     * Initializes a BaseTower with an additional parameter
+     * @param Basetower (Strong or Weak Towre)
+     * @param Damage Multiplier
+     */
    public DamageDecorator(Tower decoratedTower, int damageIncrease) {
       super(decoratedTower);		
       this.damageIncrease = damageIncrease;
@@ -15,6 +20,6 @@ public class DamageDecorator extends TowerDecorator {
    /* Returns modified damage*/
    @Override
    public int getDamage(){
-      return this.decoratedTower.getDamage() * this.damageIncrease;
+      return this.decoratedTower.getDamage() + this.damageIncrease;
    }
 }

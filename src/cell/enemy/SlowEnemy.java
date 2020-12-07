@@ -3,7 +3,6 @@ package src.cell.enemy;
 import java.awt.Color;
 
 import src.board.iterator.CellList;
-import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
 
 /**
@@ -11,12 +10,23 @@ import src.cell.Cell;
  */
 public class SlowEnemy extends Enemy {
 
+    /**
+     * Creates Path Iterator and sets speed
+     * @param Path iterator list
+     */
     public SlowEnemy(CellList<Cell> cellPath){
         super(cellPath);
         this.speed = 1;
     }
 
-    
+    /**
+     * Creates the same enemy as clone
+     * @param Path iterator list
+     */
+    public SlowEnemy(EnemyPrototype clone){
+        super(clone);
+    }
+
     /**
     * Clones the enemy instance
     */
@@ -30,7 +40,6 @@ public class SlowEnemy extends Enemy {
     */
     @Override
     public Color draw() {
-        // System.out.println("Orange Box on " + this.position.getLocation());
         return Color.ORANGE;
     }
 

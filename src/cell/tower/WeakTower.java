@@ -11,7 +11,11 @@ import java.awt.Color;
  */
 
 public class WeakTower extends BaseTower {
-
+    /**
+     * Takes in position and puts the CellComponent in it
+     * @param Position for the CellComponent
+     * @param Path list
+     */
     public WeakTower(Cell cell, IteratorInterface<Cell> cellPathIterator){
         super(cell, cellPathIterator);
         this.damage = 1;
@@ -19,8 +23,8 @@ public class WeakTower extends BaseTower {
     
     
     /**
-     * This method will shoot enemy when fully realoaded.
-     * Strong tower has 10% chance to shoot again
+     * This method will shoot enemy.
+     * @param Enemy to be shot at
      */
     @Override
     public void shoot(EnemyPrototype enemy) {
@@ -35,7 +39,6 @@ public class WeakTower extends BaseTower {
      */
     @Override
     public Color draw(){
-        // System.out.println("Blue Box on " + position.getLocation());
         return Color.BLUE;
     }
 }
