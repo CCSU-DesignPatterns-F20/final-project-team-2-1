@@ -214,7 +214,8 @@ public class Board {
     /**
      * This will draw all the cells, and display the board
      * Towers can be added by mouse click, Left click -> weak tower, right click -> strong tower
-     * Gold will be deducted from purchashing towers
+     * Clicking on Cells with Towers will upgrade the tower if there are enough funds
+     * Gold will be deducted from purchashing/upgrading towers
      * @return the drawnBoard
      */
     public JPanel displayBoard() {
