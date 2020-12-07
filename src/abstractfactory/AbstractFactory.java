@@ -3,12 +3,13 @@ package src.abstractfactory;
 import src.board.iterator.CellList;
 import src.board.iterator.IteratorInterface;
 import src.cell.Cell;
+import src.cell.CellComponent;
 
 /**
  * This interface defines factory methods which provides user with abstract method.
  * It is used to create a CellObject (tower or enemy).
  */
-public interface AbstractFactory<T extends Object> {
+public interface AbstractFactory<T extends CellComponent> {
 
     /**
      * The abstract method for creating the cellObject
