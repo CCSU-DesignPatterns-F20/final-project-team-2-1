@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.EnemyFactory;
 import src.board.Board;
@@ -9,15 +7,16 @@ import src.cell.enemy.Enemy;
 import src.cell.enemy.EnemyPrototype;
 import src.cell.tower.Tower;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class GameGui {
-    // Frames
+    //Create Frames of the UI
     JFrame gameWindow = new JFrame("Stage 1");
     JFrame uiWindow = new JFrame("Tower Defense Game");
 
-    // Panels
+    //initializing Panels
     JPanel uiPanel = new JPanel();
     JPanel gamePanel1 = new JPanel();
     JPanel gameControl = new JPanel();
@@ -26,7 +25,7 @@ public class GameGui {
     JPanel statPanel = new JPanel();
     JPanel functionPanel = new JPanel();
 
-    // Button + Labels
+    //initializing Button + Labels
     JButton startButton = new JButton("Start Game");
     JButton quitButton = new JButton("Exit Game");
     JButton pauseButton = new JButton("Pause Game");
@@ -36,14 +35,16 @@ public class GameGui {
     JButton sellButton = new JButton("Sell");
     JLabel text = new JLabel("Welcome to the tower defense game");
     JLabel goldLabel = new JLabel("GOLD: " );
-    JLabel healthLabel = new JLabel("HEALTH: ");
+    JLabel healthLabel = new JLabel("Lives: ");
+    JLabel WaveNumLabel = new JLabel("Current Wave: ");
+    JLabel EnemyHealth = new JLabel("Enemy's Health: ");
+    JLabel TowerDamage = new JLabel();
 
-    // Variables
+    //Variables
     private int xCanvas = 600;
     private int yCanvas = 600;
     private int xBox = 10;
     private int yBox = 10;
-    Graphics g;
 
     private Board board;
 
@@ -58,13 +59,7 @@ public class GameGui {
                 gamePanel1.setBackground(Color.WHITE);
                 gamePanel1.setPreferredSize(new Dimension(1000, 200));
 
-                // Display the game Infomation
-                // infoPanel.setBackground(Color.white);
-                // infoPanel.setPreferredSize(new Dimension(100, 100));
-                // infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-                // infoPanel.add(goldLabel);
-                // infoPanel.add(healthLabel);
-                // infoPanel.add(label);
+                //Creates the information Panel
                 createInfoPanel();
 
                 // Buttons for buy, upgrade towers
@@ -75,11 +70,6 @@ public class GameGui {
                 buttonPanel.add(buyButton);
                 buttonPanel.add(upgradeButton);
                 buttonPanel.add(sellButton);
-
-                // Stats of the tower/enemy
-                statPanel.setBackground(Color.YELLOW);
-                statPanel.setPreferredSize(new Dimension(100, 100));
-                statPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
                 // Game functionality buttons
                 functionPanel.setLayout(new GridLayout(0, 1, 2, 2));
@@ -92,8 +82,7 @@ public class GameGui {
                 // Panel that holds all other Panels
                 gameControl.setLayout(new BoxLayout(gameControl, BoxLayout.X_AXIS));
                 gameControl.add(infoPanel);
-                gameControl.add(buttonPanel);
-                gameControl.add(statPanel);
+                //gameControl.add(statPanel);
                 gameControl.add(functionPanel);
                 gameControl.setPreferredSize(new Dimension(1000, 200));
 
@@ -152,12 +141,20 @@ public class GameGui {
         // Display the game Infomation
         infoPanel.removeAll();
         goldLabel = new JLabel("GOLD: " + board.getBoardInstance().getGold());
-        healthLabel = new JLabel("HEALTH: " + board.getBoardInstance().getHealth());
+        healthLabel = new JLabel("Lives: " + board.getBoardInstance().getHealth());
+        WaveNumLabel = new JLabel("Current Wave: " + board.getBoardInstance().getWaveNum());
+        EnemyHealth = new JLabel("Enemy's Health: " + board.getBoardInstance().getEnemy().getHealth());
+        if(board.getBoardInstance().getTowerDamage() != null){
+            TowerDamage = new JLabel(board.getBoardInstance().getTowerDamage().toString());
+        }
         infoPanel.setBackground(Color.white);
         infoPanel.setPreferredSize(new Dimension(100, 100));
         infoPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         infoPanel.add(goldLabel);
         infoPanel.add(healthLabel);
+        infoPanel.add(WaveNumLabel);
+        infoPanel.add(EnemyHealth);
+        infoPanel.add(TowerDamage);
 
         gameControl.revalidate();
         gameControl.repaint();
@@ -169,27 +166,21 @@ public class GameGui {
     }
 
     public void drawBoard(JPanel board) {
-        // gamePanel1.add(board);
-
         gameWindow.remove(gamePanel1);
         gamePanel1 = board;
         gameWindow.add(gamePanel1);
         gameWindow.revalidate();
         gameWindow.repaint();
         gameWindow.setVisible(true);
-
     }
 
     public void drawInfoPage(JPanel infoPage) {
-        // gamePanel1.add(board);
-
         gameControl.remove(infoPanel);
         infoPanel = infoPage;
         gameControl.add(infoPanel);
         gameControl.revalidate();
         gameControl.repaint();
         gameControl.setVisible(true);
-
     }
 
     public void setxBox(int length) {
@@ -223,16 +214,4 @@ public class GameGui {
     public int getyCanvas() {
         return yCanvas;
     }
-
-    // public JPanel paintBoardCells(int cellCount) {
-    // JPanel gamePanelCell = new JPanel();
-    // JLabel squareText = new JLabel("" + cellCount);
-    // gamePanelCell.setBackground(Color.gray);
-    // gamePanelCell.setPreferredSize(new Dimension(50, 50));
-    // gamePanelCell.add(squareText);
-    // // gamePanelPath.setBounds(25+pathLength,25+pathLength,
-    // // gamePanelPath.getPreferredSize().width,
-    // // gamePanelPath.getPreferredSize().height);
-    // return gamePanelCell;
-    // }
 }

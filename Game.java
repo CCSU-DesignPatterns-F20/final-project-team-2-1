@@ -13,13 +13,11 @@ import src.cell.enemy.SlowEnemy;
 
 public class Game {
     public static void play() {
-
         // Creates board and path
         System.out.println("\nCreating The Board");
         var path = PathGenerator.create10by10EasyPath();
-
         Board.BoardBuilder boardBuilder = new Board.BoardBuilder().setBoardSize(10, 10).setPathCell(path)
-                .setGold(10000);
+                .setGold(10000).setWaveNum(0).setEnemyHealth(0).setTowerDamage(null);
         Board board = Board.getBoardInstance(boardBuilder);
 
         GameGui gamePlay = new GameGui(board);
@@ -42,6 +40,7 @@ public class Game {
                 if (!enemyWave.isEmpty()) {
                     enemies.add(enemyWave.get(0));
                     enemyWave.remove(0);
+                    Board.getBoardInstance().setWaveNum(Board.getBoardInstance().getWaveNum() + 1);
                 }
                 for (int i = 0; i < enemies.size(); i++) {
                     // System.out.println("The health of enemy from enemy list is: " +
@@ -52,6 +51,7 @@ public class Game {
                         System.out.println(("The health of enemy from the cell list is: "
                                 + System.identityHashCode(enemies.get(i).getPosition().getSubComponents().get(0))));
 
+                    Board.getBoardInstance().setEnemyHealth(enemies.get(i).getHealth());
                     System.out.println("Enemy health is " + enemies.get(i).getHealth());
                 }
 

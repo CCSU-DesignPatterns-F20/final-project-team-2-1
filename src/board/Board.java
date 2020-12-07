@@ -5,10 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.*;
 import javax.swing.text.Utilities;
-
 
 import src.abstractfactory.AbstractFactory;
 import src.abstractfactory.TowerFactory;
@@ -34,6 +32,9 @@ public class Board {
     private List<EnemyPrototype> enemyList;
     private AbstractFactory<Tower> towerFactory;
     private int gold;
+    private int waveNum;
+    private double enemyHealth;
+    private Tower towerDamage;
 
     /**
      * Constructs Board using predefined attributes
@@ -46,14 +47,16 @@ public class Board {
         this.towerFactory = new TowerFactory();
         this.towerList = new ArrayList<>();
         this.gold = builder.gold;
+        this.waveNum = builder.waveNum;
+        this.enemyHealth = builder.enemyHealth;
+        this.towerDamage = builder.towerDamage;
         this.enemyList = new ArrayList<>();
         this.originalEnemy = new SlowEnemy(pathCells);
     }
 
-
-
     /**
      * to be called once to create the board
+     * 
      * @param builder
      * @return
      */
@@ -65,20 +68,22 @@ public class Board {
 
     /**
      * to be called whenever needed access to the board
+     * 
      * @return
      * @throws Exception
      */
     public static Board getBoardInstance() {
-        if (board != null) return board;
+        if (board != null)
+            return board;
         return null;
     }
 
-    public ArrayList<EnemyPrototype> createNewWave(){
+    public ArrayList<EnemyPrototype> createNewWave() {
         ArrayList<EnemyPrototype> newWave = new ArrayList<EnemyPrototype>();
         System.out.println("new wave is approaching");
         originalEnemy = new HealthDecorator(originalEnemy, 2); // change slowenemy to enemydecorator instance
 
-        for (int i=0; i<1; i++){
+        for (int i = 0; i < 1; i++) {
             newWave.add(originalEnemy.clone());
         }
         return newWave;
@@ -91,15 +96,53 @@ public class Board {
         return pathCells;
     }
 
-    public int getGold() { return this.gold; }
-    public void setGold(int gold) { this.gold = gold; }
+    public int getGold() {
+        return this.gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getWaveNum() {
+        return this.waveNum;
+    }
+
+    public void setWaveNum(int waveNum) {
+        this.waveNum = waveNum;
+    }
+
+    public double getEnemyHalth() {
+        return this.enemyHealth;
+    }
+
+    public void setEnemyHealth(double d){
+        this.enemyHealth = d;
+    }
+
+    public EnemyPrototype getEnemy(){
+        return this.originalEnemy;
+    }
     /**
      * 
      * @return number of rows
      */
 
-    public int getHealth() { return this.health; }
-    public void setHealth(int health) { this.health = health; }
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public Tower getTowerDamage(){
+        return this.towerDamage;
+    }
+
+    public void setTowerDamage(Tower damage) {
+        this.towerDamage = damage;
+    }
     /**
      * 
      * @return number of rows
@@ -120,11 +163,11 @@ public class Board {
         return this.enemyList;
     }
 
-    public void remove(EnemyPrototype enemy){
+    public void remove(EnemyPrototype enemy) {
 
-        for (int i = 0; i<enemyList.size(); i++){
+        for (int i = 0; i < enemyList.size(); i++) {
 
-            if (enemy.equals(enemyList.get(i))){
+            if (enemy.equals(enemyList.get(i))) {
                 enemyList.remove(i);
 
             }
@@ -149,17 +192,20 @@ public class Board {
                 cell.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-//                        if (state == "playing") return;
+                        // if (state == "playing") return;
                         var clickedCell = cells[finalR][finalC];
-                        if (clickedCell.isPath()) return; // prevent adding tower to path
+                        if (clickedCell.isPath())
+                            return; // prevent adding tower to path
                         if (clickedCell.getSubComponents().size() > 0) { // will upgrade tower
                             Tower tobeSearchedTower = (Tower) clickedCell.getSubComponentAtIndex(0);
                             Tower decoratedTower = new DamageDecorator(tobeSearchedTower, 2);
+                            Board.getBoardInstance().setTowerDamage(decoratedTower);
                             // replace tower in towerList by decoratedTower
-                            for (int i=0; i<towerList.size(); i++) {
+                            for (int i = 0; i < towerList.size(); i++) {
                                 if (towerList.get(i).equals(tobeSearchedTower)) {
 
                                     towerList.set(i, decoratedTower);
+                                    Board.getBoardInstance().setTowerDamage(decoratedTower);
                                 }
                             }
                             // replacing the first item
@@ -170,16 +216,16 @@ public class Board {
                         } else { // will add tower
                             if (SwingUtilities.isLeftMouseButton(e)) // 1 click for weak tower
                             {
-                                if (Board.getBoardInstance().getGold() >= 100 )
-                                {
-                                    towerList.add(towerFactory.createProduct("weaktower", clickedCell, pathCells.getCellPathIterator()));
+                                if (Board.getBoardInstance().getGold() >= 100) {
+                                    towerList.add(towerFactory.createProduct("weaktower", clickedCell,
+                                            pathCells.getCellPathIterator()));
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 100);
                                 }
-                            }
-                            else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
+                            } else if (SwingUtilities.isRightMouseButton(e))// double click for strong tower
                             {
                                 if (Board.getBoardInstance().getGold() >= 150) {
-                                    towerList.add(towerFactory.createProduct("strongtower", clickedCell, pathCells.getCellPathIterator()));
+                                    towerList.add(towerFactory.createProduct("strongtower", clickedCell,
+                                            pathCells.getCellPathIterator()));
                                     Board.getBoardInstance().setGold(Board.getBoardInstance().getGold() - 150);
                                 }
                             }
@@ -196,6 +242,8 @@ public class Board {
         }
         return drawnBoard;
     }
+
+    
 
     /**
      * Access specific cells
@@ -231,9 +279,12 @@ public class Board {
     }
 
     public static class BoardBuilder {
+        private Tower towerDamage;
+        private double enemyHealth;
         private Cell[][] cells;
         private CellList<Cell> pathCells;
         private int gold;
+        private int waveNum;
 
         /**
          * Initializes the board using nonPath Cells
@@ -254,6 +305,21 @@ public class Board {
 
         public BoardBuilder setGold(int gold) {
             this.gold = gold;
+            return this;
+        }
+
+        public BoardBuilder setWaveNum(int waveNum) {
+            this.waveNum = waveNum;
+            return this;
+        }
+
+        public BoardBuilder setEnemyHealth(double enemyHealth) {
+            this.enemyHealth = enemyHealth;
+            return this;
+        }
+        
+        public BoardBuilder setTowerDamage(Tower damage) {
+            this.towerDamage = damage;
             return this;
         }
 
@@ -279,5 +345,8 @@ public class Board {
             return new Board(this);
         }
 
+		public BoardBuilder setTowerDamage(Object object) {
+			return null;
+		}
     }
 }
